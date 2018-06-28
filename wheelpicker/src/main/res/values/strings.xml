@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">WheelPicker</string>
+    <string name="cancel">取消</string>
+    <string name="ensure">确定</string>
+    <string name="confirm">确认</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+</resources>

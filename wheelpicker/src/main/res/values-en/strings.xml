@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="cancel">Cancel</string>
+    <string name="ensure">Ensure</string>
+    <string name="confirm">Confirm</string>
+    <string name="year">Year</string>
+    <string name="month">Month</string>
+    <string name="day">Day</string>
+</resources>
