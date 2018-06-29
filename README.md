@@ -1,4 +1,5 @@
 # WheelPicker
+[![](https://jitpack.io/v/ZhXyLy/WheelPicker.svg)](https://jitpack.io/#ZhXyLy/WheelPicker)
 <h4>区域选择和日期选择</h4>
 
 <b>FROM:</b>
@@ -35,7 +36,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.ZhXyLy:WheelPicker:1.0.1'
+	        implementation 'com.github.ZhXyLy:WheelPicker:latest-version'
 	}
   
   <h3>使用</h3>
