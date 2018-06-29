@@ -10,15 +10,16 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.jx.wheelpicker.R;
 
 /**
+ * 日期选择Dialog
+ *
  * @author zhaoxl
  * @date 2018/6/25
  */
-public class WheelDatePickerBottomDialog extends Dialog implements View.OnClickListener {
+public class WheelDatePickerBottomDialog extends Dialog {
 
 
     public WheelDatePickerBottomDialog(@NonNull Context context) {
@@ -29,11 +30,6 @@ public class WheelDatePickerBottomDialog extends Dialog implements View.OnClickL
         super(context, themeResId);
 
         initializer();
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 
     private void initializer() {
@@ -82,7 +78,7 @@ public class WheelDatePickerBottomDialog extends Dialog implements View.OnClickL
          *
          * @param wheelDatePicker 日期选择器
          */
-        void onPickerDate(WheelDatePicker wheelDatePicker);
+        void onPickerDate(IWheelDatePicker wheelDatePicker);
     }
 
     public void setOnPickerDateListener(OnPickerDateListener listener) {

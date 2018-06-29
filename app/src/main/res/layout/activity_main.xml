@@ -26,4 +26,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="显示日期Dialog" />
+
+    <Button
+        android:id="@+id/btn_show_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="单选Dialog" />
 </LinearLayout>

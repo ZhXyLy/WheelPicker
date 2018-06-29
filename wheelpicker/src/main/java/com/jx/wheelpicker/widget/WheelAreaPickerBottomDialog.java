@@ -14,6 +14,8 @@ import android.widget.FrameLayout;
 import com.jx.wheelpicker.R;
 
 /**
+ * 省市区选择Dialog
+ *
  * @author zhaoxl
  * @date 2018/6/25
  */
@@ -76,7 +78,7 @@ public class WheelAreaPickerBottomDialog extends Dialog {
          *
          * @param wheelAreaPicker 区域选择器
          */
-        void onPickerArea(WheelAreaPicker wheelAreaPicker);
+        void onPickerArea(IWheelAreaPicker wheelAreaPicker);
     }
 
     public void setOnPickerAreaListener(OnPickerAreaListener listener) {
