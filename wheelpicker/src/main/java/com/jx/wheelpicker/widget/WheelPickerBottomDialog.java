@@ -59,7 +59,7 @@ public class WheelPickerBottomDialog extends Dialog {
             public void onClick(View v) {
                 dismiss();
                 if (mOnWheelPickerListener != null) {
-                    mOnWheelPickerListener.onWheelPicker(mWheelPicker);
+                    mOnWheelPickerListener.onWheelPicker(mWheelPicker.getData().get(mWheelPicker.getCurrentItemPosition()));
                 }
             }
         });
@@ -102,9 +102,9 @@ public class WheelPickerBottomDialog extends Dialog {
         /**
          * 选择后确认的回调
          *
-         * @param wheelPicker 选择器
+         * @param o 选中的数据
          */
-        void onWheelPicker(IWheelPicker wheelPicker);
+        void onWheelPicker(Object o);
     }
 
     public void setOnWheelPickerListener(OnWheelPickerListener listener) {
