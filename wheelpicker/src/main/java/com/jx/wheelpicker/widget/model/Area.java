@@ -14,6 +14,10 @@ public class Area implements Serializable {
         return name;
     }
 
+    public String getCode() {
+        return code;
+    }
+
     public String getShortName() {
         return name.length() > 6 ? name.substring(0, 6) : name;
     }
