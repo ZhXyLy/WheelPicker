@@ -26,7 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 滚轮选择器
+ * 滚轮选择器（别人的轮子）
  * <p>
  * WheelPicker
  *

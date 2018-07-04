@@ -19,8 +19,8 @@ import java.util.Locale;
 /**
  * 日期选择器
  *
- * @author Administrator
- * @date 2016/9/14 0014
+ * @author zhaoxl
+ * @date 2018/6/26
  */
 public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
     private static final float ITEM_TEXT_SIZE = 20;

@@ -1,6 +1,8 @@
 package com.jx.wheelpicker.widget.model;
 
 /**
+ * 预览省市区数据（assets中读取出来的预览乱码）
+ *
  * @author zhaoxl
  * @date 2018/6/26
  */

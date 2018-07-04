@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
-    <com.jx.wheelpicker.widget.WheelAreaPicker
+    <com.jx.wheelpicker.widget.WheelTimePicker
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btn_show_area"
@@ -16,10 +15,6 @@
         android:layout_height="wrap_content"
         android:text="显示区域选择Dialog" />
 
-    <com.jx.wheelpicker.widget.WheelDatePicker
-        android:id="@+id/wheelDatePicker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/btn_show_date"
@@ -32,4 +27,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="单选Dialog" />
+
+    <Button
+        android:id="@+id/btn_show_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示时间Dialog" />
 </LinearLayout>

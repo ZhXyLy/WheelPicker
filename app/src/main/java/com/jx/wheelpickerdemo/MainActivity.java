@@ -7,12 +7,11 @@ import android.widget.Toast;
 
 import com.jx.wheelpicker.widget.IWheelAreaPicker;
 import com.jx.wheelpicker.widget.IWheelDatePicker;
-import com.jx.wheelpicker.widget.IWheelPicker;
-import com.jx.wheelpicker.widget.WheelAreaPicker;
+import com.jx.wheelpicker.widget.IWheelTimePicker;
 import com.jx.wheelpicker.widget.WheelAreaPickerBottomDialog;
-import com.jx.wheelpicker.widget.WheelDatePicker;
 import com.jx.wheelpicker.widget.WheelDatePickerBottomDialog;
 import com.jx.wheelpicker.widget.WheelPickerBottomDialog;
+import com.jx.wheelpicker.widget.WheelTimePickerBottomDialog;
 
 import java.util.Arrays;
 
@@ -23,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private WheelAreaPickerBottomDialog wheelAreaPickerBottomDialog;
     private WheelDatePickerBottomDialog wheelDatePickerBottomDialog;
+    private WheelTimePickerBottomDialog wheelTimePickerBottomDialog;
     private WheelPickerBottomDialog wheelPickerBottomDialog;
 
     private static final String[] TYPES = {"乘坐交通工具", "现场拜访及办公", "电话拜访", "会议及培训"};
@@ -50,9 +50,12 @@ public class MainActivity extends AppCompatActivity {
                 showWheelPicker();
             }
         });
-
-        WheelDatePicker wheelDatePicker = findViewById(R.id.wheelDatePicker);
-        wheelDatePicker.setYearRange(2012, 2022);
+        findViewById(R.id.btn_show_time).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTimeDialog();
+            }
+        });
     }
 
     private void showAreaDialog() {
@@ -74,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private void showDateDialog() {
         if (wheelDatePickerBottomDialog == null) {
             wheelDatePickerBottomDialog = new WheelDatePickerBottomDialog(this);
+            wheelDatePickerBottomDialog.setYearRange(2012, 2022);
             wheelDatePickerBottomDialog.setOnPickerDateListener(new WheelDatePickerBottomDialog.OnPickerDateListener() {
 
                 @Override
@@ -86,13 +90,27 @@ public class MainActivity extends AppCompatActivity {
         wheelDatePickerBottomDialog.show();
     }
 
+    private void showTimeDialog() {
+        if (wheelTimePickerBottomDialog == null) {
+            wheelTimePickerBottomDialog = new WheelTimePickerBottomDialog(this);
+            wheelTimePickerBottomDialog.setShowSecond(true);
+            wheelTimePickerBottomDialog.setOnPickerTimeListener(new WheelTimePickerBottomDialog.OnPickerTimeListener() {
+                @Override
+                public void onPickerTime(IWheelTimePicker wheelTimePicker) {
+                    String stringTime = wheelTimePicker.getStringTime();
+                    Toast.makeText(MainActivity.this, stringTime, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        wheelTimePickerBottomDialog.show();
+    }
+
     private void showWheelPicker() {
         if (wheelPickerBottomDialog == null) {
             wheelPickerBottomDialog = new WheelPickerBottomDialog(this);
             wheelPickerBottomDialog.setOnWheelPickerListener(new WheelPickerBottomDialog.OnWheelPickerListener() {
                 @Override
-                public void onWheelPicker(IWheelPicker wheelPicker) {
-                    Object o = wheelPicker.getData().get(wheelPicker.getCurrentItemPosition());
+                public void onWheelPicker(Object o) {
                     Toast.makeText(MainActivity.this, o.toString(), Toast.LENGTH_SHORT).show();
                 }
             });

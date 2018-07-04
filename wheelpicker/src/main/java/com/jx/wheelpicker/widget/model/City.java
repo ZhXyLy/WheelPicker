@@ -4,28 +4,34 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Administrator
- * @date 2016/9/14 0014
+ * 市
+ *
+ * @author zhaoxl
+ * @date 2018/6/26
  */
 public class City implements Serializable {
-    public String name;
-    public String code;
-    public List<Area> areas;
+    private String name;
+    private String code;
+    private List<Area> areas;
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getShortName() {
+        return name.length() > 5 ? name.substring(0, 5) : name;
     }
 
     public String getCode() {
         return code;
     }
 
-    public String getShortName() {
-        return name.length() > 6 ? name.substring(0, 6) : name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public List<Area> getArea() {

@@ -22,6 +22,8 @@ import com.jx.wheelpicker.R;
 public class WheelDatePickerBottomDialog extends Dialog {
 
 
+    private WheelDatePicker wheelDatePicker;
+
     public WheelDatePickerBottomDialog(@NonNull Context context) {
         this(context, R.style.Dialog);
     }
@@ -36,7 +38,8 @@ public class WheelDatePickerBottomDialog extends Dialog {
         setContentView(R.layout.include_wheel_picker_dialog);
 
         FrameLayout flContent = findViewById(R.id.fl_content);
-        final WheelDatePicker wheelDatePicker = new WheelDatePicker(getContext());
+        wheelDatePicker = new WheelDatePicker(getContext());
+
         flContent.addView(wheelDatePicker);
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
@@ -68,6 +71,10 @@ public class WheelDatePickerBottomDialog extends Dialog {
         }
 
         super.show();
+    }
+
+    public void setYearRange(int minYear, int maxYear) {
+        wheelDatePicker.setYearRange(minYear, maxYear);
     }
 
     private OnPickerDateListener mOnPickerDateListener;

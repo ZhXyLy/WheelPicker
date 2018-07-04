@@ -14,19 +14,20 @@ import android.widget.FrameLayout;
 import com.jx.wheelpicker.R;
 
 /**
- * 省市区选择Dialog
+ * 时间选择Dialog
  *
  * @author zhaoxl
  * @date 2018/6/25
  */
-public class WheelAreaPickerBottomDialog extends Dialog {
+public class WheelTimePickerBottomDialog extends Dialog {
 
+    private WheelTimePicker mWheelTimePicker;
 
-    public WheelAreaPickerBottomDialog(@NonNull Context context) {
+    public WheelTimePickerBottomDialog(@NonNull Context context) {
         this(context, R.style.Dialog);
     }
 
-    private WheelAreaPickerBottomDialog(@NonNull Context context, @StyleRes int themeResId) {
+    private WheelTimePickerBottomDialog(@NonNull Context context, @StyleRes int themeResId) {
         super(context, themeResId);
 
         initializer();
@@ -36,8 +37,8 @@ public class WheelAreaPickerBottomDialog extends Dialog {
         setContentView(R.layout.include_wheel_picker_dialog);
 
         FrameLayout flContent = findViewById(R.id.fl_content);
-        final WheelAreaPicker wheelAreaPicker = new WheelAreaPicker(getContext());
-        flContent.addView(wheelAreaPicker);
+        mWheelTimePicker = new WheelTimePicker(getContext());
+        flContent.addView(mWheelTimePicker);
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,8 +50,8 @@ public class WheelAreaPickerBottomDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 dismiss();
-                if (mOnPickerAreaListener != null) {
-                    mOnPickerAreaListener.onPickerArea(wheelAreaPicker);
+                if (mOnPickerTimeListener != null) {
+                    mOnPickerTimeListener.onPickerTime(mWheelTimePicker);
                 }
             }
         });
@@ -61,7 +62,6 @@ public class WheelAreaPickerBottomDialog extends Dialog {
         Window dialogWindow = getWindow();
         if (dialogWindow != null) {
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-            //窗口动画也可以在R.style.Dialog中设置windowAnimationStyle
             dialogWindow.setWindowAnimations(R.style.dialogWindowAnimBottom);
             dialogWindow.setGravity(Gravity.BOTTOM);
             lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -71,18 +71,22 @@ public class WheelAreaPickerBottomDialog extends Dialog {
         super.show();
     }
 
-    private OnPickerAreaListener mOnPickerAreaListener;
+    public void setShowSecond(boolean show) {
+        mWheelTimePicker.setShowSecond(show);
+    }
 
-    public interface OnPickerAreaListener {
+    private OnPickerTimeListener mOnPickerTimeListener;
+
+    public interface OnPickerTimeListener {
         /**
          * 选择后确认的回调
          *
-         * @param wheelAreaPicker 区域选择器
+         * @param wheelTimePicker 时间选择器
          */
-        void onPickerArea(IWheelAreaPicker wheelAreaPicker);
+        void onPickerTime(IWheelTimePicker wheelTimePicker);
     }
 
-    public void setOnPickerAreaListener(OnPickerAreaListener listener) {
-        mOnPickerAreaListener = listener;
+    public void setOnPickerTimeListener(OnPickerTimeListener listener) {
+        mOnPickerTimeListener = listener;
     }
 }

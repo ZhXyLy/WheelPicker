@@ -24,8 +24,8 @@ import java.util.List;
 /**
  * 区域选择器
  *
- * @author Administrator
- * @date 2016/9/14 0014
+ * @author zhaoxl
+ * @date 2018/6/26
  */
 public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     private static final float ITEM_TEXT_SIZE = 20;
@@ -41,8 +41,6 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
 
     private AssetManager mAssetManager;
 
-    private LayoutParams mLayoutParams;
-
     private WheelPicker mWPProvince, mWPCity, mWPArea;
 
     public WheelAreaPicker(Context context) {
@@ -51,8 +49,6 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
 
     public WheelAreaPicker(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        initLayoutParams();
 
         initView(context);
 
@@ -63,7 +59,6 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
         addListenerToWheelPicker();
     }
 
-    @SuppressWarnings("unchecked")
     private List<Province> getJsonDataFromAssets(AssetManager assetManager) {
         List<Province> provinceList = null;
         if (isInEditMode()) {
@@ -90,12 +85,6 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
         return provinceList;
     }
 
-    private void initLayoutParams() {
-        mLayoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        mLayoutParams.setMargins(5, 5, 5, 5);
-        mLayoutParams.width = 0;
-    }
-
     private void initView(Context context) {
         setOrientation(HORIZONTAL);
 
@@ -120,14 +109,17 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     }
 
     private void initWheelPicker(WheelPicker wheelPicker, float weight) {
-        mLayoutParams.weight = weight;
+        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(5, 5, 5, 5);
+        params.width = 0;
+        params.weight = weight;
         wheelPicker.setItemTextSize(dip2px(mContext, ITEM_TEXT_SIZE));
         wheelPicker.setSelectedItemTextColor(Color.parseColor(SELECTED_ITEM_COLOR));
         wheelPicker.setCurved(true);
         wheelPicker.setVisibleItemCount(7);
         wheelPicker.setAtmospheric(true);
         wheelPicker.setItemSpace(dip2px(mContext, ITEM_SPACE));
-        wheelPicker.setLayoutParams(mLayoutParams);
+        wheelPicker.setLayoutParams(params);
         addView(wheelPicker);
     }
 

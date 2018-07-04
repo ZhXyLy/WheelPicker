@@ -33,4 +33,16 @@ public interface IWheelTimePicker {
      */
     String getStringTime();
 
+    /**
+     * 是否显示秒
+     * @return 是否显示秒
+     */
+    boolean isShowSecond();
+
+    /**
+     * 设置是否显示秒
+     * @param show 设置是否显示秒
+     */
+    void setShowSecond(boolean show);
+
 }

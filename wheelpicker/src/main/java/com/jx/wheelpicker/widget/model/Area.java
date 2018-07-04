@@ -3,26 +3,32 @@ package com.jx.wheelpicker.widget.model;
 import java.io.Serializable;
 
 /**
- * @author Administrator
- * @date 2016/9/14 0014
+ * 区
+ *
+ * @author zhaoxl
+ * @date 2018/6/26
  */
 public class Area implements Serializable {
-    public String name;
-    public String code;
+    private String name;
+    private String code;
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getShortName() {
+        return name.length() > 5 ? name.substring(0, 5) : name;
     }
 
     public String getCode() {
         return code;
     }
 
-    public String getShortName() {
-        return name.length() > 6 ? name.substring(0, 6) : name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setCode(String code) {
+        this.code = code;
     }
 }
