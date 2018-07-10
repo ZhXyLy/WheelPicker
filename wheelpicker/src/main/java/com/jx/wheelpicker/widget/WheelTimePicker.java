@@ -13,6 +13,7 @@ import com.jx.wheelpicker.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -198,6 +199,20 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
             mWPHour.setItemAlign(WheelPicker.ALIGN_CENTER);
         }
         mWPSecond.setVisibility(show ? VISIBLE : GONE);
+    }
+
+    @Override
+    public void setSelectPositionByDate(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        mWPHour.setSelectedItemPosition(hour);
+        mWPMinute.setSelectedItemPosition(minute);
+        if (isShowSecond()) {
+            int second = calendar.get(Calendar.SECOND);
+            mWPSecond.setSelectedItemPosition(second);
+        }
     }
 
     private int dip2px(Context context, float dpValue) {

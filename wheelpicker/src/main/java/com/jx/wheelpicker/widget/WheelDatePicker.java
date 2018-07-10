@@ -28,7 +28,7 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
     private static final String SELECTED_ITEM_COLOR = "#353535";
     private static final int DEFAULT_YEAR_COUNT = 100;
     private static final int DEFAULT_MONTH_COUNT = 12;
-    private static final String[] WEEK_DAYS = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
+    private static String[] WEEK_DAYS;
 
     private Context mContext;
 
@@ -50,6 +50,7 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
         unitYear = getResources().getString(R.string.year);
         unitMonth = getResources().getString(R.string.month);
         unitDay = getResources().getString(R.string.day);
+        WEEK_DAYS = getResources().getStringArray(R.array.WheelArrayWeek);
 
         initLayoutParams();
 
@@ -251,6 +252,18 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
         if (mWPDay != null) {
             mWPDay.setItemTextSize(textSizePx);
         }
+    }
+
+    @Override
+    public void setSelectPositionByDate(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DATE);
+        mWPYear.setSelectedItemPosition(year - mYearList.get(0));
+        mWPMonth.setSelectedItemPosition(month);
+        mWPDay.setSelectedItemPosition(day - 1);
     }
 
     private int dip2px(Context context, float dpValue) {

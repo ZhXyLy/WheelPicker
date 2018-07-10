@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -28,6 +29,8 @@ import java.util.List;
  * @date 2018/6/26
  */
 public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
+    private static final String TAG = "WheelAreaPicker";
+
     private static final float ITEM_TEXT_SIZE = 20;
     private static final float ITEM_SPACE = 10;
     private static final String SELECTED_ITEM_COLOR = "#353535";
@@ -204,6 +207,40 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
         }
         if (mWPArea != null) {
             mWPArea.setItemTextSize(textSizePx);
+        }
+    }
+
+    @Override
+    public void setSelectPositionByCode(String code) {
+        if (code == null || code.length() != 6) {
+            Log.w(TAG, "setSelectPositionByCode: code 必须是省市区代码，长度为6位");
+            return;
+        }
+        String provinceCode = code.substring(0, 2) + "0000";
+        String cityCode = code.substring(0, 4) + "00";
+        for (int p = 0; p < mProvinceList.size(); p++) {
+            if (mProvinceList.get(p).getCode().equals(provinceCode)) {
+                mWPProvince.setSelectedItemPosition(p);
+                setCityAndAreaData(p);
+                Province province = mProvinceList.get(p);
+                List<City> cityList = province.getCity();
+                for (int c = 0; c < cityList.size(); c++) {
+                    if (cityList.get(c).getCode().equals(cityCode)) {
+                        mWPCity.setSelectedItemPosition(c);
+                        setArea(c);
+                        City city = cityList.get(c);
+                        List<Area> areaList = city.getArea();
+                        for (int a = 0; a < areaList.size(); a++) {
+                            if (areaList.get(a).getCode().equals(code)) {
+                                mWPArea.setSelectedItemPosition(a);
+                                return;
+                            }
+                        }
+                        return;
+                    }
+                }
+                return;
+            }
         }
     }
 

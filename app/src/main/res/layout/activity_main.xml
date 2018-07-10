@@ -5,9 +5,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <com.jx.wheelpicker.widget.WheelTimePicker
+
+    <EditText
+        android:id="@+id/et_code"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:text="610328" />
+
+    <Button
+        android:id="@+id/btn_area_change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="区域切换到上边输入Code的省市区" />
 
     <Button
         android:id="@+id/btn_show_area"
@@ -15,6 +25,18 @@
         android:layout_height="wrap_content"
         android:text="显示区域选择Dialog" />
 
+    <EditText
+        android:id="@+id/et_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:text="2018-07-10" />
+
+    <Button
+        android:id="@+id/btn_date_change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="区域切换到上边输入日期" />
 
     <Button
         android:id="@+id/btn_show_date"
@@ -22,15 +44,28 @@
         android:layout_height="wrap_content"
         android:text="显示日期Dialog" />
 
-    <Button
-        android:id="@+id/btn_show_picker"
+    <EditText
+        android:id="@+id/et_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="单选Dialog" />
+        android:inputType="time"
+        android:text="13:22:56" />
+
+    <Button
+        android:id="@+id/btn_time_change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="区域切换到上边输入时间" />
 
     <Button
         android:id="@+id/btn_show_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="显示时间Dialog" />
+
+    <Button
+        android:id="@+id/btn_show_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="单选Dialog" />
 </LinearLayout>

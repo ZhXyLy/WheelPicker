@@ -56,4 +56,10 @@ public interface IWheelDatePicker {
      * @param textSize dp
      */
     void setItemTextSize(int textSize);
+
+    /**
+     * 通过Date设置当前年月日位置
+     * @param date Date
+     */
+    void setSelectPositionByDate(Date date);
 }

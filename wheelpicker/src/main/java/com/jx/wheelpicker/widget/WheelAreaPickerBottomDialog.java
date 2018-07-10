@@ -22,6 +22,8 @@ import com.jx.wheelpicker.R;
 public class WheelAreaPickerBottomDialog extends Dialog {
 
 
+    private WheelAreaPicker wheelAreaPicker;
+
     public WheelAreaPickerBottomDialog(@NonNull Context context) {
         this(context, R.style.Dialog);
     }
@@ -36,7 +38,7 @@ public class WheelAreaPickerBottomDialog extends Dialog {
         setContentView(R.layout.include_wheel_picker_dialog);
 
         FrameLayout flContent = findViewById(R.id.fl_content);
-        final WheelAreaPicker wheelAreaPicker = new WheelAreaPicker(getContext());
+        wheelAreaPicker = new WheelAreaPicker(getContext());
         flContent.addView(wheelAreaPicker);
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
@@ -69,6 +71,10 @@ public class WheelAreaPickerBottomDialog extends Dialog {
         }
 
         super.show();
+    }
+
+    public void setSelectPositionByCode(String code) {
+        wheelAreaPicker.setSelectPositionByCode(code);
     }
 
     private OnPickerAreaListener mOnPickerAreaListener;

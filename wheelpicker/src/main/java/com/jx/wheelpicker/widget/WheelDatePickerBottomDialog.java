@@ -13,6 +13,8 @@ import android.widget.FrameLayout;
 
 import com.jx.wheelpicker.R;
 
+import java.util.Date;
+
 /**
  * 日期选择Dialog
  *
@@ -75,6 +77,10 @@ public class WheelDatePickerBottomDialog extends Dialog {
 
     public void setYearRange(int minYear, int maxYear) {
         wheelDatePicker.setYearRange(minYear, maxYear);
+    }
+
+    public void setSelectPositionByDate(Date date) {
+        wheelDatePicker.setSelectPositionByDate(date);
     }
 
     private OnPickerDateListener mOnPickerDateListener;

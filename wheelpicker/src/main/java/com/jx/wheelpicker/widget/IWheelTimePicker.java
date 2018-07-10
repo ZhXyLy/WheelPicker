@@ -1,5 +1,7 @@
 package com.jx.wheelpicker.widget;
 
+import java.util.Date;
+
 /**
  * @author zhaoxl
  * @date 2018/6/25
@@ -45,4 +47,9 @@ public interface IWheelTimePicker {
      */
     void setShowSecond(boolean show);
 
+    /**
+     * 通过date设置当前时间位置
+     * @param date Date
+     */
+    void setSelectPositionByDate(Date date);
 }

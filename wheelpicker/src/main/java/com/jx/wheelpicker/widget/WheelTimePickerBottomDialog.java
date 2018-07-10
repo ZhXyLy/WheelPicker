@@ -13,6 +13,8 @@ import android.widget.FrameLayout;
 
 import com.jx.wheelpicker.R;
 
+import java.util.Date;
+
 /**
  * 时间选择Dialog
  *
@@ -73,6 +75,10 @@ public class WheelTimePickerBottomDialog extends Dialog {
 
     public void setShowSecond(boolean show) {
         mWheelTimePicker.setShowSecond(show);
+    }
+
+    public void setSelectPositionByDate(Date date) {
+        mWheelTimePicker.setSelectPositionByDate(date);
     }
 
     private OnPickerTimeListener mOnPickerTimeListener;

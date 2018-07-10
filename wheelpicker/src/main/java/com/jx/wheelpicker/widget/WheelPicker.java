@@ -1,5 +1,6 @@
 package com.jx.wheelpicker.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Camera;
@@ -9,7 +10,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -38,6 +38,7 @@ import java.util.List;
  * @version 1.1.0
  */
 public class WheelPicker extends View implements IWheelPicker, Runnable {
+    public static final int MIN_VISIBLE_COUNT = 2;
     /**
      * 滚动状态标识值
      *
@@ -331,12 +332,10 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
 
         mScroller = new Scroller(getContext());
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.DONUT) {
-            ViewConfiguration conf = ViewConfiguration.get(getContext());
-            mMinimumVelocity = conf.getScaledMinimumFlingVelocity();
-            mMaximumVelocity = conf.getScaledMaximumFlingVelocity();
-            mTouchSlop = conf.getScaledTouchSlop();
-        }
+        ViewConfiguration conf = ViewConfiguration.get(getContext());
+        mMinimumVelocity = conf.getScaledMinimumFlingVelocity();
+        mMaximumVelocity = conf.getScaledMaximumFlingVelocity();
+        mTouchSlop = conf.getScaledTouchSlop();
         mRectDrawn = new Rect();
 
         mRectIndicatorHead = new Rect();
@@ -351,13 +350,13 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
     }
 
     private void updateVisibleItemCount() {
-        if (mVisibleItemCount < 2) {
+        if (mVisibleItemCount < MIN_VISIBLE_COUNT) {
             throw new ArithmeticException("Wheel's visible item count can not be less than 2!");
         }
 
         // 确保滚轮选择器可见数据项数量为奇数
         // Be sure count of visible item is odd number
-        if (mVisibleItemCount % 2 == 0) {
+        if (mVisibleItemCount % MIN_VISIBLE_COUNT == 0) {
             mVisibleItemCount += 1;
         }
         mDrawnItemCount = mVisibleItemCount + 2;
@@ -589,6 +588,8 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
                     case ALIGN_RIGHT:
                         transX = mRectDrawn.right;
                         break;
+                    default:
+                        break;
                 }
                 int transY = mWheelCenterY - distanceToCenter;
 
@@ -617,6 +618,18 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
             // 根据卷曲与否计算数据项绘制Y方向中心坐标
             // Correct item's drawn centerY base on curved state
             int drawnCenterY = isCurved ? mDrawnCenterY - distanceToCenter : mDrawnItemCenterY;
+
+            //弯曲偏移量,直接用Pos，偏移会不流畅
+//            switch (mItemAlign) {
+//                case ALIGN_LEFT:
+//                    mDrawnCenterX = isCurved ? mDrawnCenterX - drawnOffsetPos * 3 : mDrawnCenterX;
+//                    break;
+//                case ALIGN_RIGHT:
+//                    mDrawnCenterX = isCurved ? mDrawnCenterX + drawnOffsetPos * 3 : mDrawnCenterX;
+//                    break;
+//                default:
+//                    break;
+//            }
 
             // 判断是否需要为当前数据项绘制不同颜色
             // Judges need to draw different color for current item or not
@@ -697,6 +710,7 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
         return (int) (mHalfWheelHeight - Math.cos(Math.toRadians(degree)) * mHalfWheelHeight);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -746,11 +760,7 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
                 }
                 mTracker.addMovement(event);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.DONUT) {
-                    mTracker.computeCurrentVelocity(1000, mMaximumVelocity);
-                } else {
-                    mTracker.computeCurrentVelocity(1000);
-                }
+                mTracker.computeCurrentVelocity(1000, mMaximumVelocity);
 
                 // 根据速度判断是该滚动还是滑动
                 // Judges the WheelPicker is scroll or fling base on current velocity
