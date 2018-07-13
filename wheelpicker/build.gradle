@@ -23,11 +23,6 @@ android {
         }
     }
 
-    //跳过lint错误
-    lintOptions {
-        abortOnError false
-    }
-
 }
 
 dependencies {
