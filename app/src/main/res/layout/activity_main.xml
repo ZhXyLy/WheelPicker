@@ -68,4 +68,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="单选Dialog" />
+    <Button
+        android:id="@+id/btn_change_radio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改单选Dialog" />
 </LinearLayout>

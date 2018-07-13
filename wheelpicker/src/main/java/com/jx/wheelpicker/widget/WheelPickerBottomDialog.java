@@ -114,4 +114,14 @@ public class WheelPickerBottomDialog extends Dialog {
     public void setData(List data) {
         mWheelPicker.setData(data);
     }
+
+    public void setSelectPosition(Object o) {
+        List data = mWheelPicker.getData();
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i) == o) {
+                mWheelPicker.setSelectedItemPosition(i);
+                return;
+            }
+        }
+    }
 }

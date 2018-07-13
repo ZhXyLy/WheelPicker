@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText etTime;
     private EditText etDate;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +87,18 @@ public class MainActivity extends AppCompatActivity {
                 showTimeDialog();
             }
         });
+        findViewById(R.id.btn_change_radio).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeRadio();
+            }
+        });
+    }
+
+    private void changeRadio() {
+        if (wheelPickerBottomDialog!=null) {
+            wheelPickerBottomDialog.setSelectPosition(Pet.MONKEY);
+        }
     }
 
     private void changeDate() {
@@ -167,6 +180,20 @@ public class MainActivity extends AppCompatActivity {
         wheelTimePickerBottomDialog.show();
     }
 
+//    private void showWheelPicker() {
+//        if (wheelPickerBottomDialog == null) {
+//            wheelPickerBottomDialog = new WheelPickerBottomDialog(this);
+//            wheelPickerBottomDialog.setOnWheelPickerListener(new WheelPickerBottomDialog.OnWheelPickerListener() {
+//                @Override
+//                public void onWheelPicker(Object o) {
+//                    Toast.makeText(MainActivity.this, o.toString(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//            wheelPickerBottomDialog.setData(Arrays.asList(TYPES));
+//        }
+//        wheelPickerBottomDialog.show();
+//    }
+
     private void showWheelPicker() {
         if (wheelPickerBottomDialog == null) {
             wheelPickerBottomDialog = new WheelPickerBottomDialog(this);
@@ -176,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, o.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-            wheelPickerBottomDialog.setData(Arrays.asList(TYPES));
+            wheelPickerBottomDialog.setData(Arrays.asList(Pet.values()));
         }
         wheelPickerBottomDialog.show();
     }
