@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
     private void changeRadio() {
         if (wheelPickerBottomDialog!=null) {
             wheelPickerBottomDialog.setSelectPosition(Pet.MONKEY);
+//            wheelPickerBottomDialog.setSelectPosition("现场拜访及办公");
         }
     }
 
