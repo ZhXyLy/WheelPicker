@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.jx.wheelpicker.widget.IWheelAreaPicker;
 import com.jx.wheelpicker.widget.IWheelDatePicker;
+import com.jx.wheelpicker.widget.IWheelPicker;
 import com.jx.wheelpicker.widget.IWheelTimePicker;
 import com.jx.wheelpicker.widget.WheelAreaPickerBottomDialog;
 import com.jx.wheelpicker.widget.WheelDatePickerBottomDialog;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void changeRadio() {
-        if (wheelPickerBottomDialog!=null) {
+        if (wheelPickerBottomDialog != null) {
             wheelPickerBottomDialog.setSelectPosition(Pet.MONKEY);
 //            wheelPickerBottomDialog.setSelectPosition("现场拜访及办公");
         }
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 //            wheelPickerBottomDialog = new WheelPickerBottomDialog(this);
 //            wheelPickerBottomDialog.setOnWheelPickerListener(new WheelPickerBottomDialog.OnWheelPickerListener() {
 //                @Override
-//                public void onWheelPicker(Object o) {
+//                public void onWheelPicker(IWheelPicker wheelPicker, Object o) {
 //                    Toast.makeText(MainActivity.this, o.toString(), Toast.LENGTH_SHORT).show();
 //                }
 //            });
@@ -200,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             wheelPickerBottomDialog = new WheelPickerBottomDialog(this);
             wheelPickerBottomDialog.setOnWheelPickerListener(new WheelPickerBottomDialog.OnWheelPickerListener() {
                 @Override
-                public void onWheelPicker(Object o) {
+                public void onWheelPicker(IWheelPicker wheelPicker, Object o) {
                     Toast.makeText(MainActivity.this, o.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
