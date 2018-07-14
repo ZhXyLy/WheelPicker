@@ -41,8 +41,11 @@ public class WheelDatePickerBottomDialog extends Dialog {
 
         FrameLayout flContent = findViewById(R.id.fl_content);
         wheelDatePicker = new WheelDatePicker(getContext());
-
-        flContent.addView(wheelDatePicker);
+        flContent.addView(wheelDatePicker,
+                new FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        Gravity.CENTER));
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override

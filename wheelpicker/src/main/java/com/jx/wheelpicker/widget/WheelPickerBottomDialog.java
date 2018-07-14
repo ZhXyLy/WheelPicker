@@ -46,7 +46,11 @@ public class WheelPickerBottomDialog extends Dialog {
         FrameLayout flContent = findViewById(R.id.fl_content);
         mWheelPicker = new WheelPicker(getContext());
         initWheelPicker(mWheelPicker);
-        flContent.addView(mWheelPicker);
+        flContent.addView(mWheelPicker,
+                new FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        Gravity.CENTER));
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +62,7 @@ public class WheelPickerBottomDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 dismiss();
-                if (mOnWheelPickerListener != null) {
+                if (mOnWheelPickerListener != null && mWheelPicker.getData().size() > 0) {
                     mOnWheelPickerListener.onWheelPicker(mWheelPicker.getData().get(mWheelPicker.getCurrentItemPosition()));
                 }
             }
@@ -123,5 +127,9 @@ public class WheelPickerBottomDialog extends Dialog {
                 return;
             }
         }
+    }
+
+    public void setVisibleCount(int count) {
+        mWheelPicker.setVisibleItemCount(count);
     }
 }

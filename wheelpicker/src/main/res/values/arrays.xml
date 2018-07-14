@@ -26,6 +26,8 @@
         <item>相同的长度23</item>
         <item>相同的长度24</item>
     </string-array>
+    <string-array name="WheelArrayEmpty">
+    </string-array>
     <string-array name="WheelArrayWeek">
         <item>周日</item>
         <item>周一</item>

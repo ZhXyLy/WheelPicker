@@ -39,7 +39,11 @@ public class WheelAreaPickerBottomDialog extends Dialog {
 
         FrameLayout flContent = findViewById(R.id.fl_content);
         wheelAreaPicker = new WheelAreaPicker(getContext());
-        flContent.addView(wheelAreaPicker);
+        flContent.addView(wheelAreaPicker,
+                new FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        Gravity.CENTER));
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override

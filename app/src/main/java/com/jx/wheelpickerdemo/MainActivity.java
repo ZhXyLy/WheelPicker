@@ -205,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             wheelPickerBottomDialog.setData(Arrays.asList(Pet.values()));
+            wheelPickerBottomDialog.setVisibleCount(5);
         }
         wheelPickerBottomDialog.show();
     }

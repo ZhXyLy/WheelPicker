@@ -40,7 +40,11 @@ public class WheelTimePickerBottomDialog extends Dialog {
 
         FrameLayout flContent = findViewById(R.id.fl_content);
         mWheelTimePicker = new WheelTimePicker(getContext());
-        flContent.addView(mWheelTimePicker);
+        flContent.addView(mWheelTimePicker,
+                new FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        Gravity.CENTER));
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
