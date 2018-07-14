@@ -63,7 +63,7 @@ public class WheelPickerBottomDialog extends Dialog {
             public void onClick(View v) {
                 dismiss();
                 if (mOnWheelPickerListener != null && mWheelPicker.getData().size() > 0) {
-                    mOnWheelPickerListener.onWheelPicker(mWheelPicker.getData().get(mWheelPicker.getCurrentItemPosition()));
+                    mOnWheelPickerListener.onWheelPicker(mWheelPicker, mWheelPicker.getData().get(mWheelPicker.getCurrentItemPosition()));
                 }
             }
         });
@@ -106,9 +106,10 @@ public class WheelPickerBottomDialog extends Dialog {
         /**
          * 选择后确认的回调
          *
-         * @param o 选中的数据
+         * @param wheelPicker {@link WheelPicker}
+         * @param o           选中的数据
          */
-        void onWheelPicker(Object o);
+        void onWheelPicker(IWheelPicker wheelPicker, Object o);
     }
 
     public void setOnWheelPickerListener(OnWheelPickerListener listener) {
