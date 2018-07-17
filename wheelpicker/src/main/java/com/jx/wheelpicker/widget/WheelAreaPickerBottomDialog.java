@@ -3,6 +3,7 @@ package com.jx.wheelpicker.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.view.Gravity;
 import android.view.View;
@@ -83,6 +84,11 @@ public class WheelAreaPickerBottomDialog extends Dialog {
 
     public void setSelectPositionByCode(String code) {
         wheelAreaPicker.setSelectPositionByCode(code);
+    }
+
+    @Override
+    public void setTitle(@Nullable CharSequence title) {
+        tvTitle.setText(title);
     }
 
     private OnPickerAreaListener mOnPickerAreaListener;
