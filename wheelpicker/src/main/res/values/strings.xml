@@ -9,4 +9,7 @@
     <string name="hour">时</string>
     <string name="minute">分</string>
     <string name="second">秒</string>
+    <string name="select_province_city_area">选择省市区</string>
+    <string name="select_time">选择时间</string>
+    <string name="select_date">选择日期</string>
 </resources>

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.jx.wheelpicker.R;
 
@@ -23,8 +24,8 @@ import java.util.Date;
  */
 public class WheelDatePickerBottomDialog extends Dialog {
 
-
     private WheelDatePicker wheelDatePicker;
+    private TextView tvTitle;
 
     public WheelDatePickerBottomDialog(@NonNull Context context) {
         this(context, R.style.Dialog);
@@ -46,6 +47,9 @@ public class WheelDatePickerBottomDialog extends Dialog {
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         Gravity.CENTER));
+
+        tvTitle = findViewById(R.id.tv_title);
+        setTitle(R.string.select_date);
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override

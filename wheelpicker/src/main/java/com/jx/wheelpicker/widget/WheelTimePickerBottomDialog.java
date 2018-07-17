@@ -3,6 +3,7 @@ package com.jx.wheelpicker.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.view.Gravity;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.jx.wheelpicker.R;
 
@@ -24,6 +26,7 @@ import java.util.Date;
 public class WheelTimePickerBottomDialog extends Dialog {
 
     private WheelTimePicker mWheelTimePicker;
+    private TextView tvTitle;
 
     public WheelTimePickerBottomDialog(@NonNull Context context) {
         this(context, R.style.Dialog);
@@ -45,6 +48,9 @@ public class WheelTimePickerBottomDialog extends Dialog {
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         Gravity.CENTER));
+
+        tvTitle = findViewById(R.id.tv_title);
+        setTitle(R.string.select_time);
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +89,11 @@ public class WheelTimePickerBottomDialog extends Dialog {
 
     public void setSelectPositionByDate(Date date) {
         mWheelTimePicker.setSelectPositionByDate(date);
+    }
+
+    @Override
+    public void setTitle(@Nullable CharSequence title) {
+        tvTitle.setText(title);
     }
 
     private OnPickerTimeListener mOnPickerTimeListener;

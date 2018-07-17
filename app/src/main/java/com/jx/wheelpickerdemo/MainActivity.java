@@ -206,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             wheelPickerBottomDialog.setData(Arrays.asList(Pet.values()));
+            wheelPickerBottomDialog.setTitle("选择宠物类型");
             wheelPickerBottomDialog.setVisibleCount(5);
         }
         wheelPickerBottomDialog.show();

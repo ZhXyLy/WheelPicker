@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.jx.wheelpicker.R;
 
@@ -21,8 +22,8 @@ import com.jx.wheelpicker.R;
  */
 public class WheelAreaPickerBottomDialog extends Dialog {
 
-
     private WheelAreaPicker wheelAreaPicker;
+    private TextView tvTitle;
 
     public WheelAreaPickerBottomDialog(@NonNull Context context) {
         this(context, R.style.Dialog);
@@ -44,6 +45,9 @@ public class WheelAreaPickerBottomDialog extends Dialog {
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         Gravity.CENTER));
+
+        tvTitle = findViewById(R.id.tv_title);
+        setTitle(R.string.select_province_city_area);
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
