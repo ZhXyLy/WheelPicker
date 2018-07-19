@@ -45,7 +45,7 @@ public class WheelDatePickerBottomDialog extends Dialog {
         wheelDatePicker = new WheelDatePicker(getContext());
         flContent.addView(wheelDatePicker,
                 new FrameLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         Gravity.CENTER));
 

@@ -45,7 +45,7 @@ public class WheelTimePickerBottomDialog extends Dialog {
         mWheelTimePicker = new WheelTimePicker(getContext());
         flContent.addView(mWheelTimePicker,
                 new FrameLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         Gravity.CENTER));
 
