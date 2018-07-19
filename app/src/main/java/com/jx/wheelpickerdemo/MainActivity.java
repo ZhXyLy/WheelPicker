@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void changeRadio() {
         if (wheelPickerBottomDialog != null) {
-            wheelPickerBottomDialog.setSelectPosition(Pet.MONKEY);
+            wheelPickerBottomDialog.setSelectPosition(Pet.MONKEY.toString());
 //            wheelPickerBottomDialog.setSelectPosition("现场拜访及办公");
         }
     }
@@ -201,13 +201,14 @@ public class MainActivity extends AppCompatActivity {
             wheelPickerBottomDialog = new WheelPickerBottomDialog(this);
             wheelPickerBottomDialog.setOnWheelPickerListener(new WheelPickerBottomDialog.OnWheelPickerListener() {
                 @Override
-                public void onWheelPicker(IWheelPicker wheelPicker, Object o) {
-                    Toast.makeText(MainActivity.this, o.toString(), Toast.LENGTH_SHORT).show();
+                public void onWheelPicker(IWheelPicker wheelPicker, Object o, String pickerName) {
+                    Toast.makeText(MainActivity.this, pickerName, Toast.LENGTH_SHORT).show();
                 }
             });
             wheelPickerBottomDialog.setData(Arrays.asList(Pet.values()));
             wheelPickerBottomDialog.setTitle("选择宠物类型");
             wheelPickerBottomDialog.setVisibleCount(5);
+            wheelPickerBottomDialog.setSelectPosition(Pet.HORSE.toString());
         }
         wheelPickerBottomDialog.show();
     }

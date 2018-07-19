@@ -907,12 +907,12 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
     }
 
     @Override
-    public List getData() {
+    public List<String> getData() {
         return mData;
     }
 
     @Override
-    public void setData(List data) {
+    public void setData(List<String> data) {
         if (null == data) {
             throw new NullPointerException("WheelPicker's data can not be null!");
         }

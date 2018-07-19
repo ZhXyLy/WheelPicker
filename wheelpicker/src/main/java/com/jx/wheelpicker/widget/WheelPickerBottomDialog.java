@@ -16,7 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jx.wheelpicker.R;
+import com.jx.wheelpicker.widget.model.IPickerName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +34,7 @@ public class WheelPickerBottomDialog extends Dialog {
 
     private WheelPicker mWheelPicker;
     private TextView tvTitle;
+    private List mData;
 
     public WheelPickerBottomDialog(@NonNull Context context) {
         this(context, R.style.Dialog);
@@ -67,7 +70,10 @@ public class WheelPickerBottomDialog extends Dialog {
             public void onClick(View v) {
                 dismiss();
                 if (mOnWheelPickerListener != null && mWheelPicker.getData().size() > 0) {
-                    mOnWheelPickerListener.onWheelPicker(mWheelPicker, mWheelPicker.getData().get(mWheelPicker.getCurrentItemPosition()));
+                    mOnWheelPickerListener.onWheelPicker(
+                            mWheelPicker,
+                            getData().get(mWheelPicker.getCurrentItemPosition()),
+                            mWheelPicker.getData().get(mWheelPicker.getCurrentItemPosition()));
                 }
             }
         });
@@ -112,8 +118,9 @@ public class WheelPickerBottomDialog extends Dialog {
          *
          * @param wheelPicker {@link WheelPicker}
          * @param o           选中的数据
+         * @param pickerName  选中的文字
          */
-        void onWheelPicker(IWheelPicker wheelPicker, Object o);
+        void onWheelPicker(IWheelPicker wheelPicker, Object o, String pickerName);
     }
 
     public void setOnWheelPickerListener(OnWheelPickerListener listener) {
@@ -121,13 +128,32 @@ public class WheelPickerBottomDialog extends Dialog {
     }
 
     public void setData(List data) {
-        mWheelPicker.setData(data);
+        mData = data;
+        List<String> strings = new ArrayList<>();
+        for (Object o : data) {
+            if (o != null) {
+                String name;
+                if (o instanceof IPickerName) {
+                    name = ((IPickerName) o).getPickerName();
+                } else if (o instanceof String) {
+                    name = (String) o;
+                } else {
+                    name = o.toString();
+                }
+                strings.add(name);
+            }
+        }
+        mWheelPicker.setData(strings);
     }
 
-    public void setSelectPosition(Object o) {
-        List data = mWheelPicker.getData();
+    public List getData() {
+        return mData == null ? new ArrayList() : mData;
+    }
+
+    public void setSelectPosition(String o) {
+        List<String> data = mWheelPicker.getData();
         for (int i = 0; i < data.size(); i++) {
-            if (data.get(i) == o) {
+            if (data.get(i).equals(o)) {
                 mWheelPicker.setSelectedItemPosition(i);
                 return;
             }
