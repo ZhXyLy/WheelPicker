@@ -43,7 +43,7 @@ public class WheelAreaPickerBottomDialog extends Dialog {
         wheelAreaPicker = new WheelAreaPicker(getContext());
         flContent.addView(wheelAreaPicker,
                 new FrameLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         Gravity.CENTER));
 
