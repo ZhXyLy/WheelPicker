@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             wheelPickerBottomDialog = new WheelPickerBottomDialog(this);
             wheelPickerBottomDialog.setOnWheelPickerListener(new WheelPickerBottomDialog.OnWheelPickerListener() {
                 @Override
-                public void onWheelPicker(IWheelPicker wheelPicker, Object o, String pickerName) {
+                public void onWheelPicker(IWheelPicker wheelPicker, Object o, String pickerName,int position) {
                     Toast.makeText(MainActivity.this, pickerName, Toast.LENGTH_SHORT).show();
                 }
             });

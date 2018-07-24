@@ -70,10 +70,13 @@ public class WheelPickerBottomDialog extends Dialog {
             public void onClick(View v) {
                 dismiss();
                 if (mOnWheelPickerListener != null && mWheelPicker.getData().size() > 0) {
+                    int selectedItemPosition = mWheelPicker.getSelectedItemPosition();
                     mOnWheelPickerListener.onWheelPicker(
                             mWheelPicker,
-                            getData().get(mWheelPicker.getCurrentItemPosition()),
-                            mWheelPicker.getData().get(mWheelPicker.getCurrentItemPosition()));
+                            getData().get(selectedItemPosition),
+                            mWheelPicker.getData().get(selectedItemPosition),
+                            selectedItemPosition
+                    );
                 }
             }
         });
@@ -81,6 +84,8 @@ public class WheelPickerBottomDialog extends Dialog {
 
     @Override
     public void show() {
+        super.show();
+
         Window dialogWindow = getWindow();
         if (dialogWindow != null) {
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
@@ -89,8 +94,6 @@ public class WheelPickerBottomDialog extends Dialog {
             lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
             dialogWindow.setAttributes(lp);
         }
-
-        super.show();
     }
 
     private void initWheelPicker(WheelPicker wheelPicker) {
@@ -119,8 +122,9 @@ public class WheelPickerBottomDialog extends Dialog {
          * @param wheelPicker {@link WheelPicker}
          * @param o           选中的数据
          * @param pickerName  选中的文字
+         * @param position    选中的位置
          */
-        void onWheelPicker(IWheelPicker wheelPicker, Object o, String pickerName);
+        void onWheelPicker(IWheelPicker wheelPicker, Object o, String pickerName, int position);
     }
 
     public void setOnWheelPickerListener(OnWheelPickerListener listener) {

@@ -71,6 +71,8 @@ public class WheelDatePickerBottomDialog extends Dialog {
 
     @Override
     public void show() {
+        super.show();
+
         Window dialogWindow = getWindow();
         if (dialogWindow != null) {
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
@@ -79,8 +81,6 @@ public class WheelDatePickerBottomDialog extends Dialog {
             lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
             dialogWindow.setAttributes(lp);
         }
-
-        super.show();
     }
 
     public void setYearRange(int minYear, int maxYear) {
