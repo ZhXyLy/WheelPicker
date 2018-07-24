@@ -70,12 +70,12 @@ public class WheelPickerBottomDialog extends Dialog {
             public void onClick(View v) {
                 dismiss();
                 if (mOnWheelPickerListener != null && mWheelPicker.getData().size() > 0) {
-                    int selectedItemPosition = mWheelPicker.getSelectedItemPosition();
+                    int currentItemPosition = mWheelPicker.getCurrentItemPosition();
                     mOnWheelPickerListener.onWheelPicker(
                             mWheelPicker,
-                            getData().get(selectedItemPosition),
-                            mWheelPicker.getData().get(selectedItemPosition),
-                            selectedItemPosition
+                            getData().get(currentItemPosition),
+                            mWheelPicker.getData().get(currentItemPosition),
+                            currentItemPosition
                     );
                 }
             }
