@@ -80,6 +80,19 @@ public class WheelPickerBottomDialog extends Dialog {
                 }
             }
         });
+        mWheelPicker.setOnWheelScrollChangeListener(new WheelPicker.OnWheelScrollChangeListener() {
+            @Override
+            public void onWheelScroll(IWheelPicker wheelPicker) {
+                if (onWheelScrollChangedListener != null) {
+                    int currentItemPosition = mWheelPicker.getCurrentItemPosition();
+                    onWheelScrollChangedListener.onWheelScrollChanged(
+                            wheelPicker,
+                            getData().get(currentItemPosition),
+                            mWheelPicker.getData().get(currentItemPosition),
+                            currentItemPosition);
+                }
+            }
+        });
     }
 
     @Override
@@ -171,5 +184,15 @@ public class WheelPickerBottomDialog extends Dialog {
     @Override
     public void setTitle(@Nullable CharSequence title) {
         tvTitle.setText(title);
+    }
+
+    private OnWheelScrollChangedListener onWheelScrollChangedListener;
+
+    public void setOnWheelScrollChangedListener(OnWheelScrollChangedListener listener) {
+        this.onWheelScrollChangedListener = listener;
+    }
+
+    public interface OnWheelScrollChangedListener {
+        void onWheelScrollChanged(IWheelPicker wheelPicker, Object o, String pickerName, int position);
     }
 }

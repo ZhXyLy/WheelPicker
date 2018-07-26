@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
@@ -60,6 +61,16 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
         obtainProvinceData();
 
         addListenerToWheelPicker();
+
+        //view重绘时回调
+        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                getViewTreeObserver().removeOnPreDrawListener(this);
+                wheelScrollChanged();//初始化完毕，第一次显示时的回调
+                return true;
+            }
+        });
     }
 
     private List<Province> getJsonDataFromAssets(AssetManager assetManager) {
@@ -142,6 +153,7 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
                 //获得该省所有城市的集合
                 mCityList = mProvinceList.get(position).getCity();
                 setCityAndAreaData(position);
+                wheelScrollChanged();
             }
         });
 
@@ -150,9 +162,22 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
             public void onItemSelected(WheelPicker picker, Object data, int position) {
                 //获取城市对应的城区的名字
                 setArea(position);
+                wheelScrollChanged();
             }
         });
 
+        mWPArea.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(WheelPicker picker, Object data, int position) {
+                wheelScrollChanged();
+            }
+        });
+    }
+
+    private void wheelScrollChanged() {
+        if (onWheelScrollChangeListener != null) {
+            onWheelScrollChangeListener.onWheelScroll(this);
+        }
     }
 
     private void setCityAndAreaData(int position) {
@@ -247,5 +272,20 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     private int dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    private OnWheelScrollChangeListener onWheelScrollChangeListener;
+
+    public void setOnWheelScrollChangeListener(OnWheelScrollChangeListener listener) {
+        this.onWheelScrollChangeListener = listener;
+    }
+
+    public interface OnWheelScrollChangeListener {
+        /**
+         * 停止滚动即回调
+         *
+         * @param wheelAreaPicker IWheelAreaPicker
+         */
+        void onWheelScroll(IWheelAreaPicker wheelAreaPicker);
     }
 }

@@ -2,6 +2,7 @@ package com.jx.wheelpickerdemo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import java.util.Locale;
  * @author zhaoxl
  */
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
     private WheelAreaPickerBottomDialog wheelAreaPickerBottomDialog;
     private WheelDatePickerBottomDialog wheelDatePickerBottomDialog;
@@ -147,6 +149,15 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, province + "-" + city + "-" + area, Toast.LENGTH_SHORT).show();
                 }
             });
+            wheelAreaPickerBottomDialog.setOnWheelScrollChangedListener(new WheelAreaPickerBottomDialog.OnWheelScrollChangedListener() {
+                @Override
+                public void onWheelScrollChanged(IWheelAreaPicker wheelAreaPicker) {
+                    String province = wheelAreaPicker.getProvince().getName();
+                    String city = wheelAreaPicker.getCity().getName();
+                    String area = wheelAreaPicker.getArea().getName();
+                    Log.d(TAG, "省市区: " + province + "-" + city + "-" + area);
+                }
+            });
         }
         wheelAreaPickerBottomDialog.show();
     }
@@ -163,6 +174,13 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, stringDate, Toast.LENGTH_SHORT).show();
                 }
             });
+            wheelDatePickerBottomDialog.setOnWheelScrollChangedListener(new WheelDatePickerBottomDialog.OnWheelScrollChangedListener() {
+                @Override
+                public void onWheelScrollChanged(IWheelDatePicker wheelDatePicker) {
+                    String stringDate = wheelDatePicker.getStringDate("yyyy年MM月dd日");
+                    Log.d(TAG, "日期: " + stringDate);
+                }
+            });
         }
         wheelDatePickerBottomDialog.show();
     }
@@ -176,6 +194,13 @@ public class MainActivity extends AppCompatActivity {
                 public void onPickerTime(IWheelTimePicker wheelTimePicker) {
                     String stringTime = wheelTimePicker.getStringTime();
                     Toast.makeText(MainActivity.this, stringTime, Toast.LENGTH_SHORT).show();
+                }
+            });
+            wheelTimePickerBottomDialog.setOnWheelScrollChangedListener(new WheelTimePickerBottomDialog.OnWheelScrollChangedListener() {
+                @Override
+                public void onWheelScrollChanged(IWheelTimePicker wheelTimePicker) {
+                    String stringTime = wheelTimePicker.getStringTime();
+                    Log.d(TAG, "时间: " + stringTime);
                 }
             });
         }
@@ -201,8 +226,14 @@ public class MainActivity extends AppCompatActivity {
             wheelPickerBottomDialog = new WheelPickerBottomDialog(this);
             wheelPickerBottomDialog.setOnWheelPickerListener(new WheelPickerBottomDialog.OnWheelPickerListener() {
                 @Override
-                public void onWheelPicker(IWheelPicker wheelPicker, Object o, String pickerName,int position) {
+                public void onWheelPicker(IWheelPicker wheelPicker, Object o, String pickerName, int position) {
                     Toast.makeText(MainActivity.this, pickerName, Toast.LENGTH_SHORT).show();
+                }
+            });
+            wheelPickerBottomDialog.setOnWheelScrollChangedListener(new WheelPickerBottomDialog.OnWheelScrollChangedListener() {
+                @Override
+                public void onWheelScrollChanged(IWheelPicker wheelPicker, Object o, String pickerName, int position) {
+                    Log.d(TAG, "单选: " + pickerName);
                 }
             });
             wheelPickerBottomDialog.setData(Arrays.asList(Pet.values()));

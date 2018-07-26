@@ -18,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewTreeObserver;
 import android.widget.Scroller;
 
 import com.jx.wheelpicker.R;
@@ -352,6 +353,16 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
 
         mMatrixRotate = new Matrix();
         mMatrixDepth = new Matrix();
+
+        //view重绘时回调
+        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                getViewTreeObserver().removeOnPreDrawListener(this);
+                wheelScrollChanged();//初始化完毕，第一次显示时的回调
+                return true;
+            }
+        });
     }
 
     private void updateVisibleItemCount() {
@@ -839,6 +850,7 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
             if (null != mOnItemSelectedListener) {
                 mOnItemSelectedListener.onItemSelected(this, mData.get(position), position);
             }
+            wheelScrollChanged();
             if (null != mOnWheelChangeListener) {
                 mOnWheelChangeListener.onWheelSelected(position);
                 mOnWheelChangeListener.onWheelScrollStateChanged(SCROLL_STATE_IDLE);
@@ -854,6 +866,11 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
         }
     }
 
+    private void wheelScrollChanged() {
+        if (onWheelScrollChangeListener != null) {
+            onWheelScrollChangeListener.onWheelScroll(this);
+        }
+    }
 
     @Override
     public int getVisibleItemCount() {
@@ -1227,5 +1244,20 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
          *              Express WheelPicker in state of scrolling
          */
         void onWheelScrollStateChanged(int state);
+    }
+
+    private OnWheelScrollChangeListener onWheelScrollChangeListener;
+
+    public void setOnWheelScrollChangeListener(OnWheelScrollChangeListener listener) {
+        this.onWheelScrollChangeListener = listener;
+    }
+
+    public interface OnWheelScrollChangeListener {
+        /**
+         * 停止滚动即回调
+         *
+         * @param wheelPicker IWheelPicker
+         */
+        void onWheelScroll(IWheelPicker wheelPicker);
     }
 }

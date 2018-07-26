@@ -67,6 +67,14 @@ public class WheelTimePickerBottomDialog extends Dialog {
                 }
             }
         });
+        mWheelTimePicker.setOnWheelScrollChangeListener(new WheelTimePicker.OnWheelScrollChangeListener() {
+            @Override
+            public void onWheelScroll(IWheelTimePicker wheelTimePicker) {
+                if (onWheelScrollChangedListener != null) {
+                    onWheelScrollChangedListener.onWheelScrollChanged(wheelTimePicker);
+                }
+            }
+        });
     }
 
     @Override
@@ -109,5 +117,15 @@ public class WheelTimePickerBottomDialog extends Dialog {
 
     public void setOnPickerTimeListener(OnPickerTimeListener listener) {
         mOnPickerTimeListener = listener;
+    }
+
+    private OnWheelScrollChangedListener onWheelScrollChangedListener;
+
+    public void setOnWheelScrollChangedListener(OnWheelScrollChangedListener listener) {
+        this.onWheelScrollChangedListener = listener;
+    }
+
+    public interface OnWheelScrollChangedListener{
+        void onWheelScrollChanged(IWheelTimePicker wheelTimePicker);
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
 import com.jx.wheelpicker.R;
@@ -59,6 +60,17 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
         obtainDateData();
 
         addListenerToWheelPicker();
+
+        //view重绘时回调
+        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                getViewTreeObserver().removeOnPreDrawListener(this);
+                wheelScrollChanged();//初始化完毕，第一次显示时的回调
+                return true;
+            }
+        });
+
     }
 
     private void initLayoutParams() {
@@ -186,6 +198,7 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
                 computeDayList(false);
+                wheelScrollChanged();
             }
         });
 
@@ -193,8 +206,22 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
                 computeDayList(false);
+                wheelScrollChanged();
             }
         });
+
+        mWPDay.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(WheelPicker picker, Object data, int position) {
+                wheelScrollChanged();
+            }
+        });
+    }
+
+    private void wheelScrollChanged() {
+        if (onWheelScrollChangeListener != null) {
+            onWheelScrollChangeListener.onWheelScroll(this);
+        }
     }
 
     @Override
@@ -269,5 +296,20 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
     private int dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    private OnWheelScrollChangeListener onWheelScrollChangeListener;
+
+    public void setOnWheelScrollChangeListener(OnWheelScrollChangeListener listener) {
+        this.onWheelScrollChangeListener = listener;
+    }
+
+    public interface OnWheelScrollChangeListener {
+        /**
+         * 停止滚动即回调
+         *
+         * @param wheelDatePicker IWheelDatePicker
+         */
+        void onWheelScroll(IWheelDatePicker wheelDatePicker);
     }
 }

@@ -65,6 +65,14 @@ public class WheelAreaPickerBottomDialog extends Dialog {
                 }
             }
         });
+        wheelAreaPicker.setOnWheelScrollChangeListener(new WheelAreaPicker.OnWheelScrollChangeListener() {
+            @Override
+            public void onWheelScroll(IWheelAreaPicker wheelAreaPicker) {
+                if (onWheelScrollChangedListener != null) {
+                    onWheelScrollChangedListener.onWheelScrollChanged(wheelAreaPicker);
+                }
+            }
+        });
     }
 
     @Override
@@ -104,5 +112,15 @@ public class WheelAreaPickerBottomDialog extends Dialog {
 
     public void setOnPickerAreaListener(OnPickerAreaListener listener) {
         mOnPickerAreaListener = listener;
+    }
+
+    private OnWheelScrollChangedListener onWheelScrollChangedListener;
+
+    public void setOnWheelScrollChangedListener(OnWheelScrollChangedListener listener) {
+        this.onWheelScrollChangedListener = listener;
+    }
+
+    public interface OnWheelScrollChangedListener{
+        void onWheelScrollChanged(IWheelAreaPicker wheelAreaPicker);
     }
 }

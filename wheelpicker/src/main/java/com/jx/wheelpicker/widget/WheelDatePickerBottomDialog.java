@@ -67,6 +67,14 @@ public class WheelDatePickerBottomDialog extends Dialog {
                 }
             }
         });
+        wheelDatePicker.setOnWheelScrollChangeListener(new WheelDatePicker.OnWheelScrollChangeListener() {
+            @Override
+            public void onWheelScroll(IWheelDatePicker wheelDatePicker) {
+                if (onWheelScrollChangedListener != null) {
+                    onWheelScrollChangedListener.onWheelScrollChanged(wheelDatePicker);
+                }
+            }
+        });
     }
 
     @Override
@@ -109,5 +117,15 @@ public class WheelDatePickerBottomDialog extends Dialog {
 
     public void setOnPickerDateListener(OnPickerDateListener listener) {
         mOnPickerDateListener = listener;
+    }
+
+    private OnWheelScrollChangedListener onWheelScrollChangedListener;
+
+    public void setOnWheelScrollChangedListener(OnWheelScrollChangedListener listener) {
+        this.onWheelScrollChangedListener = listener;
+    }
+
+    public interface OnWheelScrollChangedListener{
+        void onWheelScrollChanged(IWheelDatePicker wheelDatePicker);
     }
 }

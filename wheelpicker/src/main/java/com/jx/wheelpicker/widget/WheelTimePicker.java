@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -58,6 +59,16 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
         obtainDateData();
 
         addListenerToWheelPicker();
+
+        //view重绘时回调
+        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                getViewTreeObserver().removeOnPreDrawListener(this);
+                wheelScrollChanged();//初始化完毕，第一次显示时的回调
+                return true;
+            }
+        });
     }
 
     private void initView(Context context) {
@@ -146,16 +157,29 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
         mWPHour.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
-
+                wheelScrollChanged();
             }
         });
 
         mWPMinute.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
-
+                wheelScrollChanged();
             }
         });
+
+        mWPSecond.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(WheelPicker picker, Object data, int position) {
+                wheelScrollChanged();
+            }
+        });
+    }
+
+    private void wheelScrollChanged() {
+        if (onWheelScrollChangeListener != null) {
+            onWheelScrollChangeListener.onWheelScroll(this);
+        }
     }
 
     @Override
@@ -222,5 +246,20 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
 
     private String format(int data) {
         return data < 10 ? "0" + data : data + "";
+    }
+
+    private OnWheelScrollChangeListener onWheelScrollChangeListener;
+
+    public void setOnWheelScrollChangeListener(OnWheelScrollChangeListener listener) {
+        this.onWheelScrollChangeListener = listener;
+    }
+
+    public interface OnWheelScrollChangeListener {
+        /**
+         * 停止滚动即回调
+         *
+         * @param wheelTimePicker IWheelTimePicker
+         */
+        void onWheelScroll(IWheelTimePicker wheelTimePicker);
     }
 }
