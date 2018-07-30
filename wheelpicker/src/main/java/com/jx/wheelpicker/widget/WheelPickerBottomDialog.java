@@ -84,12 +84,14 @@ public class WheelPickerBottomDialog extends Dialog {
             @Override
             public void onWheelScroll(IWheelPicker wheelPicker) {
                 if (onWheelScrollChangedListener != null) {
-                    int currentItemPosition = mWheelPicker.getCurrentItemPosition();
-                    onWheelScrollChangedListener.onWheelScrollChanged(
-                            wheelPicker,
-                            getData().get(currentItemPosition),
-                            mWheelPicker.getData().get(currentItemPosition),
-                            currentItemPosition);
+                    int currentItemPosition = wheelPicker.getCurrentItemPosition();
+                    if (getData().size() > currentItemPosition) {
+                        onWheelScrollChangedListener.onWheelScrollChanged(
+                                wheelPicker,
+                                getData().get(currentItemPosition),
+                                wheelPicker.getData().get(currentItemPosition),
+                                currentItemPosition);
+                    }
                 }
             }
         });
