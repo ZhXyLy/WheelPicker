@@ -222,6 +222,16 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     }
 
     @Override
+    public String getSSQ() {
+        return getProvince().getName() + getCity().getName() + getArea().getName();
+    }
+
+    @Override
+    public String getSSQCode() {
+        return getArea().getCode();
+    }
+
+    @Override
     public void setItemTextSize(int textSize) {
         int textSizePx = dip2px(mContext, textSize);
         if (mWPProvince != null) {

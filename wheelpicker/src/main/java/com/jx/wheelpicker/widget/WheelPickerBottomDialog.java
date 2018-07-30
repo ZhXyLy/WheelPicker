@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -170,11 +171,13 @@ public class WheelPickerBottomDialog extends Dialog {
     }
 
     public void setSelectPosition(String o) {
-        List<String> data = mWheelPicker.getData();
-        for (int i = 0; i < data.size(); i++) {
-            if (data.get(i).equals(o)) {
-                mWheelPicker.setSelectedItemPosition(i);
-                return;
+        if (!TextUtils.isEmpty(o)) {
+            List<String> data = mWheelPicker.getData();
+            for (int i = 0; i < data.size(); i++) {
+                if (data.get(i).equals(o)) {
+                    mWheelPicker.setSelectedItemPosition(i);
+                    return;
+                }
             }
         }
     }

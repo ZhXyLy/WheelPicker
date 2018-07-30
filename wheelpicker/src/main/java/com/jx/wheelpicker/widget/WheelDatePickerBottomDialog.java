@@ -96,7 +96,9 @@ public class WheelDatePickerBottomDialog extends Dialog {
     }
 
     public void setSelectPositionByDate(Date date) {
-        wheelDatePicker.setSelectPositionByDate(date);
+        if (date!=null) {
+            wheelDatePicker.setSelectPositionByDate(date);
+        }
     }
 
     @Override

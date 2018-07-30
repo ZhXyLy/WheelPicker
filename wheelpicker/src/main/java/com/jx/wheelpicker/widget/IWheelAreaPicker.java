@@ -30,6 +30,19 @@ public interface IWheelAreaPicker {
      */
     Area getArea();
 
+    /**
+     * 省市区地址
+     *
+     * @return 省市区地址
+     */
+    String getSSQ();
+
+    /**
+     * 省市区代码（Area的code）
+     *
+     * @return 省市区代码
+     */
+    String getSSQCode();
 
     /**
      * 设置item文字大小

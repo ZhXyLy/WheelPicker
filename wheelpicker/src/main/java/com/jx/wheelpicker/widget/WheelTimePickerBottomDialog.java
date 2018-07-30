@@ -96,7 +96,9 @@ public class WheelTimePickerBottomDialog extends Dialog {
     }
 
     public void setSelectPositionByDate(Date date) {
-        mWheelTimePicker.setSelectPositionByDate(date);
+        if (date != null) {
+            mWheelTimePicker.setSelectPositionByDate(date);
+        }
     }
 
     @Override
@@ -125,7 +127,7 @@ public class WheelTimePickerBottomDialog extends Dialog {
         this.onWheelScrollChangedListener = listener;
     }
 
-    public interface OnWheelScrollChangedListener{
+    public interface OnWheelScrollChangedListener {
         void onWheelScrollChanged(IWheelTimePicker wheelTimePicker);
     }
 }
