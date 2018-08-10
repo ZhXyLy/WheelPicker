@@ -2,6 +2,7 @@ package com.jx.wheelpicker.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Camera;
 import android.graphics.Canvas;
@@ -14,6 +15,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -118,9 +120,9 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
     /**
      * 数据项文本尺寸
      *
-     * @see #setItemTextSize(int)
+     * @see #setItemTextSize(float)
      */
-    private int mItemTextSize;
+    private float mItemTextSize;
 
     /**
      * 指示器尺寸
@@ -294,7 +296,7 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
                     .getStringArray(idData == 0 ? R.array.WheelArrayDefault : idData));
         } else {
             mData = Arrays.asList(getResources()
-                .getStringArray(idData == 0 ? R.array.WheelArrayEmpty : idData));
+                    .getStringArray(idData == 0 ? R.array.WheelArrayEmpty : idData));
         }
         mItemTextSize = a.getDimensionPixelSize(R.styleable.WheelPicker_wheel_item_text_size,
                 getResources().getDimensionPixelSize(R.dimen.WheelItemTextSize));
@@ -1023,17 +1025,30 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
     }
 
     @Override
-    public int getItemTextSize() {
+    public float getItemTextSize() {
         return mItemTextSize;
     }
 
     @Override
-    public void setItemTextSize(int size) {
+    public void setItemTextSize(float size) {
         mItemTextSize = size;
         mPaint.setTextSize(mItemTextSize);
         computeTextSize();
         requestLayout();
         invalidate();
+    }
+
+    @Override
+    public void setItemTextSize(int unit, float value) {
+        Context c = getContext();
+        Resources r;
+
+        if (c == null) {
+            r = Resources.getSystem();
+        } else {
+            r = c.getResources();
+        }
+        setItemTextSize(TypedValue.applyDimension(unit, value, r.getDisplayMetrics()));
     }
 
     @Override

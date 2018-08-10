@@ -3,6 +3,7 @@ package com.jx.wheelpickerdemo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -239,6 +240,8 @@ public class MainActivity extends AppCompatActivity {
             wheelPickerBottomDialog.setData(Arrays.asList(Pet.values()));
             wheelPickerBottomDialog.setTitle("选择宠物类型");
             wheelPickerBottomDialog.setVisibleCount(5);
+            wheelPickerBottomDialog.setItemTextSize(TypedValue.COMPLEX_UNIT_DIP, 30);
+//            wheelPickerBottomDialog.setSelectPosition(3);
             wheelPickerBottomDialog.setSelectPosition(Pet.HORSE.toString());
         }
         wheelPickerBottomDialog.show();

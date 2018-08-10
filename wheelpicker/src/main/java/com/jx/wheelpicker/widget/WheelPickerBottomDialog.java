@@ -3,6 +3,7 @@ package com.jx.wheelpicker.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
@@ -129,24 +130,6 @@ public class WheelPickerBottomDialog extends Dialog {
         return (int) (dpValue * scale + 0.5f);
     }
 
-    private OnWheelPickerListener mOnWheelPickerListener;
-
-    public interface OnWheelPickerListener {
-        /**
-         * 选择后确认的回调
-         *
-         * @param wheelPicker {@link WheelPicker}
-         * @param o           选中的数据
-         * @param pickerName  选中的文字
-         * @param position    选中的位置
-         */
-        void onWheelPicker(IWheelPicker wheelPicker, Object o, String pickerName, int position);
-    }
-
-    public void setOnWheelPickerListener(OnWheelPickerListener listener) {
-        mOnWheelPickerListener = listener;
-    }
-
     public void setData(List data) {
         mData = data;
         List<String> strings = new ArrayList<>();
@@ -182,6 +165,10 @@ public class WheelPickerBottomDialog extends Dialog {
         }
     }
 
+    public void setSelectPosition(int position) {
+        mWheelPicker.setSelectedItemPosition(position);
+    }
+
     public void setVisibleCount(int count) {
         mWheelPicker.setVisibleItemCount(count);
     }
@@ -189,6 +176,82 @@ public class WheelPickerBottomDialog extends Dialog {
     @Override
     public void setTitle(@Nullable CharSequence title) {
         tvTitle.setText(title);
+    }
+
+    public void setItemTextSize(float size) {
+        mWheelPicker.setItemTextSize(size);
+    }
+
+    public void setItemTextSize(int unit, float value) {
+        mWheelPicker.setItemTextSize(unit, value);
+    }
+
+    public void setItemTextColor(int color) {
+        mWheelPicker.setItemTextColor(color);
+    }
+
+    public void setSelectedItemColor(int color) {
+        mWheelPicker.setSelectedItemTextColor(color);
+    }
+
+    public int getVisibleItemCount() {
+        return mWheelPicker.getVisibleItemCount();
+    }
+
+    public void setItemSpace(int space) {
+        mWheelPicker.setItemSpace(space);
+    }
+
+    public void setIndicator(boolean hasIndicator) {
+        mWheelPicker.setIndicator(hasIndicator);
+    }
+
+    public void setIndicatorColor(int color) {
+        mWheelPicker.setIndicatorColor(color);
+    }
+
+    public void setCurtain(boolean hasCurtain) {
+        mWheelPicker.setCurtain(hasCurtain);
+    }
+
+    public void setCurtainColor(int color) {
+        mWheelPicker.setCurtainColor(color);
+    }
+
+    public void setAtmospheric(boolean hasAtmospheric) {
+        mWheelPicker.setAtmospheric(hasAtmospheric);
+    }
+
+    public void setCurved(boolean isCurved) {
+        mWheelPicker.setCurved(isCurved);
+    }
+
+    public void setItemAlign(int align) {
+        mWheelPicker.setItemAlign(align);
+    }
+
+    public void setTypeface(Typeface tf) {
+        mWheelPicker.setTypeface(tf);
+    }
+
+    //--------------------------------------------------------
+
+    private OnWheelPickerListener mOnWheelPickerListener;
+
+    public interface OnWheelPickerListener {
+        /**
+         * 选择后确认的回调
+         *
+         * @param wheelPicker {@link WheelPicker}
+         * @param o           选中的数据
+         * @param pickerName  选中的文字
+         * @param position    选中的位置
+         */
+        void onWheelPicker(IWheelPicker wheelPicker, Object o, String pickerName, int position);
+    }
+
+    public void setOnWheelPickerListener(OnWheelPickerListener listener) {
+        mOnWheelPickerListener = listener;
     }
 
     private OnWheelScrollChangedListener onWheelScrollChangedListener;

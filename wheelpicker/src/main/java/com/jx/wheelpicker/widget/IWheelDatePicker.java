@@ -52,10 +52,31 @@ public interface IWheelDatePicker {
     void setYearRange(int minYear, int maxYear);
 
     /**
-     * 设置item文字大小
-     * @param textSize dp
+     * 设置数据项文本尺寸大小
+     * <p>
+     * Set text size of items
+     * Unit in px
+     *
+     * @param size 设置数据项文本尺寸大小，单位：px
      */
-    void setItemTextSize(int textSize);
+    void setItemTextSize(float size);
+
+    /**
+     * 设置数据项文本尺寸大小
+     * <p>
+     * <p>
+     * {@link android.util.TypedValue#COMPLEX_UNIT_PX}
+     * {@link android.util.TypedValue#COMPLEX_UNIT_DIP}
+     * {@link android.util.TypedValue#COMPLEX_UNIT_SP}
+     * {@link android.util.TypedValue#COMPLEX_UNIT_PT}
+     * {@link android.util.TypedValue#COMPLEX_UNIT_IN}
+     * {@link android.util.TypedValue#COMPLEX_UNIT_MM}
+     * </p>
+     *
+     * @param unit  尺寸单位
+     * @param value unit单位下的尺寸大小
+     */
+    void setItemTextSize(int unit, float value);
 
     /**
      * 通过Date设置当前年月日位置

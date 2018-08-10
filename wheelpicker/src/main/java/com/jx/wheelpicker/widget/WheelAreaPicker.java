@@ -232,16 +232,28 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     }
 
     @Override
-    public void setItemTextSize(int textSize) {
-        int textSizePx = dip2px(mContext, textSize);
+    public void setItemTextSize(float size) {
         if (mWPProvince != null) {
-            mWPProvince.setItemTextSize(textSizePx);
+            mWPProvince.setItemTextSize(size);
         }
         if (mWPCity != null) {
-            mWPCity.setItemTextSize(textSizePx);
+            mWPCity.setItemTextSize(size);
         }
         if (mWPArea != null) {
-            mWPArea.setItemTextSize(textSizePx);
+            mWPArea.setItemTextSize(size);
+        }
+    }
+
+    @Override
+    public void setItemTextSize(int unit, float value) {
+        if (mWPProvince != null) {
+            mWPProvince.setItemTextSize(unit, value);
+        }
+        if (mWPCity != null) {
+            mWPCity.setItemTextSize(unit, value);
+        }
+        if (mWPArea != null) {
+            mWPArea.setItemTextSize(unit, value);
         }
     }
 

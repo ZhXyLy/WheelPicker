@@ -268,16 +268,28 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
     }
 
     @Override
-    public void setItemTextSize(int textSize) {
-        int textSizePx = dip2px(mContext, textSize);
+    public void setItemTextSize(float size) {
         if (mWPYear != null) {
-            mWPYear.setItemTextSize(textSizePx);
+            mWPYear.setItemTextSize(size);
         }
         if (mWPMonth != null) {
-            mWPMonth.setItemTextSize(textSizePx);
+            mWPMonth.setItemTextSize(size);
         }
         if (mWPDay != null) {
-            mWPDay.setItemTextSize(textSizePx);
+            mWPDay.setItemTextSize(size);
+        }
+    }
+
+    @Override
+    public void setItemTextSize(int unit, float value) {
+        if (mWPYear != null) {
+            mWPYear.setItemTextSize(unit, value);
+        }
+        if (mWPMonth != null) {
+            mWPMonth.setItemTextSize(unit, value);
+        }
+        if (mWPDay != null) {
+            mWPDay.setItemTextSize(unit, value);
         }
     }
 

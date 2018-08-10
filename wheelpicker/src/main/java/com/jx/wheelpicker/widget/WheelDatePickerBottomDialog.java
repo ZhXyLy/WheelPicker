@@ -106,6 +106,14 @@ public class WheelDatePickerBottomDialog extends Dialog {
         tvTitle.setText(title);
     }
 
+    public void setItemTextSize(float size) {
+        wheelDatePicker.setItemTextSize(size);
+    }
+
+    public void setItemTextSize(int unit, float value) {
+        wheelDatePicker.setItemTextSize(unit, value);
+    }
+
     private OnPickerDateListener mOnPickerDateListener;
 
     public interface OnPickerDateListener {

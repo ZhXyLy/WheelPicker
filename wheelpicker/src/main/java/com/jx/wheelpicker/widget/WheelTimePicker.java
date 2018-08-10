@@ -239,6 +239,32 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
         }
     }
 
+    @Override
+    public void setItemTextSize(float size) {
+        if (mWPHour != null) {
+            mWPHour.setItemTextSize(size);
+        }
+        if (mWPMinute != null) {
+            mWPMinute.setItemTextSize(size);
+        }
+        if (mWPSecond != null) {
+            mWPSecond.setItemTextSize(size);
+        }
+    }
+
+    @Override
+    public void setItemTextSize(int unit, float value) {
+        if (mWPHour != null) {
+            mWPHour.setItemTextSize(unit, value);
+        }
+        if (mWPMinute != null) {
+            mWPMinute.setItemTextSize(unit, value);
+        }
+        if (mWPSecond != null) {
+            mWPSecond.setItemTextSize(unit, value);
+        }
+    }
+
     private int dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);

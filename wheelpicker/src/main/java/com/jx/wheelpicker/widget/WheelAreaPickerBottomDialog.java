@@ -102,6 +102,14 @@ public class WheelAreaPickerBottomDialog extends Dialog {
         tvTitle.setText(title);
     }
 
+    public void setItemTextSize(float size) {
+        wheelAreaPicker.setItemTextSize(size);
+    }
+
+    public void setItemTextSize(int unit, float value) {
+        wheelAreaPicker.setItemTextSize(unit, value);
+    }
+
     private OnPickerAreaListener mOnPickerAreaListener;
 
     public interface OnPickerAreaListener {

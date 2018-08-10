@@ -298,7 +298,7 @@ public interface IWheelPicker {
      *
      * @return 数据项文本尺寸大小
      */
-    int getItemTextSize();
+    float getItemTextSize();
 
     /**
      * 设置数据项文本尺寸大小
@@ -308,7 +308,24 @@ public interface IWheelPicker {
      *
      * @param size 设置数据项文本尺寸大小，单位：px
      */
-    void setItemTextSize(int size);
+    void setItemTextSize(float size);
+
+    /**
+     * 设置数据项文本尺寸大小
+     * <p>
+     * <p>
+     * {@link android.util.TypedValue#COMPLEX_UNIT_PX}
+     * {@link android.util.TypedValue#COMPLEX_UNIT_DIP}
+     * {@link android.util.TypedValue#COMPLEX_UNIT_SP}
+     * {@link android.util.TypedValue#COMPLEX_UNIT_PT}
+     * {@link android.util.TypedValue#COMPLEX_UNIT_IN}
+     * {@link android.util.TypedValue#COMPLEX_UNIT_MM}
+     * </p>
+     *
+     * @param unit  尺寸单位
+     * @param value unit单位下的尺寸大小
+     */
+    void setItemTextSize(int unit, float value);
 
     /**
      * 获取滚轮选择器数据项之间间距

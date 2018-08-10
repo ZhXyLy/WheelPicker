@@ -101,6 +101,14 @@ public class WheelTimePickerBottomDialog extends Dialog {
         }
     }
 
+    public void setItemTextSize(float size) {
+        mWheelTimePicker.setItemTextSize(size);
+    }
+
+    public void setItemTextSize(int unit, float value) {
+        mWheelTimePicker.setItemTextSize(unit, value);
+    }
+
     @Override
     public void setTitle(@Nullable CharSequence title) {
         tvTitle.setText(title);
