@@ -40,7 +40,7 @@ Step 2. Add the dependency
 	}
   
   <h3>使用</h3>
-  
+  <h4>区域选择</h4>
     private void showAreaDialog() {
         if (wheelAreaPickerBottomDialog == null) {
             wheelAreaPickerBottomDialog = new WheelAreaPickerBottomDialog(this);
@@ -79,7 +79,7 @@ Step 2. Add the dependency
         }
         wheelAreaPickerBottomDialog.show();
     }
-
+<h4>日期选择</h4>
     private void showDateDialog() {
     	//和上边的一样，两种Lisenter
         if (wheelDatePickerBottomDialog == null) {
@@ -97,9 +97,9 @@ Step 2. Add the dependency
         }
         wheelDatePickerBottomDialog.show();
     }
-    
+<h4>时间选择</h4>
     //时间和日期的类似，自己琢磨用
-	
+<h4>单选选择</h4>	
     private void showWheelPicker() {
 	if (typeWheelPickerBottomDialog == null) {
                 typeWheelPickerBottomDialog = new WheelPickerBottomDialog(this);
