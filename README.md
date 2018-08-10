@@ -55,11 +55,37 @@ Step 2. Add the dependency
             });
         }
         wheelAreaPickerBottomDialog.show();
+	//
+	if (wheelAreaPickerBottomDialog == null) {
+            wheelAreaPickerBottomDialog = new WheelAreaPickerBottomDialog(this);
+            wheelAreaPickerBottomDialog.setSelectPositionByCode(viewModel.getSsqCode());
+            wheelAreaPickerBottomDialog.setOnWheelScrollChangedListener(iWheelAreaPicker -> {
+                Province province = iWheelAreaPicker.getProvince();
+                City city = iWheelAreaPicker.getCity();
+                Area area = iWheelAreaPicker.getArea();
+                String ssq = province.getName() + city.getName() + area.getName();
+                Toast.makeText(MainActivity.this, ssq, Toast.LENGTH_SHORT).show();
+            });
+	    //同样，点确认回调
+	    //wheelAreaPickerBottomDialog.setOnPickerAreaListener(new WheelAreaPickerBottomDialog.OnPickerAreaListener() {
+            //    @Override
+            //    public void onPickerArea(IWheelAreaPicker wheelAreaPicker) {
+            //        String province = wheelAreaPicker.getProvince().getName();
+            //        String city = wheelAreaPicker.getCity().getName();
+            //        String area = wheelAreaPicker.getArea().getName();
+            //        Toast.makeText(MainActivity.this, province + "-" + city + "-" + area, Toast.LENGTH_SHORT).show();
+            //    }
+            });
+        }
+        wheelAreaPickerBottomDialog.show();
     }
 
     private void showDateDialog() {
+    	//和上边的一样，两种Lisenter
         if (wheelDatePickerBottomDialog == null) {
             wheelDatePickerBottomDialog = new WheelDatePickerBottomDialog(this);
+	    wheelDatePickerBottomDialog.setTitle(R.string.expect_review_date);
+            wheelDatePickerBottomDialog.setSelectPositionByDate(date);//由于各种日期格式，所以传入Date
             wheelDatePickerBottomDialog.setOnPickerDateListener(new WheelDatePickerBottomDialog.OnPickerDateListener() {
 
                 @Override
@@ -71,19 +97,22 @@ Step 2. Add the dependency
         }
         wheelDatePickerBottomDialog.show();
     }
-
+    
+    //时间和日期的类似，自己琢磨用
+	
     private void showWheelPicker() {
-        if (wheelPickerBottomDialog == null) {
-            wheelPickerBottomDialog = new WheelPickerBottomDialog(this);
-            wheelPickerBottomDialog.setOnWheelPickerListener(new WheelPickerBottomDialog.OnWheelPickerListener() {
-                @Override
-                public void onWheelPicker(IWheelPicker wheelPicker) {
-                    Object o = wheelPicker.getData().get(wheelPicker.getCurrentItemPosition());
-                    Toast.makeText(MainActivity.this, o.toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
-            wheelPickerBottomDialog.setData(Arrays.asList(TYPES));
-        }
-        wheelPickerBottomDialog.show();
+	if (typeWheelPickerBottomDialog == null) {
+                typeWheelPickerBottomDialog = new WheelPickerBottomDialog(this);
+                typeWheelPickerBottomDialog.setVisibleCount(5);//默认7个
+                typeWheelPickerBottomDialog.setData(dailyTypes);
+                typeWheelPickerBottomDialog.setTitle("选择类型");//小标题，也可以StringRes
+                typeWheelPickerBottomDialog.setSelectPosition(viewModel.getDailyTypeName());//默认选中，通过显示文字equals来判断
+		//监听OnWheelScrollChangedListener，滚动每一个都回调，
+		//如果点击确认再回调，监听OnWheelPickerListener
+                typeWheelPickerBottomDialog.setOnWheelScrollChangedListener((wheelPicker, o, pickerName, position) -> {
+                    Toast.makeText(MainActivity.this, pickerName, Toast.LENGTH_SHORT).show();
+                });
+            }
+            typeWheelPickerBottomDialog.show();
     }
     
