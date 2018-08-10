@@ -774,6 +774,10 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
                     getParent().requestDisallowInterceptTouchEvent(false);
                 }
                 if (isClick) {
+                    Log.d(TAG, "onTouchEvent: isClick" + mScrollOffsetY + "=======" + mDownPointY);
+                    mScroller.startScroll(0, mScrollOffsetY, 0,
+                            computeClickItemDistance(mDownPointY));
+                    mHandler.post(this);
                     break;
                 }
                 mTracker.addMovement(event);
@@ -820,6 +824,10 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
                 break;
         }
         return true;
+    }
+
+    private int computeClickItemDistance(int downPointY) {
+        return ((downPointY - mHalfItemHeight) / mItemHeight) * mItemHeight;
     }
 
     private int computeDistanceToEndPoint(int remainder) {
