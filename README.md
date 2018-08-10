@@ -88,8 +88,7 @@ Step 2. Add the dependency
     }
     
 <h4>时间选择</h4>
-
-    //时间和日期的类似，自己琢磨用
+ //时间和日期的类似，自己琢磨用
 <h4>单选选择</h4>	
 
     private void showWheelPicker() {
