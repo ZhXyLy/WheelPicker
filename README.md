@@ -43,20 +43,6 @@ Step 2. Add the dependency
   <h4>区域选择</h4>
   
     private void showAreaDialog() {
-        if (wheelAreaPickerBottomDialog == null) {
-            wheelAreaPickerBottomDialog = new WheelAreaPickerBottomDialog(this);
-            wheelAreaPickerBottomDialog.setOnPickerAreaListener(new WheelAreaPickerBottomDialog.OnPickerAreaListener() {
-                @Override
-                public void onPickerArea(IWheelAreaPicker wheelAreaPicker) {
-                    String province = wheelAreaPicker.getProvince().getName();
-                    String city = wheelAreaPicker.getCity().getName();
-                    String area = wheelAreaPicker.getArea().getName();
-                    Toast.makeText(MainActivity.this, province + "-" + city + "-" + area, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        wheelAreaPickerBottomDialog.show();
-	//
 	if (wheelAreaPickerBottomDialog == null) {
             wheelAreaPickerBottomDialog = new WheelAreaPickerBottomDialog(this);
             wheelAreaPickerBottomDialog.setSelectPositionByCode(viewModel.getSsqCode());
