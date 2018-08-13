@@ -133,9 +133,9 @@ public class WheelPickerBottomDialog extends Dialog {
     }
 
     public void setData(List data) {
-        mData = data;
+        mData = data == null ? new ArrayList<>() : data;
         List<String> strings = new ArrayList<>();
-        for (Object o : data) {
+        for (Object o : mData) {
             if (o != null) {
                 String name;
                 if (o instanceof IPickerName) {
