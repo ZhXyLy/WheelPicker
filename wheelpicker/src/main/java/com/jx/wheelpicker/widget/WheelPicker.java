@@ -749,10 +749,11 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
                 mDownPointY = mLastPointY = (int) event.getY();
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (Math.abs(mDownPointY - event.getY()) < mTouchSlop) {
-                    isClick = true;
-                    break;
-                }
+                //会出现卡住一点点，需要在up的isClick中恢复（弯曲时不好计算位置），暂时不处理点击
+//                if (Math.abs(mDownPointY - event.getY()) < mTouchSlop) {
+//                    isClick = true;
+//                    break;
+//                }
                 isClick = false;
                 mTracker.addMovement(event);
                 if (null != mOnWheelChangeListener) {
