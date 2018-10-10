@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.jx.wheelpicker.util.AreaUtils;
 import com.jx.wheelpicker.widget.IWheelAreaPicker;
 import com.jx.wheelpicker.widget.IWheelDatePicker;
 import com.jx.wheelpicker.widget.IWheelPicker;
@@ -97,6 +98,11 @@ public class MainActivity extends AppCompatActivity {
                 changeRadio();
             }
         });
+
+
+        Log.d(TAG, "onPickerArea310000: " + AreaUtils.getInstance().findAreaByCode(this, "310000"));
+        Log.d(TAG, "onPickerArea610300: " + AreaUtils.getInstance().findAreaByCode(this, "610300"));
+        Log.d(TAG, "onPickerArea610328: " + AreaUtils.getInstance().findAreaByCode(this, "610328"));
     }
 
     private void changeRadio() {

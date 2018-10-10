@@ -11,14 +11,12 @@ import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.jx.wheelpicker.util.AreaUtils;
 import com.jx.wheelpicker.widget.model.Area;
 import com.jx.wheelpicker.widget.model.AreaJsonPreviewData;
 import com.jx.wheelpicker.widget.model.City;
 import com.jx.wheelpicker.widget.model.Province;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,29 +72,13 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     }
 
     private List<Province> getJsonDataFromAssets(AssetManager assetManager) {
-        List<Province> provinceList = null;
         if (isInEditMode()) {
             //从assets文件中读取预览时乱码，
             String json = AreaJsonPreviewData.DATA;
-            provinceList = new Gson().fromJson(json, new TypeToken<List<Province>>() {
+            return new Gson().fromJson(json, new TypeToken<List<Province>>() {
             }.getType());
-            return provinceList;
         }
-        StringBuilder stringBuilder = new StringBuilder();
-        try {
-            InputStream inputStream = assetManager.open("RegionJsonData.txt");
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-            String json = stringBuilder.toString();
-            provinceList = new Gson().fromJson(json, new TypeToken<List<Province>>() {
-            }.getType());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return provinceList;
+        return AreaUtils.getInstance().getJsonDataFromAssets(assetManager);
     }
 
     private void initView(Context context) {

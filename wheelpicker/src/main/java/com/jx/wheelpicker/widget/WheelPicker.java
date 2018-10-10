@@ -873,6 +873,8 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
         if (onWheelScrollChangeListener != null) {
             onWheelScrollChangeListener.onWheelScroll(this);
         }
+//        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
+//        playSoundEffect(SoundEffectConstants.CLICK);
     }
 
     @Override
