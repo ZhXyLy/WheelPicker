@@ -59,7 +59,7 @@ public class AreaUtils {
         return provinceList;
     }
 
-    public String findAreaByCode(Context context,@NonNull String code) {
+    public String findAreaByCode(Context context, @NonNull String code) {
         if (code.length() == 6) {
             List<Province> mProvinceList = getJsonDataFromAssets(context.getApplicationContext().getAssets());
             if (mProvinceList == null || mProvinceList.size() == 0) {
@@ -118,5 +118,47 @@ public class AreaUtils {
                     + mProvinceList.get(0).getCity().get(0).getArea().get(0).getName();
         }
         return "";
+    }
+
+    public Ssq findSsqAreaByCode(Context context, @NonNull String code) {
+        if (code.length() == 6) {
+            List<Province> mProvinceList = getJsonDataFromAssets(context.getApplicationContext().getAssets());
+            if (mProvinceList == null || mProvinceList.size() == 0) {
+                return null;
+            }
+            Ssq ssq = new Ssq();
+            String proCode = code.replace(code.substring(2, 6), "0000");
+            String cityCode = code.replace(code.substring(4, 6), "00");
+            for (Province province : mProvinceList) {
+                if (proCode.equals(province.getCode())) {
+                    for (City city : province.getCity()) {
+                        if (cityCode.equals(city.getCode())) {
+                            for (Area area : city.getArea()) {
+                                if (code.equals(area.getCode())) {
+                                    ssq.setProvince(province);
+                                    ssq.setCity(city);
+                                    ssq.setArea(area);
+                                    return ssq;
+                                }
+                            }
+                            ssq.setProvince(province);
+                            ssq.setCity(city);
+                            ssq.setArea(city.getArea().get(0));
+                            return ssq;
+                        }
+                    }
+
+                    ssq.setProvince(province);
+                    ssq.setCity(province.getCity().get(0));
+                    ssq.setArea(province.getCity().get(0).getArea().get(0));
+                    return ssq;
+                }
+            }
+            ssq.setProvince(mProvinceList.get(0));
+            ssq.setCity(mProvinceList.get(0).getCity().get(0));
+            ssq.setArea(mProvinceList.get(0).getCity().get(0).getArea().get(0));
+            return ssq;
+        }
+        return null;
     }
 }
