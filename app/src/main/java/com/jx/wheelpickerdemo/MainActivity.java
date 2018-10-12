@@ -103,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onPickerArea310000: " + AreaUtils.getInstance().findAreaByCode(this, "310000"));
         Log.d(TAG, "onPickerArea610300: " + AreaUtils.getInstance().findAreaByCode(this, "610300"));
         Log.d(TAG, "onPickerArea610328: " + AreaUtils.getInstance().findAreaByCode(this, "610328"));
+        Log.d(TAG, "onPickerArea310000: " + AreaUtils.getInstance().findFullAreaByCode(this, "310000"));
+        Log.d(TAG, "onPickerArea610300: " + AreaUtils.getInstance().findFullAreaByCode(this, "610300"));
+        Log.d(TAG, "onPickerArea610328: " + AreaUtils.getInstance().findFullAreaByCode(this, "610328"));
     }
 
     private void changeRadio() {
