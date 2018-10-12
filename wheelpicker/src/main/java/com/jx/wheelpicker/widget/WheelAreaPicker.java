@@ -265,12 +265,17 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
                                 return;
                             }
                         }
+                        mWPArea.setSelectedItemPosition(0);
                         return;
                     }
                 }
+                mWPCity.setSelectedItemPosition(0);
+                setArea(0);
                 return;
             }
         }
+        mWPProvince.setSelectedItemPosition(0);
+        setCityAndAreaData(0);
     }
 
     private int dip2px(Context context, float dpValue) {

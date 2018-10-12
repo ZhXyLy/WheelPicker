@@ -60,8 +60,11 @@ public class AreaUtils {
     }
 
     public String findAreaByCode(Context context,@NonNull String code) {
-        List<Province> mProvinceList = getJsonDataFromAssets(context.getApplicationContext().getAssets());
         if (code.length() == 6) {
+            List<Province> mProvinceList = getJsonDataFromAssets(context.getApplicationContext().getAssets());
+            if (mProvinceList == null || mProvinceList.size() == 0) {
+                return "";
+            }
             String proCode = code.replace(code.substring(2, 6), "0000");
             String cityCode = code.replace(code.substring(4, 6), "00");
             for (Province province : mProvinceList) {
@@ -79,6 +82,40 @@ public class AreaUtils {
                     return province.getName();
                 }
             }
+        }
+        return "";
+    }
+
+    public String findFullAreaByCode(Context context, @NonNull String code) {
+        if (code.length() == 6) {
+            List<Province> mProvinceList = getJsonDataFromAssets(context.getApplicationContext().getAssets());
+            if (mProvinceList == null || mProvinceList.size() == 0) {
+                return "";
+            }
+            String proCode = code.replace(code.substring(2, 6), "0000");
+            String cityCode = code.replace(code.substring(4, 6), "00");
+            for (Province province : mProvinceList) {
+                if (proCode.equals(province.getCode())) {
+                    for (City city : province.getCity()) {
+                        if (cityCode.equals(city.getCode())) {
+                            for (Area area : city.getArea()) {
+                                if (code.equals(area.getCode())) {
+                                    return province.getName() + city.getName() + area.getName();
+                                }
+                            }
+                            return province.getName()
+                                    + city.getName()
+                                    + city.getArea().get(0).getName();
+                        }
+                    }
+                    return province.getName()
+                            + province.getCity().get(0).getName()
+                            + province.getCity().get(0).getArea().get(0).getName();
+                }
+            }
+            return mProvinceList.get(0).getName()
+                    + mProvinceList.get(0).getCity().get(0).getName()
+                    + mProvinceList.get(0).getCity().get(0).getArea().get(0).getName();
         }
         return "";
     }
