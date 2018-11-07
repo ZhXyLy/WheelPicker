@@ -96,7 +96,7 @@ public class WheelDatePickerBottomDialog extends Dialog {
     }
 
     public void setSelectPositionByDate(Date date) {
-        if (date!=null) {
+        if (date != null) {
             wheelDatePicker.setSelectPositionByDate(date);
         }
     }
@@ -112,6 +112,10 @@ public class WheelDatePickerBottomDialog extends Dialog {
 
     public void setItemTextSize(int unit, float value) {
         wheelDatePicker.setItemTextSize(unit, value);
+    }
+
+    public void setShowDay(boolean showDay) {
+        wheelDatePicker.setShowDay(showDay);
     }
 
     private OnPickerDateListener mOnPickerDateListener;
@@ -135,7 +139,7 @@ public class WheelDatePickerBottomDialog extends Dialog {
         this.onWheelScrollChangedListener = listener;
     }
 
-    public interface OnWheelScrollChangedListener{
+    public interface OnWheelScrollChangedListener {
         void onWheelScrollChanged(IWheelDatePicker wheelDatePicker);
     }
 }
