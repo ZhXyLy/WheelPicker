@@ -3,7 +3,7 @@ package com.jx.wheelpicker.widget;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.view.View;
+import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
@@ -89,31 +89,20 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
 
         mYearName = new ArrayList<>();
         mMonthName = new ArrayList<>();
+        mDayName = new ArrayList<>();
 
         mWPYear = new WheelPicker(context);
         mWPMonth = new WheelPicker(context);
+        mWPDay = new WheelPicker(context);
         mWPYear.setItemAlign(WheelPicker.ALIGN_RIGHT);
+        mWPMonth.setItemAlign(WheelPicker.ALIGN_CENTER);
+        mWPDay.setItemAlign(WheelPicker.ALIGN_LEFT);
 
+        setWeightSum(4);
+        setGravity(Gravity.CENTER);
         initWheelPicker(mWPYear, 1f);
-
-        if (!isHideDay) {
-            mWPMonth.setItemAlign(WheelPicker.ALIGN_CENTER);
-            initWheelPicker(mWPMonth, 1f);
-            mDayName = new ArrayList<>();
-            mWPDay = new WheelPicker(context);
-            mWPDay.setItemAlign(WheelPicker.ALIGN_LEFT);
-            initWheelPicker(mWPDay, 1f);
-        } else {
-            View view = new View(context);
-            LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(5, 5, 5, 5);
-            layoutParams.width = 0;
-            layoutParams.weight = 0.25f;
-            view.setLayoutParams(layoutParams);
-            addView(view);
-            mWPMonth.setItemAlign(WheelPicker.ALIGN_LEFT);
-            initWheelPicker(mWPMonth, 1f);
-        }
+        initWheelPicker(mWPMonth, 1f);
+        initWheelPicker(mWPDay, 1f);
     }
 
     private void initWheelPicker(WheelPicker wheelPicker, float weight) {
@@ -156,10 +145,8 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
         }
         mWPMonth.setData(mMonthName);
         mWPMonth.setSelectedItemPosition(mCurMonth);
-        if (!isHideDay) {
-            mDayList = new ArrayList<>();
-            computeDayList(true);
-        }
+        mDayList = new ArrayList<>();
+        computeDayList(true);
     }
 
     private void computeDayList(boolean isInit) {
@@ -215,9 +202,7 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
         mWPYear.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
-                if (!isHideDay) {
-                    computeDayList(false);
-                }
+                computeDayList(false);
                 wheelScrollChanged();
             }
         });
@@ -225,20 +210,16 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
         mWPMonth.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
-                if (!isHideDay) {
-                    computeDayList(false);
-                }
+                computeDayList(false);
                 wheelScrollChanged();
             }
         });
-        if (!isHideDay) {
-            mWPDay.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(WheelPicker picker, Object data, int position) {
-                    wheelScrollChanged();
-                }
-            });
-        }
+        mWPDay.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(WheelPicker picker, Object data, int position) {
+                wheelScrollChanged();
+            }
+        });
     }
 
     private void wheelScrollChanged() {
@@ -259,11 +240,7 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
 
     @Override
     public int getDay() {
-        if (!isHideDay) {
-            return mDayList.get(mWPDay.getCurrentItemPosition());
-        } else {
-            return 1;
-        }
+        return mDayList.get(mWPDay.getCurrentItemPosition());
     }
 
     @Override
@@ -326,12 +303,10 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
         calendar.setTime(date);
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DATE);
         mWPYear.setSelectedItemPosition(year - mYearList.get(0));
         mWPMonth.setSelectedItemPosition(month);
-        if (!isHideDay) {
-            int day = calendar.get(Calendar.DATE);
-            mWPDay.setSelectedItemPosition(day - 1);
-        }
+        mWPDay.setSelectedItemPosition(day - 1);
     }
 
     private int dip2px(Context context, float dpValue) {
@@ -356,5 +331,9 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
 
     public void setHideDay(boolean hideDay) {
         this.isHideDay = hideDay;
+        if (hideDay) {
+            mWPYear.setItemAlign(WheelPicker.ALIGN_CENTER);
+        }
+        mWPDay.setVisibility(hideDay ? GONE : VISIBLE);
     }
 }
