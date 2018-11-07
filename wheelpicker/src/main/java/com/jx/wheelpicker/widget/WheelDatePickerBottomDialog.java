@@ -114,8 +114,8 @@ public class WheelDatePickerBottomDialog extends Dialog {
         wheelDatePicker.setItemTextSize(unit, value);
     }
 
-    public void setShowDay(boolean showDay) {
-        wheelDatePicker.setShowDay(showDay);
+    public void setHideDay(boolean hideDay) {
+        wheelDatePicker.setHideDay(hideDay);
     }
 
     private OnPickerDateListener mOnPickerDateListener;
