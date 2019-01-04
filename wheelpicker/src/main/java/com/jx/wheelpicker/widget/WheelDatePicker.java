@@ -313,9 +313,11 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
     }
 
     public void setMinDate(Date minDate) {
-        int year = minDate.getYear();
-        int month = minDate.getMonth();
-        int day = minDate.getDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(minDate);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DATE);
         this.mSelectMinYear = year;
         this.mSelectMinMonth = month;
         this.mSelectMinDay = day;
