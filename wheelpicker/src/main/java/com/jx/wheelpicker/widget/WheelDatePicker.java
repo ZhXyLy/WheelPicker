@@ -25,6 +25,8 @@ import java.util.Locale;
  * @date 2018/6/26
  */
 public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
+    private static final String TAG = "WheelDatePicker";
+
     private static final float ITEM_TEXT_SIZE = 20;
     private static final float ITEM_SPACE = 10;
     private static final String SELECTED_ITEM_COLOR = "#353535";
@@ -44,6 +46,11 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
     private WheelPicker mWPYear, mWPMonth, mWPDay;
 
     private boolean isHideDay;
+
+    private int mSelectMinYear;
+    private int mSelectMinMonth;
+    private int mSelectMinDay;
+    private int mMinYear;
 
     public WheelDatePicker(Context context) {
         this(context, null);
@@ -129,6 +136,7 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
         for (int i = 0; i < DEFAULT_YEAR_COUNT; i++) {
             mYearList.add(i - DEFAULT_YEAR_COUNT / 2 + mCurYear);
         }
+        mMinYear = mYearList.get(0);
         mMonthList = new ArrayList<>();
         for (int i = 0; i < DEFAULT_MONTH_COUNT; i++) {
             mMonthList.add(i + 1);
@@ -198,10 +206,20 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
     }
 
     private void addListenerToWheelPicker() {
-        //监听省份的滑轮,根据省份的滑轮滑动的数据来设置市跟地区的滑轮数据
         mWPYear.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
+                int year = getYear();
+                if (year < mSelectMinYear) {
+                    mWPYear.setSelectedItemPositionByPosition(mWPYear.getCurrentItemPosition(), mYearList.indexOf(mSelectMinYear));
+                    if (getMonth() < mSelectMinMonth + 1) {
+                        mWPMonth.setSelectedItemPositionByPosition(mWPMonth.getCurrentItemPosition(), mMonthList.indexOf(mSelectMinMonth + 1));
+                        if (getDay() < mSelectMinDay) {
+                            mWPDay.setSelectedItemPositionByPosition(mWPDay.getCurrentItemPosition(), mDayList.indexOf(mSelectMinDay));
+                        }
+                    }
+                    return;
+                }
                 computeDayList(false);
                 wheelScrollChanged();
             }
@@ -210,6 +228,17 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
         mWPMonth.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
+                int year = getYear();
+                if (year <= mSelectMinYear) {
+                    mWPYear.setSelectedItemPositionByPosition(mWPYear.getCurrentItemPosition(), mYearList.indexOf(mSelectMinYear));
+                    if (getMonth() < mSelectMinMonth + 1) {
+                        mWPMonth.setSelectedItemPositionByPosition(mWPMonth.getCurrentItemPosition(), mMonthList.indexOf(mSelectMinMonth + 1));
+                        if (getDay() < mSelectMinDay) {
+                            mWPDay.setSelectedItemPositionByPosition(mWPDay.getCurrentItemPosition(), mDayList.indexOf(mSelectMinDay));
+                        }
+                        return;
+                    }
+                }
                 computeDayList(false);
                 wheelScrollChanged();
             }
@@ -217,6 +246,17 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
         mWPDay.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
+                int year = getYear();
+                if (year <= mSelectMinYear) {
+                    mWPYear.setSelectedItemPositionByPosition(mWPYear.getCurrentItemPosition(), mYearList.indexOf(mSelectMinYear));
+                    if (getMonth() <= mSelectMinMonth + 1) {
+                        mWPMonth.setSelectedItemPositionByPosition(mWPMonth.getCurrentItemPosition(), mMonthList.indexOf(mSelectMinMonth + 1));
+                        if (getDay() < mSelectMinDay) {
+                            mWPDay.setSelectedItemPositionByPosition(mWPDay.getCurrentItemPosition(), mDayList.indexOf(mSelectMinDay));
+                        }
+                    }
+                    return;
+                }
                 wheelScrollChanged();
             }
         });
@@ -258,6 +298,7 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
 
     @Override
     public void setYearRange(int minYear, int maxYear) {
+        this.mMinYear = minYear;
         int range = maxYear - minYear + 1;
         mYearList.clear();
         for (int i = 0; i < range; i++) {
@@ -269,6 +310,29 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
         }
         mWPYear.setData(mYearName);
         mWPYear.setSelectedItemPosition(mCurYear - minYear);
+    }
+
+    public void setMinDate(Date minDate) {
+        int year = minDate.getYear();
+        int month = minDate.getMonth();
+        int day = minDate.getDate();
+        this.mSelectMinYear = year;
+        this.mSelectMinMonth = month;
+        this.mSelectMinDay = day;
+        if (year > mCurYear) {
+            mWPYear.setSelectedItemPosition(year - mMinYear);
+            mWPMonth.setSelectedItemPosition(month);
+            mWPDay.setSelectedItemPosition(day - 1);
+        } else if (year == mCurYear) {
+            if (month > mCurMonth) {
+                mWPMonth.setSelectedItemPosition(month);
+                mWPDay.setSelectedItemPosition(day - 1);
+            } else if (month == mCurMonth) {
+                if (day > mCurDay) {
+                    mWPDay.setSelectedItemPosition(day - 1);
+                }
+            }
+        }
     }
 
     @Override

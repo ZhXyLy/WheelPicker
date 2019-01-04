@@ -175,7 +175,8 @@ public class MainActivity extends AppCompatActivity {
     private void showDateDialog() {
         if (wheelDatePickerBottomDialog == null) {
             wheelDatePickerBottomDialog = new WheelDatePickerBottomDialog(this);
-            wheelDatePickerBottomDialog.setYearRange(2012, 2022);
+            wheelDatePickerBottomDialog.setYearRange(2010, 2032);
+            wheelDatePickerBottomDialog.setMinDate(new Date(2019,5,6));
             wheelDatePickerBottomDialog.setOnPickerDateListener(new WheelDatePickerBottomDialog.OnPickerDateListener() {
 
                 @Override

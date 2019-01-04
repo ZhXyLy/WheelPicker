@@ -95,6 +95,10 @@ public class WheelDatePickerBottomDialog extends Dialog {
         wheelDatePicker.setYearRange(minYear, maxYear);
     }
 
+    public void setMinDate(Date minDate) {
+        wheelDatePicker.setMinDate(minDate);
+    }
+
     public void setSelectPositionByDate(Date date) {
         if (date != null) {
             wheelDatePicker.setSelectPositionByDate(date);

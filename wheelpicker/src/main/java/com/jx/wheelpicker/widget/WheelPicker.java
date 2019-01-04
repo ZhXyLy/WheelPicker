@@ -923,6 +923,16 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
         invalidate();
     }
 
+    public void setSelectedItemPositionByPosition(int by, int position) {
+        position = Math.min(position, mData.size() - 1);
+        position = Math.max(position, 0);
+        mSelectedItemPosition = position;
+        mCurrentItemPosition = position;
+        mScroller.startScroll(0, mScrollOffsetY, 0, mScrollOffsetY % mItemHeight + (by-position ) * mItemHeight,500);
+        invalidate();
+        mScrollOffsetY = 0;
+    }
+
     @Override
     public int getCurrentItemPosition() {
         return mCurrentItemPosition;
