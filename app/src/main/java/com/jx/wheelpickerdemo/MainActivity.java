@@ -21,6 +21,7 @@ import com.jx.wheelpicker.widget.WheelTimePickerBottomDialog;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -175,8 +176,10 @@ public class MainActivity extends AppCompatActivity {
     private void showDateDialog() {
         if (wheelDatePickerBottomDialog == null) {
             wheelDatePickerBottomDialog = new WheelDatePickerBottomDialog(this);
-            wheelDatePickerBottomDialog.setYearRange(2010, 2032);
-            wheelDatePickerBottomDialog.setMinDate(new Date());
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            wheelDatePickerBottomDialog.setYearRange(year, year + 50);
+            wheelDatePickerBottomDialog.setMinDate(calendar.getTime());
             wheelDatePickerBottomDialog.setOnPickerDateListener(new WheelDatePickerBottomDialog.OnPickerDateListener() {
 
                 @Override

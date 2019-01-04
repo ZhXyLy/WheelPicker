@@ -210,10 +210,14 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
                 int year = getYear();
-                if (year < mSelectMinYear) {
-                    mWPYear.setSelectedItemPositionByPosition(mWPYear.getCurrentItemPosition(), mYearList.indexOf(mSelectMinYear));
-                    if (getMonth() < mSelectMinMonth + 1) {
-                        mWPMonth.setSelectedItemPositionByPosition(mWPMonth.getCurrentItemPosition(), mMonthList.indexOf(mSelectMinMonth + 1));
+                if (year <= mSelectMinYear) {
+                    if (year < mSelectMinYear) {
+                        mWPYear.setSelectedItemPositionByPosition(mWPYear.getCurrentItemPosition(), mYearList.indexOf(mSelectMinYear));
+                    }
+                    if (getMonth() <= mSelectMinMonth + 1) {
+                        if (getMonth() < mSelectMinMonth + 1) {
+                            mWPMonth.setSelectedItemPositionByPosition(mWPMonth.getCurrentItemPosition(), mMonthList.indexOf(mSelectMinMonth + 1));
+                        }
                         if (getDay() < mSelectMinDay) {
                             mWPDay.setSelectedItemPositionByPosition(mWPDay.getCurrentItemPosition(), mDayList.indexOf(mSelectMinDay));
                         }
@@ -230,14 +234,18 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
             public void onItemSelected(WheelPicker picker, Object data, int position) {
                 int year = getYear();
                 if (year <= mSelectMinYear) {
-                    mWPYear.setSelectedItemPositionByPosition(mWPYear.getCurrentItemPosition(), mYearList.indexOf(mSelectMinYear));
-                    if (getMonth() < mSelectMinMonth + 1) {
-                        mWPMonth.setSelectedItemPositionByPosition(mWPMonth.getCurrentItemPosition(), mMonthList.indexOf(mSelectMinMonth + 1));
+                    if (year < mSelectMinYear) {
+                        mWPYear.setSelectedItemPositionByPosition(mWPYear.getCurrentItemPosition(), mYearList.indexOf(mSelectMinYear));
+                    }
+                    if (getMonth() <= mSelectMinMonth + 1) {
+                        if (getMonth() < mSelectMinMonth + 1) {
+                            mWPMonth.setSelectedItemPositionByPosition(mWPMonth.getCurrentItemPosition(), mMonthList.indexOf(mSelectMinMonth + 1));
+                        }
                         if (getDay() < mSelectMinDay) {
                             mWPDay.setSelectedItemPositionByPosition(mWPDay.getCurrentItemPosition(), mDayList.indexOf(mSelectMinDay));
                         }
-                        return;
                     }
+                    return;
                 }
                 computeDayList(false);
                 wheelScrollChanged();
@@ -248,9 +256,13 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
             public void onItemSelected(WheelPicker picker, Object data, int position) {
                 int year = getYear();
                 if (year <= mSelectMinYear) {
-                    mWPYear.setSelectedItemPositionByPosition(mWPYear.getCurrentItemPosition(), mYearList.indexOf(mSelectMinYear));
+                    if (year < mSelectMinYear) {
+                        mWPYear.setSelectedItemPositionByPosition(mWPYear.getCurrentItemPosition(), mYearList.indexOf(mSelectMinYear));
+                    }
                     if (getMonth() <= mSelectMinMonth + 1) {
-                        mWPMonth.setSelectedItemPositionByPosition(mWPMonth.getCurrentItemPosition(), mMonthList.indexOf(mSelectMinMonth + 1));
+                        if (getMonth() < mSelectMinMonth + 1) {
+                            mWPMonth.setSelectedItemPositionByPosition(mWPMonth.getCurrentItemPosition(), mMonthList.indexOf(mSelectMinMonth + 1));
+                        }
                         if (getDay() < mSelectMinDay) {
                             mWPDay.setSelectedItemPositionByPosition(mWPDay.getCurrentItemPosition(), mDayList.indexOf(mSelectMinDay));
                         }
