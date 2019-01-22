@@ -203,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
         if (wheelTimePickerBottomDialog == null) {
             wheelTimePickerBottomDialog = new WheelTimePickerBottomDialog(this);
             wheelTimePickerBottomDialog.setShowSecond(true);
+            wheelTimePickerBottomDialog.setMinuteInterval(5);
             wheelTimePickerBottomDialog.setOnPickerTimeListener(new WheelTimePickerBottomDialog.OnPickerTimeListener() {
                 @Override
                 public void onPickerTime(IWheelTimePicker wheelTimePicker) {

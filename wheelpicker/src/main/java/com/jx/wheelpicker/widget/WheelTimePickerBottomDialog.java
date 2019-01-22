@@ -91,6 +91,10 @@ public class WheelTimePickerBottomDialog extends Dialog {
         }
     }
 
+    public void setMinuteInterval(int minuteInterval) {
+        mWheelTimePicker.setMinuteInterval(minuteInterval);
+    }
+
     public void setShowSecond(boolean show) {
         mWheelTimePicker.setShowSecond(show);
     }

@@ -3,6 +3,7 @@ package com.jx.wheelpicker.widget;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import java.util.List;
  * @date 2018/6/26
  */
 public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
+    private static final String TAG = "WheelTimePicker";
 
     private static final float ITEM_TEXT_SIZE = 20;
     private static final float ITEM_SPACE = 10;
@@ -38,7 +40,7 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
 
     private WheelPicker mWPHour, mWPMinute, mWPSecond;
     private boolean isShowSecond = true;
-
+    private int minuteInterval = 1;
 
     public WheelTimePicker(Context context) {
         this(context, null);
@@ -133,9 +135,12 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
             mHourName.add(format(i) + unitHour);
         }
         mMinuteList = new ArrayList<>();
+        mMinuteName.clear();
         for (int i = 0; i < DEFAULT_MINUTE_COUNT; i++) {
-            mMinuteList.add(i);
-            mMinuteName.add(format(i) + unitMinute);
+            if (i%minuteInterval==0) {
+                mMinuteList.add(i);
+                mMinuteName.add(format(i) + unitMinute);
+            }
 
         }
         mSecondList = new ArrayList<>();
@@ -147,7 +152,7 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
         mWPHour.setData(mHourName);
         mWPHour.setSelectedItemPosition(mCurHour);
         mWPMinute.setData(mMinuteName);
-        mWPMinute.setSelectedItemPosition(mCurMinute);
+        mWPMinute.setSelectedItemPosition(mCurMinute/minuteInterval);
         mWPSecond.setData(mSecondName);
         mWPSecond.setSelectedItemPosition(mCurSecond);
     }
@@ -209,6 +214,13 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
             int minute = getMinute();
             return format(hour) + ":" + format(minute);
         }
+    }
+
+    public void setMinuteInterval(int minuteInterval) {
+        if (minuteInterval > 1 && minuteInterval < 60) {
+            this.minuteInterval = minuteInterval;
+        }
+        obtainDateData();
     }
 
     @Override
