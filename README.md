@@ -8,7 +8,7 @@
 
 ###效果图：
 
-![效果图](/images/wheelpicker.gif)
+<div align=center>![效果图](/images/wheelpicker.gif)
 
 
 <h3>效果图：</h3>
