@@ -10,21 +10,29 @@
 
 <img src="/images/wheelpicker.gif" alt="效果图" width="30%">
 
+<div>
 <img src="/images/单选1.png" alt="新单选" width="30%">
 <img src="/images/单选-旧版.png" alt="单选-旧版" width="30%">
 <img src="/images/单选-新版.png" alt="单选-新版" width="30%">
+</div>
 
+<div>
 <img src="/images/日期1.png" alt="新日期" width="30%">
 <img src="/images/日期-旧版.png" alt="日期-旧版" width="30%">
 <img src="/images/日期-新版.png" alt="日期-新版" width="30%">
+</div>
 
+<div>
 <img src="/images/时间1.png" alt="新时间" width="30%">
 <img src="/images/时间-旧版.png" alt="时间-旧版" width="30%">
 <img src="/images/时间-新版.png" alt="时间-新版" width="30%">
+</div>
 
+<div>
 <img src="/images/区域1.png" alt="新区域" width="30%">
 <img src="/images/区域-旧版.png" alt="区域-旧版" width="30%">
 <img src="/images/区域-新版.png" alt="区域-新版" width="30%">
+</div>
 
 
 <h3>How to</h3>
