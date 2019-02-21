@@ -7,8 +7,8 @@
 <br>https://github.com/open-android/WheelPicker
 
 ###效果图：
-
-<div align=center>![效果图](/images/wheelpicker.gif)
+<img src="/images/wheelpicker.gif" 
+alt="省市区" width="280">
 
 
 <h3>效果图：</h3>
