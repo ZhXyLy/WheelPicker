@@ -147,7 +147,7 @@ public class AreaPickerDialog extends Dialog {
         private CharSequence title = "请选择地区";
         private float itemTextSize;
         private float titleTextSize;
-        private boolean adjustTextSize;
+        private boolean adjustTextSize = true;
         private boolean shortText;
         private Context context;
         private OnAreaChangedListener onAreaChangedListener;

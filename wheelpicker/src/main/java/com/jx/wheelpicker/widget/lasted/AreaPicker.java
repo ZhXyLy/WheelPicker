@@ -4,7 +4,6 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 
@@ -60,7 +59,7 @@ public class AreaPicker extends FrameLayout {
         super(context, attrs, defStyle);
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        final View view = inflater.inflate(R.layout.triple_picker_layout, this, true);
+        inflater.inflate(R.layout.triple_picker_layout, this, true);
         mProvincePicker = findViewById(R.id.wp_one);
         mCityPicker = findViewById(R.id.wp_two);
         mAreaPicker = findViewById(R.id.wp_three);

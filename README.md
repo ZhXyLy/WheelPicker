@@ -6,6 +6,11 @@
 <br>https://github.com/AigeStudio/WheelPicker 
 <br>https://github.com/open-android/WheelPicker
 
+###效果图：
+
+![效果图](/images/wheelpicker.gif)
+
+
 <h3>效果图：</h3>
 
 <img src="https://github.com/ZhXyLy/WheelPicker/blob/master/images/%E7%9C%81%E5%B8%82%E5%8C%BA%E9%80%89%E6%8B%A9.jpg" 
@@ -38,8 +43,12 @@ Step 2. Add the dependency
 	dependencies {
 	        implementation 'com.github.ZhXyLy:WheelPicker:latest-version'
 	}
+	
+	
+###新版2
+
   
-  <h3>使用</h3>
+  <h3>旧版使用</h3>
   <h4>区域选择</h4>
   
     private void showAreaDialog() {
