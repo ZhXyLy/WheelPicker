@@ -6,20 +6,25 @@
 <br>https://github.com/AigeStudio/WheelPicker 
 <br>https://github.com/open-android/WheelPicker
 
-###效果图：
-
-![效果图](/images/wheelpicker.gif)
-<img src="/images/wheelpicker.gif" alt="效果图" width="30%">
-
-
 <h3>效果图：</h3>
 
-<img src="https://github.com/ZhXyLy/WheelPicker/blob/master/images/%E7%9C%81%E5%B8%82%E5%8C%BA%E9%80%89%E6%8B%A9.jpg" 
-alt="省市区" width="280">
-<img src="https://github.com/ZhXyLy/WheelPicker/blob/master/images/%E6%97%A5%E6%9C%9F%E9%80%89%E6%8B%A9.jpg" 
-alt="日期" width="280">
-<img src="https://github.com/ZhXyLy/WheelPicker/blob/master/images/%E5%8D%95%E9%80%89.jpg" 
-alt="单选" width="280">
+<img src="/images/wheelpicker.gif" alt="效果图" width="30%">
+
+<img src="/images/单选1.png" alt="新单选" width="30%">
+<img src="/images/单选-旧版.png" alt="单选-旧版" width="30%">
+<img src="/images/单选-新版.png" alt="单选-新版" width="30%">
+
+<img src="/images/日期1.png" alt="新日期" width="30%">
+<img src="/images/日期-旧版.png" alt="日期-旧版" width="30%">
+<img src="/images/日期-新版.png" alt="日期-新版" width="30%">
+
+<img src="/images/时间1.png" alt="新时间" width="30%">
+<img src="/images/时间-旧版.png" alt="时间-旧版" width="30%">
+<img src="/images/时间-新版.png" alt="时间-新版" width="30%">
+
+<img src="/images/区域1.png" alt="新区域" width="30%">
+<img src="/images/区域-旧版.png" alt="区域-旧版" width="30%">
+<img src="/images/区域-新版.png" alt="区域-新版" width="30%">
 
 
 <h3>How to</h3>
