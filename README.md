@@ -9,6 +9,7 @@
 ###效果图：
 
 ![效果图](/images/wheelpicker.gif)
+<img src="/images/wheelpicker.gif" alt="效果图" width="30%">
 
 
 <h3>效果图：</h3>
