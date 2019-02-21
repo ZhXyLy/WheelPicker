@@ -6,71 +6,28 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/et_code"
+    <Button
+        android:id="@+id/btn_single"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:text="610328" />
+        android:text="单选" />
 
     <Button
-        android:id="@+id/btn_area_change"
+        android:id="@+id/btn_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="区域切换到上边输入Code的省市区" />
+        android:text="日期" />
 
     <Button
-        android:id="@+id/btn_show_area"
+        android:id="@+id/btn_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="显示区域选择Dialog" />
-
-    <EditText
-        android:id="@+id/et_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:text="2018-07-10" />
+        android:text="时间" />
 
     <Button
-        android:id="@+id/btn_date_change"
+        android:id="@+id/btn_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="区域切换到上边输入日期" />
+        android:text="省市区" />
 
-    <Button
-        android:id="@+id/btn_show_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="显示日期Dialog" />
-
-    <EditText
-        android:id="@+id/et_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:text="13:22:56" />
-
-    <Button
-        android:id="@+id/btn_time_change"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="区域切换到上边输入时间" />
-
-    <Button
-        android:id="@+id/btn_show_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="显示时间Dialog" />
-
-    <Button
-        android:id="@+id/btn_show_picker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="单选Dialog" />
-    <Button
-        android:id="@+id/btn_change_radio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="修改单选Dialog" />
 </LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <com.jx.wheelpicker.widget.lasted.BasePicker
+        android:id="@+id/wp_single"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:wheel_atmospheric="true"
+        app:wheel_curtain="false"
+        app:wheel_curved="true"
+        app:wheel_item_align="center"
+        app:wheel_item_text_size="@dimen/date_item_text_size"
+        app:wheel_selected_item_text_color="@color/date_select_item_color"
+        app:wheel_visible_item_count="7"
+        app:wheel_data="@array/WheelArrayDefault" />
+
+    <TextView
+        android:id="@+id/tv_single_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:gravity="center"
+        android:text="单位"
+        android:textColor="@color/date_unit_color"
+        android:textSize="@dimen/date_unit_text_size" />
+</LinearLayout>

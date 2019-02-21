@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <com.jx.wheelpicker.widget.lasted.BasePicker
+        android:id="@+id/wp_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:wheel_atmospheric="true"
+        app:wheel_curtain="false"
+        app:wheel_curved="true"
+        app:wheel_item_align="center"
+        app:wheel_item_text_size="@dimen/date_item_text_size"
+        app:wheel_selected_item_text_color="@color/date_select_item_color"
+        app:wheel_visible_item_count="7"
+        tools:wheel_data="@array/WheelArrayYear" />
+
+    <com.jx.wheelpicker.widget.lasted.BasePicker
+        android:id="@+id/wp_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
+        app:wheel_atmospheric="true"
+        app:wheel_curtain="false"
+        app:wheel_curved="true"
+        app:wheel_cyclic="false"
+        app:wheel_item_align="center"
+        app:wheel_item_text_size="@dimen/date_item_text_size"
+        app:wheel_selected_item_text_color="@color/date_select_item_color"
+        app:wheel_visible_item_count="7"
+        tools:wheel_data="@array/WheelArrayMonth" />
+
+    <com.jx.wheelpicker.widget.lasted.BasePicker
+        android:id="@+id/wp_three"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:wheel_atmospheric="true"
+        app:wheel_curved="true"
+        app:wheel_cyclic="false"
+        app:wheel_item_align="center"
+        app:wheel_item_text_size="@dimen/date_item_text_size"
+        app:wheel_selected_item_text_color="@color/date_select_item_color"
+        app:wheel_visible_item_count="7"
+        tools:wheel_data="@array/WheelArrayDay" />
+</LinearLayout>

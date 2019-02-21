@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.jx.wheelpicker.widget.lasted.BasePicker
+            android:id="@+id/wp_hour"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            app:wheel_atmospheric="true"
+            app:wheel_curtain="false"
+            app:wheel_curved="true"
+            tools:wheel_data="@array/WheelArrayHour"
+            app:wheel_item_align="center"
+            app:wheel_item_text_size="@dimen/date_item_text_size"
+            app:wheel_selected_item_text_color="@color/date_select_item_color"
+            app:wheel_visible_item_count="7" />
+
+        <TextView
+            android:id="@+id/tv_hour_unit"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/hour"
+            android:textColor="@color/date_unit_color"
+            android:textSize="@dimen/date_unit_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_minute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.jx.wheelpicker.widget.lasted.BasePicker
+            android:id="@+id/wp_minute"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            app:wheel_atmospheric="true"
+            app:wheel_curtain="false"
+            app:wheel_curved="true"
+            app:wheel_cyclic="false"
+            tools:wheel_data="@array/WheelArrayHour"
+            app:wheel_item_align="center"
+            app:wheel_item_text_size="@dimen/date_item_text_size"
+            app:wheel_selected_item_text_color="@color/date_select_item_color"
+            app:wheel_visible_item_count="7" />
+
+        <TextView
+            android:id="@+id/tv_minute_unit"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/minute"
+            android:textColor="@color/date_unit_color"
+            android:textSize="@dimen/date_unit_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.jx.wheelpicker.widget.lasted.BasePicker
+            android:id="@+id/wp_second"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            app:wheel_atmospheric="true"
+            app:wheel_curved="true"
+            app:wheel_cyclic="false"
+            tools:wheel_data="@array/WheelArrayHour"
+            app:wheel_item_align="center"
+            app:wheel_item_text_size="@dimen/date_item_text_size"
+            app:wheel_selected_item_text_color="@color/date_select_item_color"
+            app:wheel_visible_item_count="7" />
+
+        <TextView
+            android:id="@+id/tv_second_unit"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/second"
+            android:textColor="@color/date_unit_color"
+            android:textSize="@dimen/date_unit_text_size" />
+
+    </LinearLayout>
+</LinearLayout>

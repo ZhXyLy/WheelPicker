@@ -9,10 +9,14 @@ import java.util.List;
  * @author zhaoxl
  * @date 2018/6/26
  */
-public class City implements Serializable {
+public class City implements Serializable,Data {
     private String name;
     private String code;
     private List<Area> areas;
+
+    public String getShortName() {
+        return name.length()>5?name.substring(0, 5)+"…":name;
+    }
 
     public String getName() {
         return name;
@@ -20,10 +24,6 @@ public class City implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getShortName() {
-        return name.length() > 5 ? name.substring(0, 5) : name;
     }
 
     public String getCode() {
@@ -40,5 +40,15 @@ public class City implements Serializable {
 
     public void setArea(List<Area> area) {
         this.areas = area;
+    }
+
+    @Override
+    public String getId() {
+        return code;
+    }
+
+    @Override
+    public String getText() {
+        return name;
     }
 }

@@ -4,6 +4,8 @@
     <dimen name="WheelItemSpace">12dp</dimen>
     <dimen name="WheelIndicatorSize">2dp</dimen>
     <dimen name="WheelMargins">8dp</dimen>
+    <dimen name="date_unit_text_size">18dp</dimen>
+    <dimen name="date_item_text_size">20dp</dimen>
 
 
     <dimen name="dp12">12dp</dimen>

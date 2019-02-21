@@ -3,6 +3,7 @@ package com.jx.wheelpicker.util;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -13,7 +14,9 @@ import com.jx.wheelpicker.widget.model.Province;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zhaoxl
@@ -37,26 +40,54 @@ public class AreaUtils {
         return INSTANCE;
     }
 
-    private static List<Province> provinceList = null;
+    private static Map<String, List<Province>> provinceMap = new HashMap<>();
 
     public List<Province> getJsonDataFromAssets(AssetManager assetManager) {
-        if (provinceList == null) {
+        String fileName = "RegionJsonData.json";
+        List<Province> provinces = provinceMap.get(fileName);
+        if (provinces == null) {
             StringBuilder stringBuilder = new StringBuilder();
             try {
-                InputStream inputStream = assetManager.open("RegionJsonData.txt");
+                InputStream inputStream = assetManager.open("RegionJsonData.json");
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     stringBuilder.append(line);
                 }
                 String json = stringBuilder.toString();
-                provinceList = new Gson().fromJson(json, new TypeToken<List<Province>>() {
+                provinces = new Gson().fromJson(json, new TypeToken<List<Province>>() {
                 }.getType());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return provinceList;
+        provinceMap.put(fileName, provinces);
+        return provinces;
+    }
+
+    public List<Province> getJsonDataFromAssets(AssetManager assetManager, String assetFileName) {
+        if (TextUtils.isEmpty(assetFileName)) {
+            return getJsonDataFromAssets(assetManager);
+        }
+        List<Province> provinces = provinceMap.get(assetFileName);
+        if (provinces == null) {
+            StringBuilder stringBuilder = new StringBuilder();
+            try {
+                InputStream inputStream = assetManager.open(assetFileName);
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+                String json = stringBuilder.toString();
+                provinces = new Gson().fromJson(json, new TypeToken<List<Province>>() {
+                }.getType());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        provinceMap.put(assetFileName, provinces);
+        return provinces;
     }
 
     public String findAreaByCode(Context context, @NonNull String code) {

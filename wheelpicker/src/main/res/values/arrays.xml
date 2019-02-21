@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="WheelArrayDefault">
-        <item>相同的长度01</item>
-        <item>相同的长度02</item>
-        <item>相同的长度03</item>
-        <item>相同的长度04</item>
-        <item>相同的长度05</item>
-        <item>相同的长度06</item>
-        <item>相同的长度07</item>
-        <item>相同的长度08</item>
-        <item>相同的长度09</item>
-        <item>相同的长度10</item>
-        <item>相同的长度11</item>
-        <item>相同的长度12</item>
-        <item>相同的长度13</item>
-        <item>相同的长度14</item>
-        <item>相同的长度15</item>
-        <item>相同的长度16</item>
-        <item>相同的长度17</item>
-        <item>相同的长度18</item>
-        <item>相同的长度19</item>
-        <item>相同的长度20</item>
-        <item>相同的长度21</item>
-        <item>相同的长度22</item>
-        <item>相同的长度23</item>
-        <item>相同的长度24</item>
+        <item>Java</item>
+        <item>C</item>
+        <item>Python</item>
+        <item>C++</item>
+        <item>Visual Basic .Net</item>
+        <item>JavaScript</item>
+        <item>C#</item>
+        <item>PHP</item>
+        <item>SQL</item>
+        <item>Objective-C</item>
+        <item>Swift</item>
+        <item>Go</item>
+        <item>Ruby</item>
+        <item>PL/SQL</item>
     </string-array>
     <string-array name="WheelArrayEmpty">
     </string-array>
@@ -36,5 +26,58 @@
         <item>周四</item>
         <item>周五</item>
         <item>周六</item>
+    </string-array>
+    <string-array name="WheelArrayYear">
+        <item>2000</item>
+        <item>2001</item>
+        <item>2002</item>
+        <item>2003</item>
+        <item>2004</item>
+        <item>2005</item>
+        <item>2006</item>
+        <item>2007</item>
+        <item>2008</item>
+        <item>2009</item>
+        <item>2010</item>
+        <item>2011</item>
+    </string-array>
+    <string-array name="WheelArrayMonth">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="WheelArrayDay">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+    </string-array>
+    <string-array name="WheelArrayHour">
+        <item>00</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
     </string-array>
 </resources>
