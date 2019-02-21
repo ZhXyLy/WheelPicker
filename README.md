@@ -1,5 +1,6 @@
 # WheelPicker
 [![](https://jitpack.io/v/ZhXyLy/WheelPicker.svg)](https://jitpack.io/#ZhXyLy/WheelPicker)
+只用老版：1.3.0
 <h4>区域选择和日期选择</h4>
 
 <b>FROM:</b>
@@ -59,7 +60,13 @@ Step 2. Add the dependency
 	}
 	
 	
-<h3>新版使用</h3>
+<h3>新版使用（从2.0.0开始）</h3>
+
+    可以直接使用
+    <com.jx.wheelpicker.widget.lasted.XxxPicker>
+    或者
+    使用Dialog
+
 <h4>单选</h4>
 
     注：需要implements Data，如果是单独的String可以直接使用StringData。
@@ -84,6 +91,79 @@ Step 2. Add the dependency
         }
         singlePickerDialog.show();
     }
+
+
+<h4>日期选择</h4>
+
+
+    private void showLastedDialog() {
+            if (mPickerDialog == null) {
+                mPickerDialog = new DatePickerDialog.DateBuilder(this)
+                        .setOnDateChangedListener(new DatePickerDialog.OnDateChangedListener() {
+                            @Override
+                            public void onDateChanged(DatePicker datePicker, int year, int month, int day, String week) {
+                                tvLastedResult.setText(String.format("%s-%s", datePicker.getDateString(), week));
+                            }
+                        })
+                        .setOnPickerDateListener(new DatePickerDialog.OnPickerDateListener() {
+                            @Override
+                            public void onPickerDate(DatePicker datePicker, int year, int month, int day, String week) {
+                                ToastUtils.show(String.format("%s-%s", datePicker.getDateString(), week));
+                            }
+                        })
+                        .build();
+            }
+            mPickerDialog.show();
+        }
+
+
+<h4>时间选择</h4>
+
+
+    private void showLastedDialog() {
+            if (mPickerDialog == null) {
+                mPickerDialog = new TimePickerDialog.TimeBuilder(this)
+                        .setOnTimeChangedListener(new TimePickerDialog.OnTimeChangedListener() {
+                            @Override
+                            public void onTimeChanged(TimePicker timePicker, int hour, int minute, int second) {
+                                tvLastedResult.setText(timePicker.getTimeString());
+                            }
+                        })
+                        .setOnPickTimeListener(new TimePickerDialog.OnPickTimeListener() {
+                            @Override
+                            public void onTimePicked(TimePicker timePicker, int hour, int minute, int second) {
+                                ToastUtils.show(timePicker.getTimeString());
+                            }
+                        })
+                        .build();
+            }
+            mPickerDialog.show();
+        }
+
+
+<h4>区域选择</h4>
+
+
+    private void showLastedDialog() {
+            if (mPickerDialog == null) {
+                mPickerDialog = new AreaPickerDialog.AreaBuilder(this)
+                        .setShortText(true)
+                        .setOnAreaChangedListener(new AreaPickerDialog.OnAreaChangedListener() {
+                            @Override
+                            public void onAreaChanged(AreaPicker areaPicker, Province province, City city, Area area) {
+                                tvLastedResult.setText(areaPicker.getAreaString(" "));
+                            }
+                        })
+                        .setOnPickerAreaListener(new AreaPickerDialog.OnPickerAreaListener() {
+                            @Override
+                            public void onPickerArea(AreaPicker areaPicker, Province province, City city, Area area) {
+                                ToastUtils.show(areaPicker.getAreaString("-"));
+                            }
+                        })
+                        .build();
+            }
+            mPickerDialog.show();
+        }
 
   
   <h3>旧版使用</h3>
