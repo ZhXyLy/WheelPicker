@@ -1,6 +1,7 @@
 # WheelPicker
 [![](https://jitpack.io/v/ZhXyLy/WheelPicker.svg)](https://jitpack.io/#ZhXyLy/WheelPicker)
-只用老版：1.3.0
+
+只用老版，直接用：1.3.0
 <h4>区域选择和日期选择</h4>
 
 <b>FROM:</b>
@@ -9,26 +10,28 @@
 
 <h3>效果图：</h3>
 
-<img src="/images/wheelpicker.gif" alt="效果图" width="30%" align="center">
-
+<div align="center">
+<img src="/images/wheelpicker.gif" alt="效果图" width="30%">
+</div>
+<h4>单选：</h4>
 <div>
 <img src="/images/单选1.png" alt="新单选" width="30%">
 <img src="/images/单选-旧版.png" alt="单选-旧版" width="30%">
 <img src="/images/单选-新版.png" alt="单选-新版" width="30%">
 </div>
-
+<h4>日期：</h4>
 <div>
 <img src="/images/日期1.png" alt="新日期" width="30%">
 <img src="/images/日期-旧版.png" alt="日期-旧版" width="30%">
 <img src="/images/日期-新版.png" alt="日期-新版" width="30%">
 </div>
-
+<h4>时间：</h4>
 <div>
 <img src="/images/时间1.png" alt="新时间" width="30%">
 <img src="/images/时间-旧版.png" alt="时间-旧版" width="30%">
 <img src="/images/时间-新版.png" alt="时间-新版" width="30%">
 </div>
-
+<h4>区域：</h4>
 <div>
 <img src="/images/区域1.png" alt="新区域" width="30%">
 <img src="/images/区域-旧版.png" alt="区域-旧版" width="30%">
@@ -59,6 +62,43 @@ Step 2. Add the dependency
 	        implementation 'com.github.ZhXyLy:WheelPicker:latest-version'
 	}
 	
+	
+<h4>新版API:</h4>
+<h5>公用</h5>
+       
+       .setTitle("标题")//设置标题
+       .setTitleTextSize(12)//标题文字大小
+       .setItemTextSize(20)//Item文字大小
+       .setShowUnit(true)//是否显示单位
+       .setData(stringData)//设置数据（对象需要implements Data，或者字符串直接用StringData）
+       
+<h5>设置默认值</h5>
+单选
+       
+       .setUnit("元")//单位
+       .setDefaultById(id)//通过ID设置默认项
+       .setDefaultByText(text)//通过文字设置默认项
+
+日期
+
+        .setDateMode(DatePicker.ALL)//设置DateMode，ALL,NO_YEAR,NO_DAY
+        .setShowWeek(true)//是否显示周
+        .setDefaultDate(defaultDate)//默认日期
+        .setRangeDate(minDate,maxDate)//最大最小日期，没有的用null，默认1900-2100
+        .setUnit("年","月","日")//单位，默认既是年月日
+
+时间
+
+        .setTimeMode(TimePicker.ALL)//时间模式，ALL,NO_HOUR,NO_SECOND
+        .setMinuteInterval(5)//设置间隔分钟
+        .setSecondInterval(5)//设置间隔秒
+        .setDefaultDate(defaultTime)
+        .setUnit("年","月","日")//单位，默认既是年月日
+
+区域
+
+        .setShortText(true)//是否显示为简称（默认false）
+        .setAdjustTextSize(false)//是否自动调整文字大小（默认true）
 	
 <h3>新版使用（从2.0.0开始）</h3>
 
@@ -165,8 +205,9 @@ Step 2. Add the dependency
             mPickerDialog.show();
         }
 
-  
+  <hr> 
   <h3>旧版使用</h3>
+  <hr>
   <h4>区域选择</h4>
   
     private void showAreaDialog() {

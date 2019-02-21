@@ -84,6 +84,7 @@ public class TimePicker extends FrameLayout {
     private List<SecondData> mSecondData;
 
     private int mMinuteInterval = 1;
+    private int mSecondInterval = 1;
 
     public TimePicker(Context context) {
         this(context, null);
@@ -239,7 +240,9 @@ public class TimePicker extends FrameLayout {
         //秒 数据
         mSecondData.clear();
         for (int s = 0; s < 60; s++) {
-            mSecondData.add(new SecondData(s));
+            if (s % mSecondInterval == 0) {
+                mSecondData.add(new SecondData(s));
+            }
         }
     }
 
@@ -331,13 +334,22 @@ public class TimePicker extends FrameLayout {
         }
     }
 
+    public void setSecondInterval(int secondInterval) {
+        if (secondInterval > 1 && secondInterval < 60) {
+            this.mSecondInterval = secondInterval;
+            updateTime();
+            updateDatePicker();
+            scrollToCurrentTime();
+        }
+    }
+
     private void scrollToCurrentTime() {
         int hour = mCurrentDate.get(Calendar.HOUR_OF_DAY);
         int minute = mCurrentDate.get(Calendar.MINUTE);
         int second = mCurrentDate.get(Calendar.SECOND);
         mHourPicker.setSelectedItemPosition(hour);
         mMinutePicker.setSelectedItemPosition(minute / mMinuteInterval);
-        mSecondPicker.setSelectedItemPosition(second);
+        mSecondPicker.setSelectedItemPosition(second / mSecondInterval);
     }
 
     public void setItemTextSize(float size) {

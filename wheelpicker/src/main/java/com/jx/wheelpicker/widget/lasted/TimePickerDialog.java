@@ -66,6 +66,8 @@ public class TimePickerDialog extends Dialog {
             timePicker.setUnit(timeBuilder.unit);
         }
         timePicker.setShowUnit(timeBuilder.showUnit);
+        timePicker.setMinuteInterval(timeBuilder.minuteInterval);
+        timePicker.setSecondInterval(timeBuilder.secondInterval);
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +156,8 @@ public class TimePickerDialog extends Dialog {
         private OnPickTimeListener onPickTimeListener;
         private String[] unit;
         private boolean showUnit = true;
+        private int minuteInterval = 1;
+        private int secondInterval = 1;
 
         public TimeBuilder(Context context) {
             this.context = context;
@@ -233,6 +237,26 @@ public class TimePickerDialog extends Dialog {
 
         public TimeBuilder setTimeMode(@TimePicker.TimeMode int timeMode) {
             this.timeMode = timeMode;
+            return this;
+        }
+
+        /**
+         * 设置分钟间隔，例如间隔,10分钟，显示0,10,20，30,40,50
+         */
+        public TimeBuilder setMinuteInterval(int minuteInterval) {
+            if (minuteInterval > 1 && minuteInterval < 60) {
+                this.minuteInterval = minuteInterval;
+            }
+            return this;
+        }
+
+        /**
+         * 设置秒间隔，例如间隔,10秒，显示0,10,20，30,40,50
+         */
+        public TimeBuilder setSecondInterval(int secondInterval) {
+            if (secondInterval > 1 && secondInterval < 60) {
+                this.secondInterval = secondInterval;
+            }
             return this;
         }
 

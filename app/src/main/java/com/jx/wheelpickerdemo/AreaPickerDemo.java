@@ -65,6 +65,7 @@ public class AreaPickerDemo extends AppCompatActivity {
         if (mPickerDialog == null) {
             mPickerDialog = new AreaPickerDialog.AreaBuilder(this)
                     .setShortText(true)
+                    .setAdjustTextSize(false)
                     .setOnAreaChangedListener(new AreaPickerDialog.OnAreaChangedListener() {
                         @Override
                         public void onAreaChanged(AreaPicker areaPicker, Province province, City city, Area area) {
