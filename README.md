@@ -8,7 +8,7 @@
 
 <h3>效果图：</h3>
 
-<img src="/images/wheelpicker.gif" alt="效果图" width="30%">
+<img src="/images/wheelpicker.gif" alt="效果图" width="30%" align="center">
 
 <div>
 <img src="/images/单选1.png" alt="新单选" width="30%">
@@ -59,7 +59,31 @@ Step 2. Add the dependency
 	}
 	
 	
-###新版2
+<h3>新版使用</h3>
+<h4>单选</h4>
+
+    注：需要implements Data，如果是单独的String可以直接使用StringData。
+
+    private void showSingleLastedDialog() {
+        if (singlePickerDialog == null) {
+            singlePickerDialog = new SinglePickerDialog.SingleBuilder(this)
+                    .setData(stringData)
+                    .setOnChangedListener(new SinglePickerDialog.OnChangedListener() {
+                        @Override
+                        public void onChanged(SinglePicker singlePicker, Data data) {
+                            tvLastedResult.setText(data == null ? "没选到东西" : data.getText());
+                        }
+                    })
+                    .setOnPickListener(new SinglePickerDialog.OnPickListener() {
+                        @Override
+                        public void onPicked(SinglePicker singlePicker, Data data) {
+                            ToastUtils.show(data == null ? "没选到东西" : data.getText());
+                        }
+                    })
+                    .build();
+        }
+        singlePickerDialog.show();
+    }
 
   
   <h3>旧版使用</h3>
