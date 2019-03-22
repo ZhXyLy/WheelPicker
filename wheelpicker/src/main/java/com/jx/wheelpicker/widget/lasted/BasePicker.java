@@ -378,7 +378,7 @@ public class BasePicker extends View implements IBasePicker, Runnable {
             @Override
             public boolean onPreDraw() {
                 getViewTreeObserver().removeOnPreDrawListener(this);
-                if (mData != null && mData.size() > mCurrentItemPosition) {
+                if (mData != null && mCurrentItemPosition > -1 && mData.size() > mCurrentItemPosition) {
                     wheelScrollChanged(mData.get(mCurrentItemPosition));//初始化完毕，第一次显示时的回调
                 }
                 return true;
@@ -413,7 +413,7 @@ public class BasePicker extends View implements IBasePicker, Runnable {
         } else {
             for (Data data : mData) {
                 String text = data.getText();
-                int width = (int) mPaint.measureText(text);
+                int width = text == null ? 0 : (int) mPaint.measureText(text);
                 mTextMaxWidth = Math.max(mTextMaxWidth, width);
             }
         }

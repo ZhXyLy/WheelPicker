@@ -198,6 +198,9 @@ public class AreaPickerDialog extends Dialog {
             return this;
         }
 
+        /**
+         * @deprecated
+         */
         public AreaBuilder setShortText(boolean shortText) {
             this.shortText = shortText;
             return this;

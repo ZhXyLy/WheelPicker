@@ -1,7 +1,6 @@
 package com.jx.wheelpicker.widget;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -41,8 +40,6 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     private List<City> mCityList;
     private List<String> mProvinceName, mCityName, mAreaName;
 
-    private AssetManager mAssetManager;
-
     private WheelPicker mWPProvince, mWPCity, mWPArea;
 
     public WheelAreaPicker(Context context) {
@@ -54,7 +51,7 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
 
         initView(context);
 
-        mProvinceList = getJsonDataFromAssets(mAssetManager);
+        mProvinceList = getJsonDataList();
 
         obtainProvinceData();
 
@@ -71,22 +68,20 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
         });
     }
 
-    private List<Province> getJsonDataFromAssets(AssetManager assetManager) {
+    private List<Province> getJsonDataList() {
         if (isInEditMode()) {
             //从assets文件中读取预览时乱码，
             String json = AreaJsonPreviewData.DATA;
             return new Gson().fromJson(json, new TypeToken<List<Province>>() {
             }.getType());
         }
-        return AreaUtils.getInstance().getJsonDataFromAssets(assetManager);
+        return AreaUtils.getInstance().getJsonData(getContext());
     }
 
     private void initView(Context context) {
         setOrientation(HORIZONTAL);
 
         mContext = context;
-
-        mAssetManager = mContext.getAssets();
 
         mProvinceName = new ArrayList<>();
         mCityName = new ArrayList<>();
@@ -163,6 +158,9 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     }
 
     private void setCityAndAreaData(int position) {
+        if (mProvinceList == null || position < 0 || mProvinceList.size() <= position) {
+            return;
+        }
         //获得该省所有城市的集合
         mCityList = mProvinceList.get(position).getCity();
         //获取所有city的名字
@@ -179,6 +177,9 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     }
 
     private void setArea(int position) {
+        if (mCityList == null || position < 0 || mCityList.size() <= position) {
+            return;
+        }
         List<Area> areas = mCityList.get(position).getArea();
         mAreaName.clear();
         for (Area area : areas) {

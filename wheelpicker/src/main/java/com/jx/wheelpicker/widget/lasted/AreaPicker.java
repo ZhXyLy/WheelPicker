@@ -20,7 +20,6 @@ import java.util.List;
  * 省市区选择器
  *
  * @author zhaoxl
- * @date 19/2/15
  */
 public class AreaPicker extends FrameLayout {
     private static final String TAG = AreaPicker.class.getSimpleName();
@@ -72,9 +71,9 @@ public class AreaPicker extends FrameLayout {
                     mCurrentProvince = (Province) data;
                     if (mTempProvince == null || !mTempProvince.getCode().equals(mCurrentProvince.getCode())) {
                         mCityData = mCurrentProvince.getCity();
-                        mCurrentCity = mCityData.get(0);
+                        mCurrentCity = mCityData == null || mCityData.size() == 0 ? null : mCityData.get(0);
                         mAreaData = mCurrentCity == null ? null : mCurrentCity.getArea();
-                        mCurrentArea = mAreaData == null ? null : mAreaData.get(0);
+                        mCurrentArea = mAreaData == null || mAreaData.size() == 0 ? null : mAreaData.get(0);
                         mCityPicker.setData(mCityData);
                         mAreaPicker.setData(mAreaData);
                         mCityPicker.setSelectedItemPosition(0);
@@ -87,7 +86,7 @@ public class AreaPicker extends FrameLayout {
                     mCurrentCity = (City) data;
                     if (mTempCity == null || !mTempCity.getCode().equals(mCurrentCity.getCode())) {
                         mAreaData = mCurrentCity.getArea();
-                        mCurrentArea = mAreaData == null ? null : mAreaData.get(0);
+                        mCurrentArea = mAreaData == null || mAreaData.size() == 0 ? null : mAreaData.get(0);
                         mAreaPicker.setData(mAreaData);
                         mAreaPicker.setSelectedItemPosition(0);
 
@@ -127,11 +126,7 @@ public class AreaPicker extends FrameLayout {
 
     private void updateData() {
         if (mProvinceData == null) {
-            String fileName = "RegionJsonData.json";
-            if (mShortText) {
-                fileName = "RegionJsonDataShort.json";
-            }
-            mProvinceData = AreaUtils.getInstance().getJsonDataFromAssets(getContext().getAssets(), fileName);
+            mProvinceData = AreaUtils.getInstance().getJsonData(getContext());
             if (mProvinceData != null && mProvinceData.size() > 0) {
                 mCurrentProvince = mProvinceData.get(0);
                 mCityData = mCurrentProvince.getCity();
@@ -166,10 +161,24 @@ public class AreaPicker extends FrameLayout {
     }
 
     public String getAreaString(String separator) {
+        return getAreaString(separator, false);
+    }
+
+    /**
+     * @param force 是否必须显示分隔符
+     */
+    public String getAreaString(String separator, boolean force) {
         if (TextUtils.isEmpty(separator)) {
             return getAreaString();
         }
-        return String.format("%s%s%s%s%s", mCurrentProvince.getName(), separator, mCurrentCity.getName(), separator, mCurrentArea.getName());
+        return String.format("%s%s%s%s%s",
+                mCurrentProvince == null ? "" : mCurrentProvince.getName(),
+                //不强制时-省市都有显示分割
+                force ? separator : mCurrentProvince == null || mCurrentCity == null ? "" : separator,
+                mCurrentCity == null ? "" : mCurrentCity.getName(),
+                //不强制时-市区都有显示分割
+                force ? separator : mCurrentCity == null || mCurrentArea == null ? "" : separator,
+                mCurrentArea == null ? "" : mCurrentArea.getName());
     }
 
     public Province getProvince() {
@@ -184,10 +193,12 @@ public class AreaPicker extends FrameLayout {
         return mCurrentArea;
     }
 
+    /**
+     * @deprecated
+     */
     public void setShortText(boolean shortText) {
         if (this.mShortText != shortText) {
             this.mShortText = shortText;
-            mProvinceData = null;
             updateData();
         }
     }
@@ -226,21 +237,43 @@ public class AreaPicker extends FrameLayout {
         if (code.length() != 6) {
             return;
         }
+
+        if (mProvinceData == null) {
+            return;
+        }
         String provinceSub = code.substring(0, 2);
         String citySub = code.substring(0, 4);
         String areaSub = code.substring(0, 6);
         for (int p = 0; p < mProvinceData.size(); p++) {
-            if (mProvinceData.get(p).getCode().substring(0, 2).equals(provinceSub)) {
+            String pCode = mProvinceData.get(p).getCode();
+            if (pCode == null || pCode.length() < 2) {
+                return;
+            }
+            if (pCode.substring(0, 2).equals(provinceSub)) {
                 mProvincePicker.setSelectedItemPosition(p);
                 mCityData = mProvinceData.get(p).getCity();
                 mCityPicker.setData(mCityData);
+                if (mCityData == null) {
+                    return;
+                }
                 for (int c = 0; c < mCityData.size(); c++) {
-                    if (mCityData.get(c).getCode().substring(0, 4).equals(citySub)) {
+                    String cCode = mCityData.get(c).getCode();
+                    if (cCode == null || cCode.length() < 4) {
+                        return;
+                    }
+                    if (cCode.substring(0, 4).equals(citySub)) {
                         mCityPicker.setSelectedItemPosition(c);
                         mAreaData = mCityData.get(c).getArea();
                         mAreaPicker.setData(mAreaData);
+                        if (mAreaData == null) {
+                            return;
+                        }
                         for (int a = 0; a < mAreaData.size(); a++) {
-                            if (mAreaData.get(a).getCode().substring(0, 6).equals(areaSub)) {
+                            String aCode = mAreaData.get(c).getCode();
+                            if (aCode == null || aCode.length() < 6) {
+                                return;
+                            }
+                            if (aCode.substring(0, 6).equals(areaSub)) {
                                 mAreaPicker.setSelectedItemPosition(a);
                                 return;
                             }
@@ -255,6 +288,9 @@ public class AreaPicker extends FrameLayout {
 
     public void setDefaultByName(String name) {
         if (TextUtils.isEmpty(name)) {
+            return;
+        }
+        if (mProvinceData == null) {
             return;
         }
         for (int p = 0; p < mProvinceData.size(); p++) {

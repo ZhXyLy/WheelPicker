@@ -12,8 +12,11 @@ import com.jx.wheelpicker.widget.model.City;
 import com.jx.wheelpicker.widget.model.Province;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +28,10 @@ import java.util.Map;
 public class AreaUtils {
 
     private static volatile AreaUtils INSTANCE = null;
+
+    private String mFromFilePath;
+
+    private OnEmptyDataListener onEmptyDataListener;
 
     private AreaUtils() {
     }
@@ -42,13 +49,22 @@ public class AreaUtils {
 
     private static Map<String, List<Province>> provinceMap = new HashMap<>();
 
-    public List<Province> getJsonDataFromAssets(AssetManager assetManager) {
+    public List<Province> getJsonData(Context context) {
+        if (TextUtils.isEmpty(mFromFilePath)) {
+            return getJsonDataFromAssets(context.getAssets());
+        } else {
+            //如果传入的path不为空，首选传入的
+            return getJsonDataFromFile();
+        }
+    }
+
+    private List<Province> getJsonDataFromAssets(AssetManager assetManager) {
         String fileName = "RegionJsonData.json";
         List<Province> provinces = provinceMap.get(fileName);
-        if (provinces == null) {
+        if (provinces == null || provinces.size() == 0) {
             StringBuilder stringBuilder = new StringBuilder();
             try {
-                InputStream inputStream = assetManager.open("RegionJsonData.json");
+                InputStream inputStream = assetManager.open(fileName);
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
@@ -65,16 +81,22 @@ public class AreaUtils {
         return provinces;
     }
 
-    public List<Province> getJsonDataFromAssets(AssetManager assetManager, String assetFileName) {
-        if (TextUtils.isEmpty(assetFileName)) {
-            return getJsonDataFromAssets(assetManager);
+    public void setFilePath(String path) {
+        this.mFromFilePath = path;
+        provinceMap.clear();
+    }
+
+    private List<Province> getJsonDataFromFile() {
+        if (TextUtils.isEmpty(mFromFilePath)) {
+            return new ArrayList<>();
         }
-        List<Province> provinces = provinceMap.get(assetFileName);
-        if (provinces == null) {
+        List<Province> provinces = provinceMap.get(mFromFilePath);
+        if (provinces == null || provinces.size() == 0) {
             StringBuilder stringBuilder = new StringBuilder();
             try {
-                InputStream inputStream = assetManager.open(assetFileName);
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                File file = new File(mFromFilePath);
+                FileInputStream fileInputStream = new FileInputStream(file);
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     stringBuilder.append(line);
@@ -86,13 +108,19 @@ public class AreaUtils {
                 e.printStackTrace();
             }
         }
-        provinceMap.put(assetFileName, provinces);
+
+        if (provinces == null || provinces.size() == 0) {
+            if (onEmptyDataListener != null) {
+                onEmptyDataListener.onEmptyData();
+            }
+        }
+        provinceMap.put(mFromFilePath, provinces);
         return provinces;
     }
 
     public String findAreaByCode(Context context, @NonNull String code) {
         if (code.length() == 6) {
-            List<Province> mProvinceList = getJsonDataFromAssets(context.getApplicationContext().getAssets());
+            List<Province> mProvinceList = getJsonData(context);
             if (mProvinceList == null || mProvinceList.size() == 0) {
                 return "";
             }
@@ -119,7 +147,7 @@ public class AreaUtils {
 
     public String findFullAreaByCode(Context context, @NonNull String code) {
         if (code.length() == 6) {
-            List<Province> mProvinceList = getJsonDataFromAssets(context.getApplicationContext().getAssets());
+            List<Province> mProvinceList = getJsonData(context);
             if (mProvinceList == null || mProvinceList.size() == 0) {
                 return "";
             }
@@ -153,7 +181,7 @@ public class AreaUtils {
 
     public Ssq findSsqAreaByCode(Context context, @NonNull String code) {
         if (code.length() == 6) {
-            List<Province> mProvinceList = getJsonDataFromAssets(context.getApplicationContext().getAssets());
+            List<Province> mProvinceList = getJsonData(context);
             if (mProvinceList == null || mProvinceList.size() == 0) {
                 return null;
             }
@@ -191,5 +219,9 @@ public class AreaUtils {
             return ssq;
         }
         return null;
+    }
+
+    public void setOnEmptyDataListener(OnEmptyDataListener listener) {
+        this.onEmptyDataListener = listener;
     }
 }
