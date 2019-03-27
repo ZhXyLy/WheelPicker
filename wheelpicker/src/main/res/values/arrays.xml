@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="WheelArrayDefault">
+    <string-array name="wp_WheelArrayDefault">
         <item>Java</item>
         <item>C</item>
         <item>Python</item>
@@ -16,9 +16,9 @@
         <item>Ruby</item>
         <item>PL/SQL</item>
     </string-array>
-    <string-array name="WheelArrayEmpty">
+    <string-array name="wp_WheelArrayEmpty">
     </string-array>
-    <string-array name="WheelArrayWeek">
+    <string-array name="wp_WheelArrayWeek">
         <item>周日</item>
         <item>周一</item>
         <item>周二</item>
@@ -27,7 +27,7 @@
         <item>周五</item>
         <item>周六</item>
     </string-array>
-    <string-array name="WheelArrayYear">
+    <string-array name="wp_WheelArrayYear">
         <item>2000</item>
         <item>2001</item>
         <item>2002</item>
@@ -41,7 +41,7 @@
         <item>2010</item>
         <item>2011</item>
     </string-array>
-    <string-array name="WheelArrayMonth">
+    <string-array name="wp_WheelArrayMonth">
         <item>01</item>
         <item>02</item>
         <item>03</item>
@@ -55,7 +55,7 @@
         <item>11</item>
         <item>12</item>
     </string-array>
-    <string-array name="WheelArrayDay">
+    <string-array name="wp_WheelArrayDay">
         <item>01</item>
         <item>02</item>
         <item>03</item>
@@ -67,7 +67,7 @@
         <item>09</item>
         <item>10</item>
     </string-array>
-    <string-array name="WheelArrayHour">
+    <string-array name="wp_WheelArrayHour">
         <item>00</item>
         <item>01</item>
         <item>02</item>

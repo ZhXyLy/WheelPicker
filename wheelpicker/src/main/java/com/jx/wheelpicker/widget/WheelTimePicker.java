@@ -3,7 +3,6 @@ package com.jx.wheelpicker.widget;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -52,9 +51,9 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
 
     public WheelTimePicker(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        unitHour = getResources().getString(R.string.hour);
-        unitMinute = getResources().getString(R.string.minute);
-        unitSecond = getResources().getString(R.string.second);
+        unitHour = getResources().getString(R.string.wp_hour);
+        unitMinute = getResources().getString(R.string.wp_minute);
+        unitSecond = getResources().getString(R.string.wp_second);
 
         initView(context);
 

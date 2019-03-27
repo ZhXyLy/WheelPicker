@@ -12,8 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jx.wheelpicker.R;
-import com.jx.wheelpicker.widget.IWheelPicker;
-import com.jx.wheelpicker.widget.WheelPicker;
 import com.jx.wheelpicker.widget.model.Data;
 import com.jx.wheelpicker.widget.model.DayData;
 import com.jx.wheelpicker.widget.model.MonthData;
@@ -113,10 +111,10 @@ public class DatePicker extends FrameLayout {
         // initialization based on locale
         setCurrentLocale(Locale.getDefault());
 
-        WEEK_DAYS = getResources().getStringArray(R.array.WheelArrayWeek);
+        WEEK_DAYS = getResources().getStringArray(R.array.wp_WheelArrayWeek);
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        final View view = inflater.inflate(R.layout.date_picker_layout, this, true);
+        final View view = inflater.inflate(R.layout.wp_date_picker_layout, this, true);
         mYearPicker = findViewById(R.id.wp_year);
         mMonthPicker = findViewById(R.id.wp_month);
         mDayPicker = findViewById(R.id.wp_day);

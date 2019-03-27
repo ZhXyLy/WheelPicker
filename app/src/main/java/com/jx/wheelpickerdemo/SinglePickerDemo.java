@@ -51,7 +51,7 @@ public class SinglePickerDemo extends AppCompatActivity {
             }
         });
 
-        stringArray = getResources().getStringArray(R.array.WheelArrayDefault);
+        stringArray = getResources().getStringArray(R.array.wp_WheelArrayDefault);
         stringData = new ArrayList<>();
         for (String s : stringArray) {
             stringData.add(new StringData(s));

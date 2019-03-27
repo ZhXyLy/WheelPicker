@@ -9,8 +9,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.jx.wheelpicker.R;
-import com.jx.wheelpicker.widget.IWheelPicker;
-import com.jx.wheelpicker.widget.WheelPicker;
 import com.jx.wheelpicker.widget.model.Data;
 
 import java.util.ArrayList;
@@ -51,7 +49,7 @@ public class SinglePicker extends FrameLayout {
         super(context, attrs, defStyle);
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        final View view = inflater.inflate(R.layout.single_picker_layout, this, true);
+        final View view = inflater.inflate(R.layout.wp_single_picker_layout, this, true);
         mSinglePicker = findViewById(R.id.wp_single);
         mSingleUnit = findViewById(R.id.tv_single_unit);
 

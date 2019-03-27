@@ -101,7 +101,7 @@ public class TimePicker extends FrameLayout {
         setCurrentLocale(Locale.getDefault());
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        final View view = inflater.inflate(R.layout.time_picker_layout, this, true);
+        final View view = inflater.inflate(R.layout.wp_time_picker_layout, this, true);
         mHourPicker = findViewById(R.id.wp_hour);
         mMinutePicker = findViewById(R.id.wp_minute);
         mSecondPicker = findViewById(R.id.wp_second);

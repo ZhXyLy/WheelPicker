@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">WheelPicker</string>
-    <string name="cancel">取消</string>
-    <string name="ensure">确定</string>
-    <string name="confirm">确认</string>
-    <string name="year">年</string>
-    <string name="month">月</string>
-    <string name="day">日</string>
-    <string name="hour">时</string>
-    <string name="minute">分</string>
-    <string name="second">秒</string>
-    <string name="select_province_city_area">选择省市区</string>
-    <string name="select_time">选择时间</string>
-    <string name="select_date">选择日期</string>
+    <string name="wp_app_name">WheelPicker</string>
+    <string name="wp_cancel">取消</string>
+    <string name="wp_ensure">确定</string>
+    <string name="wp_confirm">确认</string>
+    <string name="wp_year">年</string>
+    <string name="wp_month">月</string>
+    <string name="wp_day">日</string>
+    <string name="wp_hour">时</string>
+    <string name="wp_minute">分</string>
+    <string name="wp_second">秒</string>
+    <string name="wp_select_province_city_area">选择省市区</string>
+    <string name="wp_select_time">选择时间</string>
+    <string name="wp_select_date">选择日期</string>
 </resources>

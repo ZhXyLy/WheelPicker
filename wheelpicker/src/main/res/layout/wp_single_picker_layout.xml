@@ -15,10 +15,10 @@
         app:wheel_curtain="false"
         app:wheel_curved="true"
         app:wheel_item_align="center"
-        app:wheel_item_text_size="@dimen/date_item_text_size"
-        app:wheel_selected_item_text_color="@color/date_select_item_color"
+        app:wheel_item_text_size="@dimen/wp_date_item_text_size"
+        app:wheel_selected_item_text_color="@color/wp_date_select_item_color"
         app:wheel_visible_item_count="7"
-        app:wheel_data="@array/WheelArrayDefault" />
+        app:wheel_data="@array/wp_WheelArrayDefault" />
 
     <TextView
         android:id="@+id/tv_single_unit"
@@ -30,6 +30,6 @@
         tools:visibility="visible"
         android:gravity="center"
         android:text="单位"
-        android:textColor="@color/date_unit_color"
-        android:textSize="@dimen/date_unit_text_size" />
+        android:textColor="@color/wp_date_unit_color"
+        android:textSize="@dimen/wp_date_unit_text_size" />
 </LinearLayout>

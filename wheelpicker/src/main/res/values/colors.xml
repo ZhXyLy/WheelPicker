@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="date_select_item_color">#000000</color>
-    <color name="date_unit_color">#000000</color>
+    <color name="wp_date_select_item_color">#000000</color>
+    <color name="wp_date_unit_color">#000000</color>
 </resources>

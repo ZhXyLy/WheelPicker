@@ -58,7 +58,7 @@ public class AreaPicker extends FrameLayout {
         super(context, attrs, defStyle);
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        inflater.inflate(R.layout.triple_picker_layout, this, true);
+        inflater.inflate(R.layout.wp_triple_picker_layout, this, true);
         mProvincePicker = findViewById(R.id.wp_one);
         mCityPicker = findViewById(R.id.wp_two);
         mAreaPicker = findViewById(R.id.wp_three);

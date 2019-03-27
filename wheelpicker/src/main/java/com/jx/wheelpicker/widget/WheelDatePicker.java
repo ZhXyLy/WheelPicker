@@ -58,10 +58,10 @@ public class WheelDatePicker extends LinearLayout implements IWheelDatePicker {
 
     public WheelDatePicker(Context context, AttributeSet attrs) {
         super(context, attrs);
-        unitYear = getResources().getString(R.string.year);
-        unitMonth = getResources().getString(R.string.month);
-        unitDay = getResources().getString(R.string.day);
-        WEEK_DAYS = getResources().getStringArray(R.array.WheelArrayWeek);
+        unitYear = getResources().getString(R.string.wp_year);
+        unitMonth = getResources().getString(R.string.wp_month);
+        unitDay = getResources().getString(R.string.wp_day);
+        WEEK_DAYS = getResources().getStringArray(R.array.wp_WheelArrayWeek);
 
         initLayoutParams();
 

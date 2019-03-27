@@ -31,13 +31,13 @@ public class TimePickerDialog extends Dialog {
     private TimeBuilder timeBuilder;
 
     private TimePickerDialog(TimeBuilder builder) {
-        super(builder.context, R.style.Dialog);
+        super(builder.context, R.style.WP_Dialog);
         this.timeBuilder = builder;
         initializer();
     }
 
     private void initializer() {
-        setContentView(R.layout.include_wheel_picker_dialog);
+        setContentView(R.layout.wp_include_wheel_picker_dialog);
 
         FrameLayout flContent = findViewById(R.id.fl_content);
 
@@ -104,7 +104,7 @@ public class TimePickerDialog extends Dialog {
         Window dialogWindow = getWindow();
         if (dialogWindow != null) {
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-            dialogWindow.setWindowAnimations(R.style.dialogWindowAnimBottom);
+            dialogWindow.setWindowAnimations(R.style.WP_dialogWindowAnimBottom);
             dialogWindow.setGravity(Gravity.BOTTOM);
             lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
             dialogWindow.setAttributes(lp);

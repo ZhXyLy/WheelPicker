@@ -303,10 +303,10 @@ public class BasePicker extends View implements IBasePicker, Runnable {
         String[] stringArray;
         if (isInEditMode()) {
             stringArray = getResources()
-                    .getStringArray(idData == 0 ? R.array.WheelArrayDefault : idData);
+                    .getStringArray(idData == 0 ? R.array.wp_WheelArrayDefault : idData);
         } else {
             stringArray = getResources()
-                    .getStringArray(idData == 0 ? R.array.WheelArrayEmpty : idData);
+                    .getStringArray(idData == 0 ? R.array.wp_WheelArrayEmpty : idData);
         }
         List<StringData> stringList = new ArrayList<>();
         for (String s : stringArray) {
@@ -315,7 +315,7 @@ public class BasePicker extends View implements IBasePicker, Runnable {
         }
         mData = stringList;
         mItemTextSize = a.getDimensionPixelSize(R.styleable.WheelPicker_wheel_item_text_size,
-                getResources().getDimensionPixelSize(R.dimen.WheelItemTextSize));
+                getResources().getDimensionPixelSize(R.dimen.wp_WheelItemTextSize));
         mVisibleItemCount = a.getInt(R.styleable.WheelPicker_wheel_visible_item_count, 7);
         mSelectedItemPosition = a.getInt(R.styleable.WheelPicker_wheel_selected_item_position, 0);
         hasSameWidth = a.getBoolean(R.styleable.WheelPicker_wheel_same_width, false);
@@ -326,12 +326,12 @@ public class BasePicker extends View implements IBasePicker, Runnable {
                 (R.styleable.WheelPicker_wheel_selected_item_text_color, -1);
         mItemTextColor = a.getColor(R.styleable.WheelPicker_wheel_item_text_color, 0xFFB8B8B8);
         mItemSpace = a.getDimensionPixelSize(R.styleable.WheelPicker_wheel_item_space,
-                getResources().getDimensionPixelSize(R.dimen.WheelItemSpace));
+                getResources().getDimensionPixelSize(R.dimen.wp_WheelItemSpace));
         isCyclic = a.getBoolean(R.styleable.WheelPicker_wheel_cyclic, false);
         hasIndicator = a.getBoolean(R.styleable.WheelPicker_wheel_indicator, false);
         mIndicatorColor = a.getColor(R.styleable.WheelPicker_wheel_indicator_color, 0xFFEE3333);
         mIndicatorSize = a.getDimensionPixelSize(R.styleable.WheelPicker_wheel_indicator_size,
-                getResources().getDimensionPixelSize(R.dimen.WheelIndicatorSize));
+                getResources().getDimensionPixelSize(R.dimen.wp_WheelIndicatorSize));
         hasCurtain = a.getBoolean(R.styleable.WheelPicker_wheel_curtain, false);
         mCurtainColor = a.getColor(R.styleable.WheelPicker_wheel_curtain_color, 0x88FFFFFF);
         hasAtmospheric = a.getBoolean(R.styleable.WheelPicker_wheel_atmospheric, false);

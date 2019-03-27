@@ -33,13 +33,13 @@ public class DatePickerDialog extends Dialog {
     private DateBuilder dateBuilder;
 
     private DatePickerDialog(DateBuilder builder) {
-        super(builder.context, R.style.Dialog);
+        super(builder.context, R.style.WP_Dialog);
         this.dateBuilder = builder;
         initializer();
     }
 
     private void initializer() {
-        setContentView(R.layout.include_wheel_picker_dialog);
+        setContentView(R.layout.wp_include_wheel_picker_dialog);
 
         FrameLayout flContent = findViewById(R.id.fl_content);
 
@@ -109,7 +109,7 @@ public class DatePickerDialog extends Dialog {
         Window dialogWindow = getWindow();
         if (dialogWindow != null) {
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-            dialogWindow.setWindowAnimations(R.style.dialogWindowAnimBottom);
+            dialogWindow.setWindowAnimations(R.style.WP_dialogWindowAnimBottom);
             dialogWindow.setGravity(Gravity.BOTTOM);
             lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
             dialogWindow.setAttributes(lp);

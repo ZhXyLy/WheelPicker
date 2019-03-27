@@ -1,11 +1,11 @@
 <resources>
 
-    <style name="dialogWindowAnimBottom" mce_bogus="1" parent="android:Animation">
-        <item name="android:windowEnterAnimation">@anim/translate_enter</item>
-        <item name="android:windowExitAnimation">@anim/translate_outer</item>
+    <style name="WP.dialogWindowAnimBottom" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/wp_translate_enter</item>
+        <item name="android:windowExitAnimation">@anim/wp_translate_outer</item>
     </style>
 
-    <style name="Dialog" parent="@android:style/Theme.Holo.Light.Dialog">
+    <style name="WP.Dialog" parent="@android:style/Theme.Holo.Light.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>

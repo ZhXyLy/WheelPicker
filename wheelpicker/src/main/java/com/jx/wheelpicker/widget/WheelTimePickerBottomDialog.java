@@ -29,7 +29,7 @@ public class WheelTimePickerBottomDialog extends Dialog {
     private TextView tvTitle;
 
     public WheelTimePickerBottomDialog(@NonNull Context context) {
-        this(context, R.style.Dialog);
+        this(context, R.style.WP_Dialog);
     }
 
     private WheelTimePickerBottomDialog(@NonNull Context context, @StyleRes int themeResId) {
@@ -39,7 +39,7 @@ public class WheelTimePickerBottomDialog extends Dialog {
     }
 
     private void initializer() {
-        setContentView(R.layout.include_wheel_picker_dialog);
+        setContentView(R.layout.wp_include_wheel_picker_dialog);
 
         FrameLayout flContent = findViewById(R.id.fl_content);
         mWheelTimePicker = new WheelTimePicker(getContext());
@@ -50,7 +50,7 @@ public class WheelTimePickerBottomDialog extends Dialog {
                         Gravity.CENTER));
 
         tvTitle = findViewById(R.id.tv_title);
-        setTitle(R.string.select_time);
+        setTitle(R.string.wp_select_time);
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +84,7 @@ public class WheelTimePickerBottomDialog extends Dialog {
         Window dialogWindow = getWindow();
         if (dialogWindow != null) {
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-            dialogWindow.setWindowAnimations(R.style.dialogWindowAnimBottom);
+            dialogWindow.setWindowAnimations(R.style.WP_dialogWindowAnimBottom);
             dialogWindow.setGravity(Gravity.BOTTOM);
             lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
             dialogWindow.setAttributes(lp);
