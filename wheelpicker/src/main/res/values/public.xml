@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--项目中资源默认公开，新建public.xml,public中有内容，则其他的私有，只在public中指定公开-->
+    <public name="mylib_app_name" type="string" />
+</resources>
