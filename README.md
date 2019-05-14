@@ -289,4 +289,16 @@ Step 2. Add the dependency
     <color name="list_date_item_color">#000000</color><!--区域列表item颜色-->
     <color name="list_date_select_item_color">?attr/colorAccent</color><!--区域列表item选中的颜色-->
 
+<h4>从服务器替换省市区json文件</h4>
+下载下来的文件地址setFilePath传入
 
+	String filePath = getFilesDir().getAbsolutePath() + "/province_json.json";
+        AreaUtils.getInstance().setFilePath(filePath);
+        AreaUtils.getInstance().setOnEmptyDataListener(new OnEmptyDataListener() {
+            @Override
+            public void onEmptyData() {
+                Toast.makeText(MainActivity.this, "数据时空的", Toast.LENGTH_SHORT).show();
+            }
+        });
+	
+	
