@@ -33,4 +33,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
 }

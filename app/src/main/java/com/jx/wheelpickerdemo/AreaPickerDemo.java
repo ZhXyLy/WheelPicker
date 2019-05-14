@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.jx.wheelpicker.widget.WheelAreaPickerBottomDialog;
 import com.jx.wheelpicker.widget.lasted.AreaPicker;
 import com.jx.wheelpicker.widget.lasted.AreaPickerDialog;
+import com.jx.wheelpicker.widget.list.ListAreaPicker;
+import com.jx.wheelpicker.widget.list.ListAreaPickerDialog;
 import com.jx.wheelpicker.widget.model.Area;
 import com.jx.wheelpicker.widget.model.City;
 import com.jx.wheelpicker.widget.model.Province;
@@ -21,11 +23,13 @@ import com.jx.wheelpicker.widget.model.Province;
 public class AreaPickerDemo extends AppCompatActivity {
 
     private AreaPicker mPicker;
-    private Button btnOld, btnLasted;
+    private Button btnOld, btnLasted, btnList;
 
     private AreaPickerDialog mPickerDialog;
     private WheelAreaPickerBottomDialog wheelPickerBottomDialog;
     private TextView tvLastedResult;
+    private TextView tvListResult;
+    private ListAreaPickerDialog listAreaPickerDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,12 +37,14 @@ public class AreaPickerDemo extends AppCompatActivity {
         setContentView(R.layout.activity_area);
 
         tvLastedResult = findViewById(R.id.tv_lasted_result);
+        tvListResult = findViewById(R.id.tv_list_result);
         mPicker = findViewById(R.id.picker);
         mPicker.setAdjustTextSize(true);
         mPicker.setDefaultByCode("610328");
 //        mPicker.setDefaultByName("陕西省宝鸡市千阳县");
         btnOld = findViewById(R.id.btn_old);
         btnLasted = findViewById(R.id.btn_lasted);
+        btnList = findViewById(R.id.btn_list);
 
         btnOld.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +58,32 @@ public class AreaPickerDemo extends AppCompatActivity {
                 showSingleLastedDialog();
             }
         });
+        btnList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showListAreaDialog();
+            }
+        });
+    }
+
+    private void showListAreaDialog() {
+        if (listAreaPickerDialog == null) {
+            listAreaPickerDialog = new ListAreaPickerDialog.ListAreaBuilder(this)
+                    .setOnPickerAreaListener(new ListAreaPickerDialog.OnPickerAreaListener() {
+                        @Override
+                        public void onPickerArea(ListAreaPicker listAreaPicker, Province province, City city, Area area) {
+                            ToastUtils.show(listAreaPicker.getAreaString("-"));
+                        }
+                    })
+                    .setOnAreaChangedListener(new ListAreaPickerDialog.OnAreaChangedListener() {
+                        @Override
+                        public void onAreaChanged(ListAreaPicker listAreaPicker, Province province, City city, Area area) {
+                            tvListResult.setText(listAreaPicker.getAreaString("/"));
+                        }
+                    })
+                    .build();
+        }
+        listAreaPickerDialog.show();
     }
 
     private void showSingleDialog() {

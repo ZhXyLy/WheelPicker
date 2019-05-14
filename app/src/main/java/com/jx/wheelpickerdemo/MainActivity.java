@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/json/province_json.json";
         String filePath = getFilesDir().getAbsolutePath() + "/province_json.json";
-        AreaUtils.getInstance().setFilePath(filePath);
+        AreaUtils.getInstance().setFilePath(null);
         AreaUtils.getInstance().setOnEmptyDataListener(new OnEmptyDataListener() {
             @Override
             public void onEmptyData() {

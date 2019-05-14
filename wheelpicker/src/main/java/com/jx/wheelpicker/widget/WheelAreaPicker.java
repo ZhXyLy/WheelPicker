@@ -115,9 +115,12 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     }
 
     private void obtainProvinceData() {
-        for (Province province : mProvinceList) {
-            mProvinceName.add(province.getShortName());
+        if (mProvinceList!=null) {
+            for (Province province : mProvinceList) {
+                mProvinceName.add(province.getShortName());
+            }
         }
+
         mWPProvince.setData(mProvinceName);
         setCityAndAreaData(PROVINCE_INITIAL_INDEX);
     }
