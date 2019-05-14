@@ -42,7 +42,7 @@ public class ListAreaPicker extends RelativeLayout {
     }
 
     public ListAreaPicker(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.colorListAreaPickerItemText);
+        this(context, attrs, 0);
     }
 
     public ListAreaPicker(Context context, AttributeSet attrs, int defStyle) {

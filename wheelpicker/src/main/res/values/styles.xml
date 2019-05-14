@@ -17,8 +17,4 @@
         <!--<item name="android:windowAnimationStyle">@style/dialogWindowAnimBottom</item>-->
     </style>
 
-    <style name="listAreaPickerStyle">
-        <item name="colorListAreaPickerItemText">?attr/colorAccent</item>
-    </style>
-
 </resources>

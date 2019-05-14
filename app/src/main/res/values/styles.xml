@@ -8,11 +8,4 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!--
-    默认是去主题中colorAccent的颜色，
-    如果需要自定义颜色，重写listAreaPickerStyle，并指定colorListAreaPickerItemText
-    -->
-    <!--<style name="listAreaPickerStyle">
-        <item name="colorListAreaPickerItemText">@color/colorAccent</item>
-    </style>-->
 </resources>

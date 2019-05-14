@@ -2,5 +2,6 @@
 <resources>
     <color name="wp_date_select_item_color">#000000</color>
     <color name="wp_date_unit_color">#000000</color>
-    <color name="colorListAreaPickerItemText">#00FF00</color>
+    <color name="list_date_item_color">#000000</color>
+    <color name="list_date_select_item_color">?attr/colorAccent</color>
 </resources>

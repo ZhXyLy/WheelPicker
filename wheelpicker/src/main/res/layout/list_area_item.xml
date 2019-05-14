@@ -13,7 +13,6 @@
         android:checked="false"
         android:text="测试文字"
         android:textSize="16dp"
-        android:theme="@style/listAreaPickerStyle"
         android:marqueeRepeatLimit="marquee_forever"
         android:ellipsize="marquee"
         android:paddingStart="8dp"
