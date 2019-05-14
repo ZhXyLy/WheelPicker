@@ -72,7 +72,7 @@ public class AreaPickerDemo extends AppCompatActivity {
                     .setOnPickerAreaListener(new ListAreaPickerDialog.OnPickerAreaListener() {
                         @Override
                         public void onPickerArea(ListAreaPicker listAreaPicker, Province province, City city, Area area) {
-                            ToastUtils.show(listAreaPicker.getAreaString("-"));
+                            ToastUtils.show(listAreaPicker.getAreaString("-")+"==="+listAreaPicker.getAreaCode());
                         }
                     })
                     .setOnAreaChangedListener(new ListAreaPickerDialog.OnAreaChangedListener() {
@@ -83,6 +83,10 @@ public class AreaPickerDemo extends AppCompatActivity {
                     })
                     .build();
         }
+
+//        listAreaPickerDialog.setDefaultByCode("310104");
+//        listAreaPickerDialog.setDefaultByName("上海市", "市辖区", "徐汇区");
+        listAreaPickerDialog.setDefaultByAllName("上海市市辖区徐汇区");
         listAreaPickerDialog.show();
     }
 

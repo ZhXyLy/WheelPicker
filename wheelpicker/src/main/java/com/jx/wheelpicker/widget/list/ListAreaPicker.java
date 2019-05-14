@@ -37,6 +37,13 @@ public class ListAreaPicker extends RelativeLayout {
     private City mCurrentCity;
     private Area mCurrentArea;
 
+    private List<Province> mProvinceData;
+    private List<City> mCityData;
+    private List<Area> mAreaData;
+    private RecyclerView rvFirstLevel;
+    private RecyclerView rvSecondLevel;
+    private RecyclerView rvThirdLevel;
+
     public ListAreaPicker(Context context) {
         this(context, null);
     }
@@ -56,17 +63,17 @@ public class ListAreaPicker extends RelativeLayout {
     }
 
     private void initData() {
-        List<Province> jsonData = AreaUtils.getInstance().getJsonData(getContext());
-        setData(jsonData);
+        mProvinceData = AreaUtils.getInstance().getJsonData(getContext());
+        setData(mProvinceData);
     }
 
     private void initView(Context context) {
         LayoutInflater.from(context).inflate(R.layout.list_area_picker, this);
-        RecyclerView rvFirstLevel = findViewById(R.id.rv_first_level);
+        rvFirstLevel = findViewById(R.id.rv_first_level);
         flSecondLevel = findViewById(R.id.fl_second_level);
-        RecyclerView rvSecondLevel = findViewById(R.id.rv_second_level);
+        rvSecondLevel = findViewById(R.id.rv_second_level);
         flThirdLevel = findViewById(R.id.fl_third_level);
-        RecyclerView rvThirdLevel = findViewById(R.id.rv_third_level);
+        rvThirdLevel = findViewById(R.id.rv_third_level);
 
         rvFirstLevel.setLayoutManager(new LinearLayoutManager(getContext()));
         rvSecondLevel.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -154,6 +161,186 @@ public class ListAreaPicker extends RelativeLayout {
         thirdLevelAdapter.setTextSize(itemTextSize);
     }
 
+    public void setDefaultByCode(String code) {
+        if (TextUtils.isEmpty(code)) {
+            return;
+        }
+        if (code.length() != 6) {
+            return;
+        }
+        String proCode = code.substring(0, 2) + "0000";
+        String cityCode = code.substring(0, 4) + "00";
+        String areaCode = code.substring(0, 6);
+        firstLevelAdapter.setCheckedId(proCode);
+        secondLevelAdapter.setCheckedId(cityCode);
+        thirdLevelAdapter.setCheckedId(areaCode);
+        //省
+        firstLevelAdapter.setNewData(mProvinceData);
+        for (int p = 0; p < mProvinceData.size(); p++) {
+            if (proCode.equals(mProvinceData.get(p).getCode())) {
+                //就是这个省
+                mCurrentProvince = mProvinceData.get(p);
+                mCityData = mCurrentProvince.getCity();
+                rvFirstLevel.smoothScrollToPosition(p);
+                break;
+            }
+        }
+        //市
+        if (mCityData == null || mCityData.isEmpty()) {
+            return;
+        }
+        flSecondLevel.setVisibility(VISIBLE);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) flSecondLevel.getLayoutParams();
+        layoutParams.weight = 2;
+        flSecondLevel.setLayoutParams(layoutParams);
+        secondLevelAdapter.setNewData(mCityData);
+        for (int c = 0; c < mCityData.size(); c++) {
+            if (cityCode.equals(mCityData.get(c).getCode())) {
+                //就是这个市
+                mCurrentCity = mCityData.get(c);
+                mAreaData = mCurrentCity.getArea();
+                rvSecondLevel.smoothScrollToPosition(c);
+                break;
+            }
+        }
+        //区
+        if (mAreaData == null || mAreaData.isEmpty()) {
+            return;
+        }
+        flThirdLevel.setVisibility(VISIBLE);
+        layoutParams.weight = 1;
+        flSecondLevel.setLayoutParams(layoutParams);
+        thirdLevelAdapter.setNewData(mAreaData);
+        for (int a = 0; a < mAreaData.size(); a++) {
+            if (areaCode.equals(mAreaData.get(a).getCode())) {
+                //就是这个区
+                mCurrentArea = mAreaData.get(a);
+                rvThirdLevel.smoothScrollToPosition(a);
+                break;
+            }
+        }
+        if (onAreaCheckedListener != null) {
+            onAreaCheckedListener.onAreaChecked(ListAreaPicker.this, mCurrentProvince, mCurrentCity, mCurrentArea);
+        }
+    }
+
+    public void setDefaultByName(String provinceName, String cityName, String areaName) {
+        //省
+        if (TextUtils.isEmpty(provinceName)) {
+            return;
+        }
+        for (int p = 0; p < mProvinceData.size(); p++) {
+            String text = mProvinceData.get(p).getText();
+            if (provinceName.equals(text)) {
+                //就是这个省
+                mCurrentProvince = mProvinceData.get(p);
+                mCityData = mCurrentProvince.getCity();
+                rvFirstLevel.smoothScrollToPosition(p);
+                break;
+            }
+        }
+        firstLevelAdapter.setCheckedText(provinceName);
+        //市
+        if (TextUtils.isEmpty(cityName) || mCityData == null || mCityData.isEmpty()) {
+            return;
+        }
+        flSecondLevel.setVisibility(VISIBLE);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) flSecondLevel.getLayoutParams();
+        layoutParams.weight = 2;
+        flSecondLevel.setLayoutParams(layoutParams);
+        secondLevelAdapter.setNewData(mCityData);
+        for (int c = 0; c < mCityData.size(); c++) {
+            String text = mCityData.get(c).getText();
+            if (cityName.equals(text)) {
+                //就是这个市
+                mCurrentCity = mCityData.get(c);
+                mAreaData = mCurrentCity.getArea();
+                rvSecondLevel.smoothScrollToPosition(c);
+                break;
+            }
+        }
+        secondLevelAdapter.setCheckedText(cityName);
+        //区
+        if (TextUtils.isEmpty(areaName) || mAreaData == null || mAreaData.isEmpty()) {
+            return;
+        }
+        flThirdLevel.setVisibility(VISIBLE);
+        layoutParams.weight = 1;
+        flSecondLevel.setLayoutParams(layoutParams);
+        thirdLevelAdapter.setNewData(mAreaData);
+        for (int a = 0; a < mAreaData.size(); a++) {
+            String text = mAreaData.get(a).getText();
+            if (areaName.equals(text)) {
+                //就是这个区
+                mCurrentArea = mAreaData.get(a);
+                rvThirdLevel.smoothScrollToPosition(a);
+                break;
+            }
+        }
+        thirdLevelAdapter.setCheckedText(areaName);
+        if (onAreaCheckedListener != null) {
+            onAreaCheckedListener.onAreaChecked(ListAreaPicker.this, mCurrentProvince, mCurrentCity, mCurrentArea);
+        }
+    }
+
+    public void setDefaultByAllName(String ssqName) {
+        if (TextUtils.isEmpty(ssqName)) {
+            return;
+        }
+        //省
+        for (int p = 0; p < mProvinceData.size(); p++) {
+            String text = mProvinceData.get(p).getText();
+            if (ssqName.startsWith(text)) {
+                //就是这个省
+                mCurrentProvince = mProvinceData.get(p);
+                mCityData = mCurrentProvince.getCity();
+                rvFirstLevel.smoothScrollToPosition(p);
+                firstLevelAdapter.setCheckedText(text);
+                break;
+            }
+        }
+        //市
+        if (mCityData == null || mCityData.isEmpty()) {
+            return;
+        }
+        flSecondLevel.setVisibility(VISIBLE);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) flSecondLevel.getLayoutParams();
+        layoutParams.weight = 2;
+        flSecondLevel.setLayoutParams(layoutParams);
+        secondLevelAdapter.setNewData(mCityData);
+        for (int c = 0; c < mCityData.size(); c++) {
+            String text = mCityData.get(c).getText();
+            if (ssqName.contains(text)) {
+                //就是这个市
+                mCurrentCity = mCityData.get(c);
+                mAreaData = mCurrentCity.getArea();
+                rvSecondLevel.smoothScrollToPosition(c);
+                secondLevelAdapter.setCheckedText(text);
+                break;
+            }
+        }
+        //区
+        if (mAreaData == null || mAreaData.isEmpty()) {
+            return;
+        }
+        flThirdLevel.setVisibility(VISIBLE);
+        layoutParams.weight = 1;
+        flSecondLevel.setLayoutParams(layoutParams);
+        thirdLevelAdapter.setNewData(mAreaData);
+        for (int a = 0; a < mAreaData.size(); a++) {
+            String text = mAreaData.get(a).getText();
+            if (ssqName.endsWith(text)) {
+                //就是这个区
+                mCurrentArea = mAreaData.get(a);
+                rvThirdLevel.smoothScrollToPosition(a);
+                thirdLevelAdapter.setCheckedText(text);
+                break;
+            }
+        }
+        if (onAreaCheckedListener != null) {
+            onAreaCheckedListener.onAreaChecked(ListAreaPicker.this, mCurrentProvince, mCurrentCity, mCurrentArea);
+        }
+    }
 
     public String getAreaCode() {
         return mCurrentArea.getCode();

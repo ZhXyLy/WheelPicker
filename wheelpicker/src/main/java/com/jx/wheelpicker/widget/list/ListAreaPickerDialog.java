@@ -171,6 +171,40 @@ public class ListAreaPickerDialog extends Dialog {
 
     }
 
+    /**
+     * 根据省市区code确认默认值
+     *
+     * @param code 省市区code
+     */
+    public void setDefaultByCode(String code) {
+        listAreaPicker.setDefaultByCode(code);
+    }
+
+    /**
+     * 通过省市区名称确定默认值
+     * <p>
+     * 首选{@link #setDefaultByCode(String)}}
+     *
+     * @param provinceName 省
+     * @param cityName     市
+     * @param areaName     区
+     */
+    public void setDefaultByName(String provinceName, String cityName, String areaName) {
+        listAreaPicker.setDefaultByName(provinceName, cityName, areaName);
+    }
+
+    /**
+     * 通过省市区名称确定默认值
+     * <p>
+     * 首选{@link #setDefaultByCode(String)}}
+     * 最好用{@link #setDefaultByName(String, String, String)} ()},更准确
+     *
+     * @param ssqName 省市区全名
+     */
+    public void setDefaultByAllName(String ssqName) {
+        listAreaPicker.setDefaultByAllName(ssqName);
+    }
+
     public interface OnPickerAreaListener {
         /**
          * 选择后确认的回调

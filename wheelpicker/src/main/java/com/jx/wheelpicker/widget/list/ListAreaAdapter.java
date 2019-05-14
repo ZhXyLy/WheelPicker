@@ -2,6 +2,7 @@ package com.jx.wheelpicker.widget.list;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,9 @@ public class ListAreaAdapter extends RecyclerView.Adapter<ListAreaAdapter.ViewHo
 
     private List<? extends Data> mData;
     private String mCheckedId;
+    private String mCheckedText;//仅用来设置默认值
     private float mItemTextSize = -1;
+    private int checkMode;//0:按id设置选中，1：按Text设置选中
 
     public ListAreaAdapter() {
     }
@@ -34,6 +37,19 @@ public class ListAreaAdapter extends RecyclerView.Adapter<ListAreaAdapter.ViewHo
 
     public void clear() {
         mCheckedId = null;
+        mCheckedText = null;
+    }
+
+    public void setCheckedId(String checkedId) {
+        this.mCheckedId = checkedId;
+        checkMode = 0;
+        notifyDataSetChanged();
+    }
+
+    public void setCheckedText(String text) {
+        this.mCheckedText = text;
+        checkMode = 1;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -50,8 +66,15 @@ public class ListAreaAdapter extends RecyclerView.Adapter<ListAreaAdapter.ViewHo
             holder.textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, mItemTextSize);
         }
         holder.textView.setText(data.getText());
-        holder.textView.setChecked(data.getId() != null && data.getId().equals(mCheckedId));
-        holder.textView.setSelected(data.getId() != null && data.getId().equals(mCheckedId));
+        boolean isChecked;
+        if (checkMode == 1) {
+            isChecked = data.getText() != null && data.getText().equals(mCheckedText);
+        } else {
+            isChecked = data.getId() != null && data.getId().equals(mCheckedId);
+        }
+        Log.d("onBindViewHolder", "onBindViewHolder: "+checkMode+"====="+isChecked);
+        holder.textView.setChecked(isChecked);
+        holder.textView.setSelected(isChecked);
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +83,7 @@ public class ListAreaAdapter extends RecyclerView.Adapter<ListAreaAdapter.ViewHo
                     return;
                 }
                 mCheckedId = data.getId();
+                mCheckedText = data.getText();
                 notifyDataSetChanged();
                 if (onItemCheckedListener != null) {
                     onItemCheckedListener.onItemChecked(data, holder.getAdapterPosition());
