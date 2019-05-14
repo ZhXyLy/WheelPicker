@@ -5,37 +5,46 @@
 <h4>区域选择和日期选择</h4>
 
 <b>FROM:</b>
-<br>https://github.com/AigeStudio/WheelPicker 
-<br>https://github.com/open-android/WheelPicker
+<br>[https://github.com/AigeStudio/WheelPicker](https://github.com/AigeStudio/WheelPicker "1")
+<br>[https://github.com/open-android/WheelPicker](https://github.com/open-android/WheelPicker "2")
+
+
+<h4>demo：</h4>
+
+<br>[最新版Apk](https://github.com/ZhXyLy/WheelPicker/blob/master/apks/app-debug-lasted.apk "1")
+<br>[老版Apk](https://github.com/ZhXyLy/WheelPicker/blob/master/apks/app-debug.apk "1")
 
 <h3>效果图：</h3>
 
 <div align="center">
-<img src="/images/wheelpicker.gif" alt="效果图" width="30%">
+<img src="images/wheelpicker.gif" alt="效果图" width="30%">
 </div>
 <h4>单选：</h4>
 <div>
-<img src="/images/单选1.png" alt="新单选" width="30%">
-<img src="/images/单选-旧版.png" alt="单选-旧版" width="30%">
-<img src="/images/单选-新版.png" alt="单选-新版" width="30%">
+<img src="images/单选1.png" alt="新单选" width="30%">
+<img src="images/单选-旧版.png" alt="单选-旧版" width="30%">
+<img src="images/单选-新版.png" alt="单选-新版" width="30%">
 </div>
 <h4>日期：</h4>
 <div>
-<img src="/images/日期1.png" alt="新日期" width="30%">
-<img src="/images/日期-旧版.png" alt="日期-旧版" width="30%">
-<img src="/images/日期-新版.png" alt="日期-新版" width="30%">
+<img src="images/日期1.png" alt="新日期" width="30%">
+<img src="images/日期-旧版.png" alt="日期-旧版" width="30%">
+<img src="images/日期-新版.png" alt="日期-新版" width="30%">
 </div>
 <h4>时间：</h4>
 <div>
-<img src="/images/时间1.png" alt="新时间" width="30%">
-<img src="/images/时间-旧版.png" alt="时间-旧版" width="30%">
-<img src="/images/时间-新版.png" alt="时间-新版" width="30%">
+<img src="images/时间1.png" alt="新时间" width="30%">
+<img src="images/时间-旧版.png" alt="时间-旧版" width="30%">
+<img src="images/时间-新版.png" alt="时间-新版" width="30%">
 </div>
 <h4>区域：</h4>
 <div>
-<img src="/images/区域1.png" alt="新区域" width="30%">
-<img src="/images/区域-旧版.png" alt="区域-旧版" width="30%">
-<img src="/images/区域-新版.png" alt="区域-新版" width="30%">
+<img src="images/区域1.png" alt="新区域" width="30%">
+<img src="images/区域-旧版.png" alt="区域-旧版" width="30%">
+<img src="images/区域-新版.png" alt="区域-新版" width="30%">
+</div>
+<div>
+<img src="images/区域-列表.png" alt="区域-列表" width="30%">
 </div>
 
 
@@ -275,3 +284,24 @@ Step 2. Add the dependency
             typeWheelPickerBottomDialog.show();
     }
     
+<h4>注：修改颜色</h4>
+
+
+    <color name="wp_date_select_item_color">#000000</color><!--滚轮选中item的颜色-->
+    <color name="wp_date_unit_color">#000000</color><!--滚轮里单位文字颜色-->
+    <color name="list_date_item_color">#000000</color><!--区域列表item颜色-->
+    <color name="list_date_select_item_color">?attr/colorAccent</color><!--区域列表item选中的颜色-->
+
+<h4>从服务器替换省市区json文件</h4>
+下载下来的文件地址setFilePath传入
+
+	String filePath = getFilesDir().getAbsolutePath() + "/province_json.json";
+        AreaUtils.getInstance().setFilePath(filePath);
+        AreaUtils.getInstance().setOnEmptyDataListener(new OnEmptyDataListener() {
+            @Override
+            public void onEmptyData() {
+                Toast.makeText(MainActivity.this, "数据时空的", Toast.LENGTH_SHORT).show();
+            }
+        });
+	
+	    

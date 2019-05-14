@@ -2,7 +2,6 @@ package com.jx.wheelpicker.widget.list;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,7 +71,6 @@ public class ListAreaAdapter extends RecyclerView.Adapter<ListAreaAdapter.ViewHo
         } else {
             isChecked = data.getId() != null && data.getId().equals(mCheckedId);
         }
-        Log.d("onBindViewHolder", "onBindViewHolder: "+checkMode+"====="+isChecked);
         holder.textView.setChecked(isChecked);
         holder.textView.setSelected(isChecked);
         holder.textView.setOnClickListener(new View.OnClickListener() {
