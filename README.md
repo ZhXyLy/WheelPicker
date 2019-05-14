@@ -9,7 +9,7 @@
 <br>https://github.com/open-android/WheelPicker
 
 <h3>demo：</h3>
-<br><a href="https://github.com/ZhXyLy/WheelPicker/blob/master/apks/app-debug-lasted.apk">最新版Apk</a>
+    <a href="https://github.com/ZhXyLy/WheelPicker/blob/master/apks/app-debug-lasted.apk">最新版Apk</a>
 <br><a href="https://github.com/ZhXyLy/WheelPicker/blob/master/apks/app-debug.apk">老版Apk</a>
 
 <h3>效果图：</h3>
@@ -282,9 +282,11 @@ Step 2. Add the dependency
     }
     
 <h4>注：修改颜色</h4>
-```
+
+
     <color name="wp_date_select_item_color">#000000</color><!--滚轮选中item的颜色-->
     <color name="wp_date_unit_color">#000000</color><!--滚轮里单位文字颜色-->
     <color name="list_date_item_color">#000000</color><!--区域列表item颜色-->
     <color name="list_date_select_item_color">?attr/colorAccent</color><!--区域列表item选中的颜色-->
-```
+
+
