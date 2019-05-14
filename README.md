@@ -15,7 +15,6 @@
 <h3>效果图：</h3>
 
 <div align="center">
-<iframe height=500 width=500 src="images/wheelpicker.gif"/>
 <img src="/images/wheelpicker.gif" alt="效果图" width="30%">
 </div>
 <h4>单选：</h4>
