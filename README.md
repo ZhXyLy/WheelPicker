@@ -8,6 +8,10 @@
 <br>https://github.com/AigeStudio/WheelPicker 
 <br>https://github.com/open-android/WheelPicker
 
+<h3>demo：</h3>
+<a href="https://github.com/ZhXyLy/WheelPicker/blob/master/apks/app-debug-lasted.apk">最新版Apk</a>
+<a href="https://github.com/ZhXyLy/WheelPicker/blob/master/apks/app-debug.apk">老版Apk</a>
+
 <h3>效果图：</h3>
 
 <div align="center">
@@ -37,7 +41,9 @@
 <img src="/images/区域-旧版.png" alt="区域-旧版" width="30%">
 <img src="/images/区域-新版.png" alt="区域-新版" width="30%">
 </div>
-
+<div>
+<img src="/images/区域-列表.png" alt="区域-列表" width="30%">
+</div>
 
 <h3>How to</h3>
 To get a Git project into your build:
