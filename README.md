@@ -11,8 +11,8 @@
 
 <h4>demo：</h4>
 
-<br>[最新版Apk](https://github.com/ZhXyLy/WheelPicker/blob/master/apks/app-debug-lasted.apk "1")
-<br>[老版Apk](https://github.com/ZhXyLy/WheelPicker/blob/master/apks/app-debug.apk "1")
+<br>[最新版Apk](apks/app-debug-lasted.apk "1")
+<br>[老版Apk](apks/app-debug.apk "1")
 
 <h3>效果图：</h3>
 
