@@ -20,7 +20,6 @@
 <img src="images/wheelpicker.gif" alt="效果图" width="30%">
 </div>
 <h4>单选：</h4>
-![新单选](images/单选1.png "新单选")
 <div>
 <img src="images/单选1.png" alt="新单选" width="30%">
 <img src="images/单选-旧版.png" alt="单选-旧版" width="30%">
