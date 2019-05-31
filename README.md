@@ -10,9 +10,8 @@
 
 
 <h4>demo：</h4>
-
 <br>[最新版Apk](apks/app-debug-lasted.apk?raw=true "1")
-<br>[老版Apk](apks/app-debug.apk "1")
+<br>[老版Apk](apks/app-debug.apk?raw=true "1")
 
 <h3>效果图：</h3>
 
