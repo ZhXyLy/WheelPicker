@@ -3,5 +3,5 @@
     <color name="wp_date_select_item_color">#000000</color>
     <color name="wp_date_unit_color">#000000</color>
     <color name="list_date_item_color">#000000</color>
-    <color name="list_date_select_item_color">?attr/colorAccent</color>
+    <color name="list_date_select_item_color">#FF0000</color>
 </resources>

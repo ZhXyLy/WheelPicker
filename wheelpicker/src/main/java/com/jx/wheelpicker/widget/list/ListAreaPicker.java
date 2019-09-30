@@ -343,7 +343,16 @@ public class ListAreaPicker extends RelativeLayout {
     }
 
     public String getAreaCode() {
-        return mCurrentArea.getCode();
+        if (mCurrentArea != null) {
+            return mCurrentArea.getCode();
+        }
+        if (mCurrentCity != null) {
+            return mCurrentCity.getCode();
+        }
+        if (mCurrentProvince != null) {
+            return mCurrentProvince.getCode();
+        }
+        return "";
     }
 
     public String getAreaString() {

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.jx.wheelpicker.widget.IWheelAreaPicker;
 import com.jx.wheelpicker.widget.WheelAreaPickerBottomDialog;
 import com.jx.wheelpicker.widget.lasted.AreaPicker;
 import com.jx.wheelpicker.widget.lasted.AreaPickerDialog;
@@ -27,6 +28,7 @@ public class AreaPickerDemo extends AppCompatActivity {
 
     private AreaPickerDialog mPickerDialog;
     private WheelAreaPickerBottomDialog wheelPickerBottomDialog;
+    private TextView tvOldResult;
     private TextView tvLastedResult;
     private TextView tvListResult;
     private ListAreaPickerDialog listAreaPickerDialog;
@@ -36,10 +38,17 @@ public class AreaPickerDemo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area);
 
+        tvOldResult = findViewById(R.id.tv_old_result);
         tvLastedResult = findViewById(R.id.tv_lasted_result);
         tvListResult = findViewById(R.id.tv_list_result);
         mPicker = findViewById(R.id.picker);
         mPicker.setAdjustTextSize(true);
+        mPicker.setOnAreaChangeListener(new AreaPicker.OnAreaChangeListener() {
+            @Override
+            public void onAreaChanged(AreaPicker areaPicker, Province province, City city, Area area) {
+                tvOldResult.setText(areaPicker.getAreaString(" ") + "\t" + areaPicker.getAreaCode());
+            }
+        });
         mPicker.setDefaultByCode("610328");
 //        mPicker.setDefaultByName("陕西省宝鸡市千阳县");
         btnOld = findViewById(R.id.btn_old);
@@ -55,7 +64,7 @@ public class AreaPickerDemo extends AppCompatActivity {
         btnLasted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSingleLastedDialog();
+                showAreaLastedDialog();
             }
         });
         btnList.setOnClickListener(new View.OnClickListener() {
@@ -72,32 +81,39 @@ public class AreaPickerDemo extends AppCompatActivity {
                     .setOnPickerAreaListener(new ListAreaPickerDialog.OnPickerAreaListener() {
                         @Override
                         public void onPickerArea(ListAreaPicker listAreaPicker, Province province, City city, Area area) {
-                            ToastUtils.show(listAreaPicker.getAreaString("-")+"==="+listAreaPicker.getAreaCode());
+                            ToastUtils.show(listAreaPicker.getAreaString("-") + "===" + listAreaPicker.getAreaCode());
                         }
                     })
                     .setOnAreaChangedListener(new ListAreaPickerDialog.OnAreaChangedListener() {
                         @Override
                         public void onAreaChanged(ListAreaPicker listAreaPicker, Province province, City city, Area area) {
-                            tvListResult.setText(listAreaPicker.getAreaString("/"));
+                            tvListResult.setText(listAreaPicker.getAreaString("/") + "\t" + listAreaPicker.getAreaCode());
                         }
                     })
                     .build();
         }
 
-//        listAreaPickerDialog.setDefaultByCode("310104");
+        listAreaPickerDialog.setDefaultByCode("310104");
 //        listAreaPickerDialog.setDefaultByName("上海市", "市辖区", "徐汇区");
-        listAreaPickerDialog.setDefaultByAllName("上海市市辖区徐汇区");
+//        listAreaPickerDialog.setDefaultByAllName("上海市市辖区徐汇区");
         listAreaPickerDialog.show();
     }
 
     private void showSingleDialog() {
         if (wheelPickerBottomDialog == null) {
             wheelPickerBottomDialog = new WheelAreaPickerBottomDialog(this);
+            wheelPickerBottomDialog.setSelectPositionByCode("310104");
+            wheelPickerBottomDialog.setOnPickerAreaListener(new WheelAreaPickerBottomDialog.OnPickerAreaListener() {
+                @Override
+                public void onPickerArea(IWheelAreaPicker wheelAreaPicker) {
+                    ToastUtils.show(wheelAreaPicker.getAreaString() + "===" + wheelAreaPicker.getAreaCode());
+                }
+            });
         }
         wheelPickerBottomDialog.show();
     }
 
-    private void showSingleLastedDialog() {
+    private void showAreaLastedDialog() {
         if (mPickerDialog == null) {
             mPickerDialog = new AreaPickerDialog.AreaBuilder(this)
                     .setShortText(true)
@@ -105,7 +121,7 @@ public class AreaPickerDemo extends AppCompatActivity {
                     .setOnAreaChangedListener(new AreaPickerDialog.OnAreaChangedListener() {
                         @Override
                         public void onAreaChanged(AreaPicker areaPicker, Province province, City city, Area area) {
-                            tvLastedResult.setText(areaPicker.getAreaString(" "));
+                            tvLastedResult.setText(areaPicker.getAreaString(" ") + "\t" + areaPicker.getAreaCode());
                         }
                     })
                     .setOnPickerAreaListener(new AreaPickerDialog.OnPickerAreaListener() {
@@ -116,6 +132,8 @@ public class AreaPickerDemo extends AppCompatActivity {
                     })
                     .build();
         }
+        mPickerDialog.setDefaultByCode("130303");
+//        mPickerDialog.setDefaultByName("河北省秦皇岛市山海关区");
         mPickerDialog.show();
     }
 }

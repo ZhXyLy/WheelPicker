@@ -962,6 +962,7 @@ public class BasePicker extends View implements IBasePicker, Runnable {
         computeFlingLimitY();
         requestLayout();
         invalidate();
+        wheelScrollChanged(mData.get(mCurrentItemPosition));
     }
 
     public void setSelectedItemPositionByPosition(int by, int position) {

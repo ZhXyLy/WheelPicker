@@ -59,7 +59,8 @@ public class AreaUtils {
     }
 
     private List<Province> getJsonDataFromAssets(AssetManager assetManager) {
-        String fileName = "RegionJsonData.json";
+//        String fileName = "RegionJsonData.json";
+        String fileName = "area.txt";
         List<Province> provinces = provinceMap.get(fileName);
         if (provinces == null || provinces.size() == 0) {
             StringBuilder stringBuilder = new StringBuilder();

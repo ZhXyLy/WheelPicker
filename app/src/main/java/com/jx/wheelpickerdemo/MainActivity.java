@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //http://192.168.15.10:18088/jxWxService/province_json.json
-        downloadJson();
+//        downloadJson();
     }
 
     private void downloadJson() {

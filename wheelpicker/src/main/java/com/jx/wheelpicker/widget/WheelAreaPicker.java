@@ -115,7 +115,7 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     }
 
     private void obtainProvinceData() {
-        if (mProvinceList!=null) {
+        if (mProvinceList != null) {
             for (Province province : mProvinceList) {
                 mProvinceName.add(province.getShortName());
             }
@@ -181,6 +181,8 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
 
     private void setArea(int position) {
         if (mCityList == null || position < 0 || mCityList.size() <= position) {
+            mAreaName.clear();
+            mWPArea.setData(mAreaName);
             return;
         }
         List<Area> areas = mCityList.get(position).getArea();
@@ -194,27 +196,51 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
 
     @Override
     public Province getProvince() {
-        return mProvinceList.get(mWPProvince.getCurrentItemPosition());
+        if (mProvinceList != null && mProvinceList.size() > mWPProvince.getCurrentItemPosition()) {
+            return mProvinceList.get(mWPProvince.getCurrentItemPosition());
+        }
+        return null;
     }
 
     @Override
     public City getCity() {
-        return mCityList.get(mWPCity.getCurrentItemPosition());
+        if (mCityList != null && mCityList.size() > mWPCity.getCurrentItemPosition()) {
+            return mCityList.get(mWPCity.getCurrentItemPosition());
+        }
+        return null;
     }
 
     @Override
     public Area getArea() {
-        return mCityList.get(mWPCity.getCurrentItemPosition()).getArea().get(mWPArea.getCurrentItemPosition());
+        if (mCityList != null && mCityList.size() > mWPCity.getCurrentItemPosition()) {
+            List<Area> areas = mCityList.get(mWPCity.getCurrentItemPosition()).getArea();
+            if (areas != null && areas.size() > mWPArea.getCurrentItemPosition()) {
+                return areas.get(mWPArea.getCurrentItemPosition());
+            }
+        }
+        return null;
     }
 
     @Override
-    public String getSSQ() {
-        return getProvince().getName() + getCity().getName() + getArea().getName();
+    public String getAreaString() {
+        String province = getProvince() == null ? "" : getProvince().getName();
+        String city = getCity() == null ? "" : getCity().getName();
+        String area = getArea() == null ? "" : getArea().getName();
+        return province + city + area;
     }
 
     @Override
-    public String getSSQCode() {
-        return getArea().getCode();
+    public String getAreaCode() {
+        if (getArea() != null) {
+            return getArea().getCode();
+        }
+        if (getCity() != null) {
+            return getCity().getCode();
+        }
+        if (getProvince() != null) {
+            return getProvince().getCode();
+        }
+        return "";
     }
 
     @Override
