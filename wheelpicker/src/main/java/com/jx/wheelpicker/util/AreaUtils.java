@@ -85,6 +85,7 @@ public class AreaUtils {
     public void setFilePath(String path) {
         this.mFromFilePath = path;
         provinceMap.clear();
+        getJsonDataFromFile();
     }
 
     private List<Province> getJsonDataFromFile() {
