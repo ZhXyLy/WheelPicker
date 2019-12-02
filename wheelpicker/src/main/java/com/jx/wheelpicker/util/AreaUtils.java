@@ -104,7 +104,7 @@ public class AreaUtils {
                     stringBuilder.append(line);
                 }
                 String json = stringBuilder.toString();
-                provinces = new GsonBuilder().setLenient().create().fromJson(json, new TypeToken<List<Province>>() {
+                provinces = new Gson().fromJson(json, new TypeToken<List<Province>>() {
                 }.getType());
             } catch (Exception e) {
                 e.printStackTrace();
