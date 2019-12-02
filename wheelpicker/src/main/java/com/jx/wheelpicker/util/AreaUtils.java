@@ -115,6 +115,9 @@ public class AreaUtils {
                 onEmptyDataListener.onEmptyData();
             }
         }
+        if (provinces == null) {
+            provinces = new ArrayList<>();
+        }
         provinceMap.put(mFromFilePath, provinces);
         return provinces;
     }
