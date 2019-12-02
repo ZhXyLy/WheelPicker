@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.jx.wheelpicker.widget.model.Area;
 import com.jx.wheelpicker.widget.model.City;
@@ -103,7 +104,7 @@ public class AreaUtils {
                     stringBuilder.append(line);
                 }
                 String json = stringBuilder.toString();
-                provinces = new Gson().fromJson(json, new TypeToken<List<Province>>() {
+                provinces = new GsonBuilder().setLenient().create().fromJson(json, new TypeToken<List<Province>>() {
                 }.getType());
             } catch (Exception e) {
                 e.printStackTrace();
