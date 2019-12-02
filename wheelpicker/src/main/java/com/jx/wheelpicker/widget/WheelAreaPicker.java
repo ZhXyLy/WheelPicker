@@ -196,7 +196,9 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
 
     @Override
     public Province getProvince() {
-        if (mProvinceList != null && mProvinceList.size() > mWPProvince.getCurrentItemPosition()) {
+        if (mProvinceList != null
+                && mWPProvince.getCurrentItemPosition() >= 0
+                && mProvinceList.size() > mWPProvince.getCurrentItemPosition()) {
             return mProvinceList.get(mWPProvince.getCurrentItemPosition());
         }
         return null;
@@ -204,7 +206,9 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
 
     @Override
     public City getCity() {
-        if (mCityList != null && mCityList.size() > mWPCity.getCurrentItemPosition()) {
+        if (mCityList != null
+                && mWPCity.getCurrentItemPosition() >= 0
+                && mCityList.size() > mWPCity.getCurrentItemPosition()) {
             return mCityList.get(mWPCity.getCurrentItemPosition());
         }
         return null;
@@ -212,9 +216,13 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
 
     @Override
     public Area getArea() {
-        if (mCityList != null && mCityList.size() > mWPCity.getCurrentItemPosition()) {
+        if (mCityList != null
+                && mWPCity.getCurrentItemPosition() >= 0
+                && mCityList.size() > mWPCity.getCurrentItemPosition()) {
             List<Area> areas = mCityList.get(mWPCity.getCurrentItemPosition()).getArea();
-            if (areas != null && areas.size() > mWPArea.getCurrentItemPosition()) {
+            if (areas != null
+                    && mWPArea.getCurrentItemPosition() >= 0
+                    && areas.size() > mWPArea.getCurrentItemPosition()) {
                 return areas.get(mWPArea.getCurrentItemPosition());
             }
         }
