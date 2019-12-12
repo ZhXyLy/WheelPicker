@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -98,12 +100,13 @@ public class AreaUtils {
             try {
                 File file = new File(mFromFilePath);
                 FileInputStream fileInputStream = new FileInputStream(file);
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8));
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     stringBuilder.append(line);
                 }
                 String json = stringBuilder.toString();
+//                json = URLEncoder.encode(json, StandardCharsets.UTF_8.toString());
                 provinces = new Gson().fromJson(json, new TypeToken<List<Province>>() {
                 }.getType());
             } catch (Exception e) {
