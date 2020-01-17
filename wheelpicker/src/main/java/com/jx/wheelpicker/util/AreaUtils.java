@@ -106,7 +106,6 @@ public class AreaUtils {
                     stringBuilder.append(line);
                 }
                 String json = stringBuilder.toString();
-//                json = URLEncoder.encode(json, StandardCharsets.UTF_8.toString());
                 provinces = new Gson().fromJson(json, new TypeToken<List<Province>>() {
                 }.getType());
             } catch (Exception e) {

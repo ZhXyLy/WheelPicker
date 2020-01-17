@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -107,11 +108,15 @@ public class SinglePicker extends FrameLayout {
 
     public void setShowUnit(boolean showUnit) {
         this.mShowUnit = showUnit;
+        ViewGroup.LayoutParams layoutParams = mSinglePicker.getLayoutParams();
         if (mShowUnit) {
             mSingleUnit.setVisibility(VISIBLE);
+            layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
         } else {
             mSingleUnit.setVisibility(GONE);
+            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
         }
+        mSinglePicker.setLayoutParams(layoutParams);
     }
 
     public void setUnit(String unit) {
