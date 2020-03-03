@@ -115,7 +115,7 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
         wheelPicker.setItemTextSize(dip2px(getContext(), ITEM_TEXT_SIZE));
         wheelPicker.setSelectedItemTextColor(Color.parseColor(SELECTED_ITEM_COLOR));
         wheelPicker.setCurved(true);
-//        wheelPicker.setCyclic(true);
+        wheelPicker.setCyclic(true);
         wheelPicker.setVisibleItemCount(7);
         wheelPicker.setAtmospheric(true);
         wheelPicker.setItemSpace(dip2px(getContext(), ITEM_SPACE));
@@ -129,6 +129,7 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
         int mCurMinute = calendar.get(Calendar.MINUTE);
         int mCurSecond = calendar.get(Calendar.SECOND);
         mHourList = new ArrayList<>();
+        mHourName.clear();
         for (int i = 0; i < DEFAULT_HOUR_COUNT; i++) {
             mHourList.add(i);
             mHourName.add(format(i) + unitHour);
@@ -189,27 +190,27 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
     @Override
     public int getHour() {
         int currentItemPosition = mWPHour.getCurrentItemPosition();
-//        if (currentItemPosition > mHourList.size() - 1) {
-//            currentItemPosition = currentItemPosition - mHourList.size() - 1;
-//        }
+        if (currentItemPosition > mHourList.size() - 1) {
+            currentItemPosition = currentItemPosition - mHourList.size() - 1;
+        }
         return mHourList.get(currentItemPosition);
     }
 
     @Override
     public int getMinute() {
         int currentItemPosition = mWPMinute.getCurrentItemPosition();
-//        if (currentItemPosition > mMinuteList.size() - 1) {
-//            currentItemPosition = currentItemPosition - mMinuteList.size() - 1;
-//        }
+        if (currentItemPosition > mMinuteList.size() - 1) {
+            currentItemPosition = currentItemPosition - mMinuteList.size() - 1;
+        }
         return mMinuteList.get(currentItemPosition);
     }
 
     @Override
     public int getSecond() {
         int currentItemPosition = mWPSecond.getCurrentItemPosition();
-//        if (currentItemPosition > mSecondList.size() - 1) {
-//            currentItemPosition = currentItemPosition - mSecondList.size() - 1;
-//        }
+        if (currentItemPosition > mSecondList.size() - 1) {
+            currentItemPosition = currentItemPosition - mSecondList.size() - 1;
+        }
         return mSecondList.get(currentItemPosition);
     }
 
