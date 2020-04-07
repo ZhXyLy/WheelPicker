@@ -38,7 +38,7 @@ public class DatePicker extends FrameLayout {
 
     private static final String DATE_FORMAT = "yyyy-MM-dd";
 
-    private final DateFormat mDateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+    private final SimpleDateFormat mDateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
 
     private static final int DEFAULT_START_YEAR = 1900;
 
@@ -220,6 +220,15 @@ public class DatePicker extends FrameLayout {
 
     public String getDateString() {
         return mDateFormat.format(mCurrentDate.getTime());
+    }
+
+    public String getDateString(String pattern) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Locale.getDefault());
+        return dateFormat.format(mCurrentDate.getTime());
+    }
+
+    public Date getDate(){
+        return mCurrentDate.getTime();
     }
 
     public int getYear() {

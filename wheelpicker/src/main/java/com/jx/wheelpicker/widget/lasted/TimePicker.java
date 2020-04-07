@@ -190,6 +190,15 @@ public class TimePicker extends FrameLayout {
         return mDateFormat.format(mCurrentDate.getTime());
     }
 
+    public String getTimeString(String pattern) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Locale.getDefault());
+        return dateFormat.format(mCurrentDate.getTime());
+    }
+
+    public Date getTime(){
+        return mCurrentDate.getTime();
+    }
+
     public int getHour() {
         return mCurrentDate.get(Calendar.HOUR_OF_DAY);
     }
