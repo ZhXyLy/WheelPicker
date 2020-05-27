@@ -2,13 +2,13 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true" >
         <shape >
-            <solid android:color="#F2F2F2"/>
+            <solid android:color="@color/wp_list_pressColor"/>
         </shape>
     </item>
     <item android:state_checked="true" >
         <shape >
             <!--<gradient android:startColor="#FAFAFA" android:endColor="#F2F2F2"/>-->
-            <solid android:color="#F2F2F2"/>
+            <solid android:color="@color/wp_list_pressColor"/>
         </shape>
     </item>
     <item >

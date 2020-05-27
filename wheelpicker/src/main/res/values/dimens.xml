@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="wp_WheelItemTextSize">14dp</dimen>
     <dimen name="wp_WheelItemSpace">12dp</dimen>
     <dimen name="wp_WheelIndicatorSize">2dp</dimen>
     <dimen name="wp_WheelMargins">8dp</dimen>
-    <dimen name="wp_date_unit_text_size">18dp</dimen>
-    <dimen name="wp_date_item_text_size">20dp</dimen>
+    <dimen name="wp_unit_text_size">18dp</dimen>
+    <dimen name="wp_item_text_size">20dp</dimen>
 
-
-    <dimen name="wp_dp12">12dp</dimen>
 </resources>

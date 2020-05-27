@@ -1,7 +1,7 @@
 package com.jx.wheelpicker.widget;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.jx.wheelpicker.R;
 import com.jx.wheelpicker.util.AreaUtils;
 import com.jx.wheelpicker.widget.model.Area;
 import com.jx.wheelpicker.widget.model.AreaJsonPreviewData;
@@ -29,12 +30,7 @@ import java.util.List;
 public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     private static final String TAG = "WheelAreaPicker";
 
-    private static final float ITEM_TEXT_SIZE = 20;
-    private static final float ITEM_SPACE = 10;
-    private static final String SELECTED_ITEM_COLOR = "#353535";
     private static final int PROVINCE_INITIAL_INDEX = 0;
-
-    private Context mContext;
 
     private List<Province> mProvinceList;
     private List<City> mCityList;
@@ -81,8 +77,6 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
     private void initView(Context context) {
         setOrientation(HORIZONTAL);
 
-        mContext = context;
-
         mProvinceName = new ArrayList<>();
         mCityName = new ArrayList<>();
         mAreaName = new ArrayList<>();
@@ -104,12 +98,12 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
         params.setMargins(5, 5, 5, 5);
         params.width = 0;
         params.weight = weight;
-        wheelPicker.setItemTextSize(dip2px(mContext, ITEM_TEXT_SIZE));
-        wheelPicker.setSelectedItemTextColor(Color.parseColor(SELECTED_ITEM_COLOR));
+        wheelPicker.setItemTextSize(getContext().getResources().getDimension(R.dimen.wp_item_text_size));
+        wheelPicker.setSelectedItemTextColor(ResourcesCompat.getColor(getContext().getResources(), R.color.wp_select_item_color, null));
         wheelPicker.setCurved(true);
         wheelPicker.setVisibleItemCount(7);
         wheelPicker.setAtmospheric(true);
-        wheelPicker.setItemSpace(dip2px(mContext, ITEM_SPACE));
+        wheelPicker.setItemSpace(getContext().getResources().getDimensionPixelSize(R.dimen.wp_WheelItemSpace));
         wheelPicker.setLayoutParams(params);
         addView(wheelPicker);
     }

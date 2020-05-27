@@ -11,7 +11,9 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Handler;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -315,7 +317,7 @@ public class BasePicker extends View implements IBasePicker, Runnable {
         }
         mData = stringList;
         mItemTextSize = a.getDimensionPixelSize(R.styleable.WheelPicker_wheel_item_text_size,
-                getResources().getDimensionPixelSize(R.dimen.wp_WheelItemTextSize));
+                getResources().getDimensionPixelSize(R.dimen.wp_item_text_size));
         mVisibleItemCount = a.getInt(R.styleable.WheelPicker_wheel_visible_item_count, 7);
         mSelectedItemPosition = a.getInt(R.styleable.WheelPicker_wheel_selected_item_position, 0);
         hasSameWidth = a.getBoolean(R.styleable.WheelPicker_wheel_same_width, false);
@@ -323,8 +325,8 @@ public class BasePicker extends View implements IBasePicker, Runnable {
                 a.getInt(R.styleable.WheelPicker_wheel_maximum_width_text_position, -1);
         mMaxWidthText = a.getString(R.styleable.WheelPicker_wheel_maximum_width_text);
         mSelectedItemTextColor = a.getColor
-                (R.styleable.WheelPicker_wheel_selected_item_text_color, -1);
-        mItemTextColor = a.getColor(R.styleable.WheelPicker_wheel_item_text_color, 0xFFB8B8B8);
+                (R.styleable.WheelPicker_wheel_selected_item_text_color, ResourcesCompat.getColor(getResources(),R.color.wp_select_item_color,null));
+        mItemTextColor = a.getColor(R.styleable.WheelPicker_wheel_item_text_color, ResourcesCompat.getColor(getResources(),R.color.wp_item_color,null));
         mItemSpace = a.getDimensionPixelSize(R.styleable.WheelPicker_wheel_item_space,
                 getResources().getDimensionPixelSize(R.dimen.wp_WheelItemSpace));
         isCyclic = a.getBoolean(R.styleable.WheelPicker_wheel_cyclic, false);
@@ -333,13 +335,12 @@ public class BasePicker extends View implements IBasePicker, Runnable {
         mIndicatorSize = a.getDimensionPixelSize(R.styleable.WheelPicker_wheel_indicator_size,
                 getResources().getDimensionPixelSize(R.dimen.wp_WheelIndicatorSize));
         hasCurtain = a.getBoolean(R.styleable.WheelPicker_wheel_curtain, false);
-        mCurtainColor = a.getColor(R.styleable.WheelPicker_wheel_curtain_color, 0x88FFFFFF);
+        mCurtainColor = a.getColor(R.styleable.WheelPicker_wheel_curtain_color, ResourcesCompat.getColor(getResources(),R.color.wp_curtainColor,null));
         hasAtmospheric = a.getBoolean(R.styleable.WheelPicker_wheel_atmospheric, false);
         isCurved = a.getBoolean(R.styleable.WheelPicker_wheel_curved, false);
         mAdjustTextSize = a.getBoolean(R.styleable.WheelPicker_wheel_adjust_text_size, false);
         mItemAlign = a.getInt(R.styleable.WheelPicker_wheel_item_align, ALIGN_CENTER);
         a.recycle();
-
         // 可见数据项改变后更新与之相关的参数
         // Update relevant parameters when the count of visible item changed
         updateVisibleItemCount();
@@ -561,9 +562,9 @@ public class BasePicker extends View implements IBasePicker, Runnable {
     }
 
     private void computeCurrentItemRect() {
-        if (!hasCurtain && mSelectedItemTextColor == -1) {
-            return;
-        }
+//        if (!hasCurtain && mSelectedItemTextColor == -1) {
+//            return;
+//        }
         mRectCurrentItem.set(mRectDrawn.left, mWheelCenterY - mHalfItemHeight, mRectDrawn.right,
                 mWheelCenterY + mHalfItemHeight);
     }
@@ -675,12 +676,17 @@ public class BasePicker extends View implements IBasePicker, Runnable {
 
             // 判断是否需要为当前数据项绘制不同颜色
             // Judges need to draw different color for current item or not
-            if (mSelectedItemTextColor != -1) {
+            //因为颜色#FFFFFFFF大于int的最大值，正好是-1，所以不能用-1判断，并且始终使用不同颜色，所以直接用
+//            if (mSelectedItemTextColor != -1) {
                 canvas.save();
                 if (isCurved) {
                     canvas.concat(mMatrixRotate);
                 }
-                canvas.clipRect(mRectCurrentItem, Region.Op.DIFFERENCE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    canvas.clipOutRect(mRectCurrentItem);
+                }else {
+                    canvas.clipRect(mRectCurrentItem, Region.Op.DIFFERENCE);
+                }
                 canvas.drawText(name, mDrawnCenterX, drawnCenterY, mPaint);
                 canvas.restore();
 
@@ -692,15 +698,15 @@ public class BasePicker extends View implements IBasePicker, Runnable {
                 canvas.clipRect(mRectCurrentItem);
                 canvas.drawText(name, mDrawnCenterX, drawnCenterY, mPaint);
                 canvas.restore();
-            } else {
-                canvas.save();
-                canvas.clipRect(mRectDrawn);
-                if (isCurved) {
-                    canvas.concat(mMatrixRotate);
-                }
-                canvas.drawText(name, mDrawnCenterX, drawnCenterY, mPaint);
-                canvas.restore();
-            }
+//            } else {
+//                canvas.save();
+//                canvas.clipRect(mRectDrawn);
+//                if (isCurved) {
+//                    canvas.concat(mMatrixRotate);
+//                }
+//                canvas.drawText(name, mDrawnCenterX, drawnCenterY, mPaint);
+//                canvas.restore();
+//            }
             if (isDebug) {
                 canvas.save();
                 canvas.clipRect(mRectDrawn);

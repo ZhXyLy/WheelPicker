@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.Typeface;
 import android.os.Handler;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -299,7 +300,7 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
                     .getStringArray(idData == 0 ? R.array.wp_WheelArrayEmpty : idData));
         }
         mItemTextSize = a.getDimensionPixelSize(R.styleable.WheelPicker_wheel_item_text_size,
-                getResources().getDimensionPixelSize(R.dimen.wp_WheelItemTextSize));
+                getResources().getDimensionPixelSize(R.dimen.wp_item_text_size));
         mVisibleItemCount = a.getInt(R.styleable.WheelPicker_wheel_visible_item_count, 7);
         mSelectedItemPosition = a.getInt(R.styleable.WheelPicker_wheel_selected_item_position, 0);
         hasSameWidth = a.getBoolean(R.styleable.WheelPicker_wheel_same_width, false);
@@ -307,7 +308,7 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
                 a.getInt(R.styleable.WheelPicker_wheel_maximum_width_text_position, -1);
         mMaxWidthText = a.getString(R.styleable.WheelPicker_wheel_maximum_width_text);
         mSelectedItemTextColor = a.getColor
-                (R.styleable.WheelPicker_wheel_selected_item_text_color, -1);
+                (R.styleable.WheelPicker_wheel_selected_item_text_color, ResourcesCompat.getColor(getResources(),R.color.wp_select_item_color,null));
         mItemTextColor = a.getColor(R.styleable.WheelPicker_wheel_item_text_color, 0xFFB8B8B8);
         mItemSpace = a.getDimensionPixelSize(R.styleable.WheelPicker_wheel_item_space,
                 getResources().getDimensionPixelSize(R.dimen.wp_WheelItemSpace));
@@ -541,9 +542,9 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
     }
 
     private void computeCurrentItemRect() {
-        if (!hasCurtain && mSelectedItemTextColor == -1) {
-            return;
-        }
+//        if (!hasCurtain && mSelectedItemTextColor == -1) {
+//            return;
+//        }
         mRectCurrentItem.set(mRectDrawn.left, mWheelCenterY - mHalfItemHeight, mRectDrawn.right,
                 mWheelCenterY + mHalfItemHeight);
     }
@@ -651,7 +652,7 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
 
             // 判断是否需要为当前数据项绘制不同颜色
             // Judges need to draw different color for current item or not
-            if (mSelectedItemTextColor != -1) {
+//            if (mSelectedItemTextColor != -1) {
                 canvas.save();
                 if (isCurved) {
                     canvas.concat(mMatrixRotate);
@@ -668,15 +669,15 @@ public class WheelPicker extends View implements IWheelPicker, Runnable {
                 canvas.clipRect(mRectCurrentItem);
                 canvas.drawText(data, mDrawnCenterX, drawnCenterY, mPaint);
                 canvas.restore();
-            } else {
-                canvas.save();
-                canvas.clipRect(mRectDrawn);
-                if (isCurved) {
-                    canvas.concat(mMatrixRotate);
-                }
-                canvas.drawText(data, mDrawnCenterX, drawnCenterY, mPaint);
-                canvas.restore();
-            }
+//            } else {
+//                canvas.save();
+//                canvas.clipRect(mRectDrawn);
+//                if (isCurved) {
+//                    canvas.concat(mMatrixRotate);
+//                }
+//                canvas.drawText(data, mDrawnCenterX, drawnCenterY, mPaint);
+//                canvas.restore();
+//            }
             if (isDebug) {
                 canvas.save();
                 canvas.clipRect(mRectDrawn);

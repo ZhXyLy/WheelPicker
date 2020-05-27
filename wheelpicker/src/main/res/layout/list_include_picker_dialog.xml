@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#ffffff"
+    android:background="@color/wp_colorDialogBackground"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="#FAFAFA"
+        android:background="@color/wp_colorTitleBackground"
         android:layout_height="45dp">
 
         <TextView
@@ -20,7 +20,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             tools:text="请选择时间"
-            android:textColor="#999"
+            android:textColor="@color/wp_colorTitleTextColor"
             android:textSize="12dp" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="取消"
-            android:textColor="#000"
+            android:textColor="@color/wp_colorButtonColor"
             android:textSize="16dp" />
 
         <TextView
@@ -43,7 +43,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="确定"
-            android:textColor="#000"
+            android:textColor="@color/wp_colorButtonColor"
             android:textSize="16dp"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>
@@ -51,7 +51,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#ededed" />
+        android:background="@color/wp_lineColor" />
 
     <FrameLayout
         android:id="@+id/fl_content"

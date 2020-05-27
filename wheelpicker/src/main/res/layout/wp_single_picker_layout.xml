@@ -15,8 +15,8 @@
         app:wheel_curtain="false"
         app:wheel_curved="true"
         app:wheel_item_align="center"
-        app:wheel_item_text_size="@dimen/wp_date_item_text_size"
-        app:wheel_selected_item_text_color="@color/wp_date_select_item_color"
+        app:wheel_item_text_size="@dimen/wp_item_text_size"
+        app:wheel_selected_item_text_color="@color/wp_select_item_color"
         app:wheel_visible_item_count="7"
         app:wheel_data="@array/wp_WheelArrayDefault" />
 
@@ -30,6 +30,6 @@
         tools:visibility="visible"
         android:gravity="center"
         android:text="单位"
-        android:textColor="@color/wp_date_unit_color"
-        android:textSize="@dimen/wp_date_unit_text_size" />
+        android:textColor="@color/wp_unit_color"
+        android:textSize="@dimen/wp_unit_text_size" />
 </LinearLayout>

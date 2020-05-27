@@ -2,11 +2,11 @@ package com.jx.wheelpicker.widget;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -30,9 +30,6 @@ import java.util.List;
  * @date 2018/6/25
  */
 public class WheelPickerBottomDialog extends Dialog {
-    private static final float ITEM_TEXT_SIZE = 20;
-    private static final float ITEM_SPACE = 10;
-    private static final String SELECTED_ITEM_COLOR = "#353535";
 
     private WheelPicker mWheelPicker;
     private TextView tvTitle;
@@ -118,12 +115,12 @@ public class WheelPickerBottomDialog extends Dialog {
     private void initWheelPicker(WheelPicker wheelPicker) {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(5, 5, 5, 5);
-        wheelPicker.setItemTextSize(dip2px(getContext(), ITEM_TEXT_SIZE));
-        wheelPicker.setSelectedItemTextColor(Color.parseColor(SELECTED_ITEM_COLOR));
+        wheelPicker.setItemTextSize(getContext().getResources().getDimension(R.dimen.wp_item_text_size));
+        wheelPicker.setSelectedItemTextColor(ResourcesCompat.getColor(getContext().getResources(),R.color.wp_select_item_color,null));
         wheelPicker.setCurved(true);
         wheelPicker.setVisibleItemCount(7);
         wheelPicker.setAtmospheric(true);
-        wheelPicker.setItemSpace(dip2px(getContext(), ITEM_SPACE));
+        wheelPicker.setItemSpace(getContext().getResources().getDimensionPixelSize(R.dimen.wp_WheelItemSpace));
         wheelPicker.setLayoutParams(layoutParams);
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/list_date_select_item_color" android:state_checked="true" />
-    <item android:color="@color/list_date_item_color" />
+    <item android:color="@color/wp_list_select_item_textColor" android:state_checked="true" />
+    <item android:color="@color/wp_list_item_textColor" />
 </selector>

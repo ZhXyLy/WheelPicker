@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <CheckedTextView
@@ -11,7 +12,7 @@
         android:background="@drawable/selector_text_background_checked"
         android:textColor="@color/color_text_checked"
         android:checked="false"
-        android:text="测试文字"
+        tools:text="测试文字"
         android:textSize="16dp"
         android:marqueeRepeatLimit="marquee_forever"
         android:ellipsize="marquee"

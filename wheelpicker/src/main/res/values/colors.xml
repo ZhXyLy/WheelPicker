@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="wp_date_select_item_color">#000000</color>
-    <color name="wp_date_unit_color">#000000</color>
-    <color name="list_date_item_color">#000000</color>
-    <color name="list_date_select_item_color">#FF0000</color>
+    <!--选中item的文字颜色-->
+    <color name="wp_select_item_color">#000000</color>
+    <!--普通item的文字颜色-->
+    <color name="wp_item_color">#B6B6B6</color>
+    <!--单位文字颜色-->
+    <color name="wp_unit_color">#000000</color>
+    <!---->
+    <color name="wp_list_item_textColor">#000000</color>
+    <color name="wp_list_select_item_textColor">#FF0000</color>
+    <!--dialog的背景色-->
+    <color name="wp_colorDialogBackground">#FFFFFF</color>
+    <!--dialog标题背景色颜色-->
+    <color name="wp_colorTitleBackground">#FAFAFA</color>
+    <!--dialog标题文字颜色（请选择…）-->
+    <color name="wp_colorTitleTextColor">#999999</color>
+    <!--dialog按钮文字颜色（取消/确认）-->
+    <color name="wp_colorButtonColor">#000000</color>
+    <!--分割线颜色-->
+    <color name="wp_lineColor">#ededed</color>
+    <!--按下颜色（列表选择的时候）-->
+    <color name="wp_list_pressColor">#F2F2F2</color>
+    <!--列表中渐变色，为了区分列与列-->
+    <color name="wp_list_gradientColor">#FAFAFA</color>
+    <!--幕布颜色-->
+    <color name="wp_curtainColor">#1AFFFFFF</color>
+
+
+<!--        <color name="wp_select_item_color">#FFFFFF</color>-->
+<!--        <color name="wp_item_color">#B6B6B6</color>-->
+<!--        <color name="wp_unit_color">#FFFFFF</color>-->
+<!--        <color name="wp_list_item_textColor">#FFFFFF</color>-->
+<!--        <color name="wp_list_select_item_textColor">#BB0000</color>-->
+<!--        <color name="wp_colorDialogBackground">#121212</color>-->
+<!--        <color name="wp_colorTitleBackground">#121212</color>-->
+<!--        <color name="wp_colorTitleTextColor">#B8B8B8</color>-->
+<!--        <color name="wp_colorButtonColor">#FFFFFF</color>-->
+<!--        <color name="wp_lineColor">#313131</color>-->
+<!--        <color name="wp_list_pressColor">#121212</color>-->
+<!--        <color name="wp_list_gradientColor">#191919</color>-->
+<!--        <color name="wp_curtainColor">#1A000000</color>-->
 </resources>

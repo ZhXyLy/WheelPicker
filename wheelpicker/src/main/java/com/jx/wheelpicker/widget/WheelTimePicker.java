@@ -1,7 +1,7 @@
 package com.jx.wheelpicker.widget;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -27,9 +27,6 @@ import java.util.List;
 public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
     private static final String TAG = "WheelTimePicker";
 
-    private static final float ITEM_TEXT_SIZE = 20;
-    private static final float ITEM_SPACE = 10;
-    private static final String SELECTED_ITEM_COLOR = "#353535";
     private static final int DEFAULT_HOUR_COUNT = 24;
     private static final int DEFAULT_MINUTE_COUNT = 60;
 
@@ -99,7 +96,7 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
         //添加分隔符 :
         TextView textView = new TextView(getContext());
         textView.setText(":");
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, ITEM_TEXT_SIZE);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getContext().getResources().getDimension(R.dimen.wp_item_text_size));
         textView.getPaint().setFakeBoldText(true);
         LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
         textView.setGravity(Gravity.CENTER);
@@ -112,13 +109,12 @@ public class WheelTimePicker extends LinearLayout implements IWheelTimePicker {
         mLayoutParams.setMargins(5, 5, 5, 5);
         mLayoutParams.width = 0;
         mLayoutParams.weight = weight;
-        wheelPicker.setItemTextSize(dip2px(getContext(), ITEM_TEXT_SIZE));
-        wheelPicker.setSelectedItemTextColor(Color.parseColor(SELECTED_ITEM_COLOR));
+        wheelPicker.setItemTextSize(getContext().getResources().getDimension(R.dimen.wp_item_text_size));
+        wheelPicker.setSelectedItemTextColor(ResourcesCompat.getColor(getContext().getResources(),R.color.wp_select_item_color,null));
         wheelPicker.setCurved(true);
-        wheelPicker.setCyclic(true);
         wheelPicker.setVisibleItemCount(7);
         wheelPicker.setAtmospheric(true);
-        wheelPicker.setItemSpace(dip2px(getContext(), ITEM_SPACE));
+        wheelPicker.setItemSpace(getContext().getResources().getDimensionPixelSize(R.dimen.wp_WheelItemSpace));
         wheelPicker.setLayoutParams(mLayoutParams);
         addView(wheelPicker);
     }
