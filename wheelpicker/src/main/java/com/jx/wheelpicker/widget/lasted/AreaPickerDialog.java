@@ -60,6 +60,9 @@ public class AreaPickerDialog extends Dialog {
         if (areaBuilder.itemTextSize > 0) {
             areaPicker.setItemTextSize(TypedValue.COMPLEX_UNIT_DIP, areaBuilder.itemTextSize);
         }
+        if (areaBuilder.itemSpace > 0) {
+            areaPicker.setItemSpace(areaBuilder.itemSpace);
+        }
         areaPicker.setAdjustTextSize(areaBuilder.adjustTextSize);
         areaPicker.setShortText(areaBuilder.shortText);
 
@@ -146,6 +149,7 @@ public class AreaPickerDialog extends Dialog {
 
         private CharSequence title = "请选择地区";
         private float itemTextSize;
+        private int itemSpace;
         private float titleTextSize;
         private boolean adjustTextSize = true;
         private boolean shortText;
@@ -185,6 +189,12 @@ public class AreaPickerDialog extends Dialog {
         @Override
         public AreaBuilder setItemTextSize(float itemTextSize) {
             this.itemTextSize = itemTextSize;
+            return this;
+        }
+
+        @Override
+        public AreaBuilder setItemSpace(int itemSpace) {
+            this.itemSpace = itemSpace;
             return this;
         }
 

@@ -118,6 +118,8 @@ public class AreaPickerDemo extends AppCompatActivity {
             mPickerDialog = new AreaPickerDialog.AreaBuilder(this)
                     .setShortText(true)
                     .setAdjustTextSize(false)
+                    .setItemSpace(getResources().getDimensionPixelOffset(R.dimen.dp20))
+                    .setItemTextSize(20)
                     .setOnAreaChangedListener(new AreaPickerDialog.OnAreaChangedListener() {
                         @Override
                         public void onAreaChanged(AreaPicker areaPicker, Province province, City city, Area area) {

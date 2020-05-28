@@ -240,6 +240,12 @@ public class AreaPicker extends FrameLayout {
         mAreaPicker.setItemTextSize(unit, value);
     }
 
+    public void setItemSpace(int itemSpace) {
+        mProvincePicker.setItemSpace(itemSpace);
+        mCityPicker.setItemSpace(itemSpace);
+        mAreaPicker.setItemSpace(itemSpace);
+    }
+
     public void setDefaultByCode(String code) {
         setDefaultByCode(code, 0);
     }

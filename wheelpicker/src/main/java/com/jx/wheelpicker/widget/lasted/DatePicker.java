@@ -463,6 +463,12 @@ public class DatePicker extends FrameLayout {
         mDayPicker.setItemTextSize(unit, value);
     }
 
+    public void setItemSpace(int itemSpace) {
+        mYearPicker.setItemSpace(itemSpace);
+        mMonthPicker.setItemSpace(itemSpace);
+        mDayPicker.setItemSpace(itemSpace);
+    }
+
     public interface OnDateChangeListener {
         /**
          * 停止滚动即回调

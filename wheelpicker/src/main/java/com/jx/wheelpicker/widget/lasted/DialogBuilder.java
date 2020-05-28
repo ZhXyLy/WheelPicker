@@ -24,4 +24,13 @@ public interface DialogBuilder {
      * @param itemTextSize dp
      */
     DialogBuilder setItemTextSize(float itemTextSize);
+
+    /**
+     * 设置Item间隔
+     *
+     * @param itemSpace
+     * @return
+     */
+    DialogBuilder setItemSpace(int itemSpace);
+
 }

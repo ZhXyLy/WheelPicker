@@ -60,6 +60,9 @@ public class DatePickerDialog extends Dialog {
         if (dateBuilder.itemTextSize > 0) {
             datePicker.setItemTextSize(TypedValue.COMPLEX_UNIT_DIP, dateBuilder.itemTextSize);
         }
+        if (dateBuilder.itemSpace > 0) {
+            datePicker.setItemSpace(dateBuilder.itemSpace);
+        }
         if (dateBuilder.minDate != null || dateBuilder.maxDate != null) {
             datePicker.setRangeDate(dateBuilder.minDate, dateBuilder.maxDate);
         }
@@ -155,6 +158,7 @@ public class DatePickerDialog extends Dialog {
 
         private CharSequence title = "请选择日期";
         private float itemTextSize;
+        private int itemSpace;
         private float titleTextSize;
         private Context context;
         private Date minDate;
@@ -199,6 +203,12 @@ public class DatePickerDialog extends Dialog {
         @Override
         public DateBuilder setItemTextSize(float itemTextSize) {
             this.itemTextSize = itemTextSize;
+            return this;
+        }
+
+        @Override
+        public DateBuilder setItemSpace(int itemSpace) {
+            this.itemSpace = itemSpace;
             return this;
         }
 

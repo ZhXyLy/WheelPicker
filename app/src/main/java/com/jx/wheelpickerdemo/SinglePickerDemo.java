@@ -84,6 +84,9 @@ public class SinglePickerDemo extends AppCompatActivity {
         if (singlePickerDialog == null) {
             singlePickerDialog = new SinglePickerDialog.SingleBuilder(this)
                     .setData(stringData)
+                    .setTitle("请选择你中意的")
+                    .setItemSpace(getResources().getDimensionPixelOffset(R.dimen.dp20))
+                    .setItemTextSize(20)
                     .setOnChangedListener(new SinglePickerDialog.OnChangedListener() {
                         @Override
                         public void onChanged(SinglePicker singlePicker, Data data) {

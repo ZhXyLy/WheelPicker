@@ -15,6 +15,7 @@
         app:wheel_curtain="false"
         app:wheel_curved="true"
         app:wheel_item_align="center"
+        app:wheel_item_space="@dimen/wp_item_text_size"
         app:wheel_item_text_size="@dimen/wp_item_text_size"
         app:wheel_selected_item_text_color="@color/wp_select_item_color"
         app:wheel_visible_item_count="7"

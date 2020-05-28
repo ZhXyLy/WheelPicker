@@ -61,6 +61,8 @@ public class DatePickerDemo extends AppCompatActivity {
     private void showSingleLastedDialog() {
         if (mPickerDialog == null) {
             mPickerDialog = new DatePickerDialog.DateBuilder(this)
+                    .setItemSpace(getResources().getDimensionPixelOffset(R.dimen.dp20))
+                    .setItemTextSize(20)
                     .setOnDateChangedListener(new DatePickerDialog.OnDateChangedListener() {
                         @Override
                         public void onDateChanged(DatePicker datePicker, int year, int month, int day, String week) {

@@ -60,6 +60,9 @@ public class SinglePickerDialog extends Dialog {
         if (singleBuilder.itemTextSize > 0) {
             singlePicker.setItemTextSize(TypedValue.COMPLEX_UNIT_DIP, singleBuilder.itemTextSize);
         }
+        if (singleBuilder.itemSpace > 0) {
+            singlePicker.setItemSpace(singleBuilder.itemSpace);
+        }
         if (singleBuilder.defaultText != null) {
             singlePicker.setDefaultByText(singleBuilder.defaultText);
         }
@@ -153,6 +156,7 @@ public class SinglePickerDialog extends Dialog {
 
         private CharSequence title = "";
         private float itemTextSize;
+        private int itemSpace;
         private float titleTextSize;
         private Context context;
         private String defaultId;
@@ -195,6 +199,12 @@ public class SinglePickerDialog extends Dialog {
         @Override
         public SingleBuilder setItemTextSize(float itemTextSize) {
             this.itemTextSize = itemTextSize;
+            return this;
+        }
+
+        @Override
+        public SingleBuilder setItemSpace(int itemSpace) {
+            this.itemSpace = itemSpace;
             return this;
         }
 

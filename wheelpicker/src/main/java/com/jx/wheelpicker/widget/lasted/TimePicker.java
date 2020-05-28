@@ -373,6 +373,12 @@ public class TimePicker extends FrameLayout {
         mSecondPicker.setItemTextSize(unit, value);
     }
 
+    public void setItemSpace(int itemSpace) {
+        mHourPicker.setItemSpace(itemSpace);
+        mMinutePicker.setItemSpace(itemSpace);
+        mSecondPicker.setItemSpace(itemSpace);
+    }
+
     public interface OnTimeChangeListener {
         /**
          * 停止滚动即回调

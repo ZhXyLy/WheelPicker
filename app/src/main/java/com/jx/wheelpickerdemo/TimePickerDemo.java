@@ -58,6 +58,8 @@ public class TimePickerDemo extends AppCompatActivity {
     private void showLastedDialog() {
         if (mPickerDialog == null) {
             mPickerDialog = new TimePickerDialog.TimeBuilder(this)
+                    .setItemSpace(getResources().getDimensionPixelOffset(R.dimen.dp18))
+                    .setItemTextSize(18)
                     .setOnTimeChangedListener(new TimePickerDialog.OnTimeChangedListener() {
                         @Override
                         public void onTimeChanged(TimePicker timePicker, int hour, int minute, int second) {

@@ -162,6 +162,10 @@ public class SinglePicker extends FrameLayout {
         mSinglePicker.setItemTextSize(unit, value);
     }
 
+    public void setItemSpace(int itemSpace) {
+        mSinglePicker.setItemSpace(itemSpace);
+    }
+
     public interface OnSingleChangeListener {
         /**
          * 停止滚动即回调

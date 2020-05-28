@@ -58,6 +58,9 @@ public class TimePickerDialog extends Dialog {
         if (timeBuilder.itemTextSize > 0) {
             timePicker.setItemTextSize(TypedValue.COMPLEX_UNIT_DIP, timeBuilder.itemTextSize);
         }
+        if (timeBuilder.itemSpace > 0) {
+            timePicker.setItemSpace(timeBuilder.itemSpace);
+        }
         if (timeBuilder.defDate != null) {
             timePicker.setDefaultTime(timeBuilder.defDate);
         }
@@ -148,6 +151,7 @@ public class TimePickerDialog extends Dialog {
 
         private CharSequence title = "请选择时间";
         private float itemTextSize;
+        private int itemSpace;
         private float titleTextSize;
         private Context context;
         private Date defDate;
@@ -191,6 +195,12 @@ public class TimePickerDialog extends Dialog {
         @Override
         public TimeBuilder setItemTextSize(float itemTextSize) {
             this.itemTextSize = itemTextSize;
+            return this;
+        }
+
+        @Override
+        public TimeBuilder setItemSpace(int itemSpace) {
+            this.itemSpace = itemSpace;
             return this;
         }
 

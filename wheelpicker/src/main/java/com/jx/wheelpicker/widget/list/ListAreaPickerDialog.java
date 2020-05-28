@@ -148,6 +148,15 @@ public class ListAreaPickerDialog extends Dialog {
             return this;
         }
 
+        /**
+         * 这是无用的方法
+         */
+        @Deprecated
+        @Override
+        public DialogBuilder setItemSpace(int itemSpace) {
+            return this;
+        }
+
 
         /**
          * 滚动监听
