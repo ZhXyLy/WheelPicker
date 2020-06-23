@@ -93,8 +93,15 @@ public class SinglePicker extends FrameLayout {
         if (mCurrentPosition >= 0) {
             setCurrentData(mSingleData.get(mCurrentPosition));
         }
-        scrollToCurrentDate();
-        notifyDateChanged();
+        if (defaultId != null || defaultText != null) {
+            if (defaultId != null) {
+                setDefaultById(defaultId);
+            } else {
+                setDefaultByText(defaultText);
+            }
+            scrollToCurrentDate();
+            notifyDateChanged();
+        }
     }
 
     /**
@@ -124,29 +131,52 @@ public class SinglePicker extends FrameLayout {
         mSingleUnit.setText(mStringUnit);
     }
 
+    private String defaultId;
+    private String defaultText;
+
     public void setDefaultById(String id) {
+        defaultId = id == null ? "" : id;
         if (!TextUtils.isEmpty(id)) {
-            for (int i = 0; i < mSingleData.size(); i++) {
-                if (id.equals(mSingleData.get(i).getId())) {
-                    setCurrentData(mSingleData.get(i));
-                    mCurrentPosition = i;
-                    scrollToCurrentDate();
-                    return;
+            if (mSingleData != null && mSingleData.size() > 0) {
+                for (int i = 0; i < mSingleData.size(); i++) {
+                    if (id != null && id.equals(mSingleData.get(i).getId())) {
+                        setCurrentData(mSingleData.get(i));
+                        mCurrentPosition = i;
+                        scrollToCurrentDate();
+                        notifyDateChanged();
+                        return;
+                    }
                 }
+                defaultId = null;
             }
+        } else if (mSingleData.size() > 0) {
+            setCurrentData(mSingleData.get(0));
+            mCurrentPosition = 0;
+            scrollToCurrentDate();
+            notifyDateChanged();
         }
     }
 
     public void setDefaultByText(String text) {
+        defaultText = text == null ? "" : text;
         if (!TextUtils.isEmpty(text)) {
-            for (int i = 0; i < mSingleData.size(); i++) {
-                if (text.equals(mSingleData.get(i).getText())) {
-                    setCurrentData(mSingleData.get(i));
-                    mCurrentPosition = i;
-                    scrollToCurrentDate();
-                    return;
+            if (mSingleData != null && mSingleData.size() > 0) {
+                for (int i = 0; i < mSingleData.size(); i++) {
+                    if (text != null && text.equals(mSingleData.get(i).getText())) {
+                        setCurrentData(mSingleData.get(i));
+                        mCurrentPosition = i;
+                        scrollToCurrentDate();
+                        notifyDateChanged();
+                        return;
+                    }
                 }
+                defaultText = null;
             }
+        } else if (mSingleData.size() > 0) {
+            setCurrentData(mSingleData.get(0));
+            mCurrentPosition = 0;
+            scrollToCurrentDate();
+            notifyDateChanged();
         }
     }
 

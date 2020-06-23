@@ -80,17 +80,21 @@ public class SinglePickerDemo extends AppCompatActivity {
         wheelPickerBottomDialog.show();
     }
 
+    private String selectId = "JavaScript";
+//    private String selectId  ;
+
     private void showSingleLastedDialog() {
         if (singlePickerDialog == null) {
             singlePickerDialog = new SinglePickerDialog.SingleBuilder(this)
-                    .setData(stringData)
+//                    .setData(stringData) //第一种 初始值
                     .setTitle("请选择你中意的")
                     .setItemSpace(getResources().getDimensionPixelOffset(R.dimen.dp20))
                     .setItemTextSize(20)
                     .setOnChangedListener(new SinglePickerDialog.OnChangedListener() {
                         @Override
                         public void onChanged(SinglePicker singlePicker, Data data) {
-                            tvLastedResult.setText(data == null ? "没选到东西" : data.getText());
+                            selectId = data.getId();
+                            tvLastedResult.setText(data.getText());
                         }
                     })
                     .setOnPickListener(new SinglePickerDialog.OnPickListener() {
@@ -100,7 +104,15 @@ public class SinglePickerDemo extends AppCompatActivity {
                         }
                     })
                     .build();
+//            singlePickerDialog.updateData(stringData);    //第二种 更新数据
+            tvLastedResult.postDelayed(new Runnable() {     //第三种 延迟更新数据
+                @Override
+                public void run() {
+                    singlePickerDialog.updateData(stringData);
+                }
+            },2000);
         }
+        singlePickerDialog.setDefaultById(selectId);
         singlePickerDialog.show();
     }
 }
